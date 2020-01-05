@@ -12,12 +12,7 @@ func _init(character: String, name: String):
 	data.character = character
 	data.name = name
 	
-	var characterFolder: String = FileManager.getPath(FileManager.CHARACTERS, data.character)
-	if (characterFolder == null):
-		print("ERROR: ROOT directory not set! Could not create character folder for " + data.character)
-	else:
-		FileManager.createDirectory(characterFolder)
-		load_expression()
+	load_expression()
 
 # Simple getter for data.name
 func get_name() -> String:
@@ -51,19 +46,20 @@ func load_static_expression_files() -> void:
 # Loader for animated expressions
 func load_dynamic_expression_files() -> void:
 	var nextFrame: String = get_next_dynamic_path()
-	while (FileManager.fileExists(nextFrame)):
+	while (FileManager.file_exists(nextFrame)):
 		data.frames.append(load_frame(nextFrame))
+		nextFrame = get_next_dynamic_path()
 
 # Helper functions that returns an expected static expression path
 func get_static_path() -> String:
-	var characterFolder: String = FileManager.getPath(FileManager.CHARACTERS, data.character)
+	var characterFolder: String = FileManager.get_resource_path(FileManager.CHARACTERS, data.character)
 	return characterFolder + data.name + ".png"
 
 # Helper function that returns the expected next path to frame of the
 # animated expression
 func get_next_dynamic_path() -> String:
-	var characterFolder: String = FileManager.getPath(FileManager.CHARACTERS, data.character)
-	return characterFolder + data.name + "_" + (data.frames.size() + 1) + ".png"
+	var characterFolder: String = FileManager.get_resource_path(FileManager.CHARACTERS, data.character)
+	return characterFolder + data.name + "_" + String(data.frames.size() + 1) + ".png"
 
 # Returns number of frames > 1
 func is_dynamic() -> bool:

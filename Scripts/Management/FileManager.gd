@@ -20,7 +20,7 @@ const PATH: Dictionary = {
 }
 
 # Function for creating directories
-func createDirectory(path: String) -> bool:
+func create_directory(path: String) -> bool:
 	var dir: Directory = Directory.new()
 	print("Creating path: " + path)
 	if (!dir.dir_exists(path)):
@@ -29,41 +29,41 @@ func createDirectory(path: String) -> bool:
 	return true
 
 # Function for creating subdirectories of the base directory
-func createRootDirectory(subdirectory: String) -> bool:
-	return createDirectory(ROOT + subdirectory)
+func create_root_directory(subdirectory: String) -> bool:
+	return create_directory(ROOT + subdirectory)
 
 # Function to create the base directories for the server
-func createDirectories(baseFolder: String) -> bool:
+func create_directories(baseFolder: String) -> bool:
 	if (baseFolder == null || baseFolder.empty()):
 		return false
 	ROOT = baseFolder + "/"
 	
 	var dir: Directory = Directory.new()
 	for folder in PATH.values():
-		if (!(createRootDirectory(folder))):
+		if (!(create_root_directory(folder))):
 			return false
 	return true
 
 # Gets the path for a particular resource
-func getPath(key: String, resource: String):
+func get_resource_path(key: String, resource: String):
 	if (!PATH.has(key) or ROOT == null):
 		return null
 	
 	return ROOT + PATH[key] + resource + "/"
 
 # Checks that the resource exists
-func resourceExists(key: String, resource: String):
+func resource_exists(key: String, resource: String):
 	if (!PATH.has(key)):
 		return false
-	return fileExists(getPath(key, resource))
+	return file_exists(get_resource_path(key, resource))
 
 # Checks that the file exists
-func fileExists(path: String):
+func file_exists(path: String):
 	var file: File = File.new()
 	return file.file_exists(path)
 
 # Gets the base game path
-func getGamePath():
+func get_game_path():
 	var dir: Directory = Directory.new()
 	dir.open(".")
 	return dir.get_current_dir()
