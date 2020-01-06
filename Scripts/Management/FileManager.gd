@@ -59,18 +59,18 @@ func get_resource_path(key: String, resource: String):
 	return ROOT + PATH[key] + resource + "/"
 
 # Checks that the resource exists
-func resource_exists(key: String, resource: String):
+func resource_exists(key: String, resource: String) -> bool:
 	if (!PATH.has(key)):
 		return false
 	return file_exists(get_resource_path(key, resource))
 
 # Checks that the file exists
-func file_exists(path: String):
+func file_exists(path: String) -> bool:
 	var file: File = File.new()
 	return file.file_exists(path)
 
 # Gets the base game path
-func get_game_path():
+func get_game_path() -> String:
 	var dir: Directory = Directory.new()
 	dir.open(".")
 	return dir.get_current_dir()

@@ -3,7 +3,7 @@ extends Node
 var characters: Dictionary = {}
 
 # Loads all characters present in the server folder
-func load_characters():
+func load_characters() -> void:
 	var dir: Directory = Directory.new()
 	
 	dir.open(FileManager.get_folder_path(FileManager.CHARACTERS))
@@ -19,4 +19,5 @@ func load_characters():
 	
 	dir.list_dir_end()
 	
+	# DEBUG:
 	print(characters)
