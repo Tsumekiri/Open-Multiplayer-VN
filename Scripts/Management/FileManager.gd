@@ -44,6 +44,13 @@ func create_directories(baseFolder: String) -> bool:
 			return false
 	return true
 
+# Gets path for a folder that stores resources
+func get_folder_path(key: String):
+	if (!PATH.has(key) or ROOT == null):
+		return null
+	
+	return ROOT + PATH[key] + "/"
+
 # Gets the path for a particular resource
 func get_resource_path(key: String, resource: String):
 	if (!PATH.has(key) or ROOT == null):
