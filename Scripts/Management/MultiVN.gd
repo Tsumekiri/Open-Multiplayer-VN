@@ -2,5 +2,5 @@ extends Node
 
 # Global class to hold this project's types and reference them
 
-var Expression = load("res://Scripts/Data/Expression.gd")
-var Character = load("res://Scripts/Data/Character.gd")
+var VNImage = load("res://Scripts/Data/VNImage.gd")
+var VNImageSet = load("res://Scripts/Data/VNImageSet.gd")
