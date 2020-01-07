@@ -6,7 +6,9 @@ var characters: Dictionary = {}
 func load_characters(args) -> void:
 	var dir: Directory = Directory.new()
 	
-	dir.open(FileManager.get_folder_path(FileManager.CHARACTERS))
+	if (dir.open(FileManager.get_folder_path(FileManager.CHARACTERS)) != OK):
+		return
+	
 	dir.list_dir_begin()
 	
 	while true:
@@ -15,7 +17,7 @@ func load_characters(args) -> void:
 			break
 		elif (not characterFolder.begins_with(".") and dir.current_is_dir()):
 			var character: String = characterFolder.get_basename()
-			characters[character] = MultiVN.VNImageSet.new(character, FileManager.get_resource_path(FileManager.CHARACTERS, character))
+			characters[character] = MultiVN.Character.new(character)
 	
 	dir.list_dir_end()
 	

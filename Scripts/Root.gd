@@ -7,6 +7,5 @@ func _ready():
 	FileManager.create_directories(FileManager.get_game_path())
 	thread.start(CharacterManager, "load_characters")
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _exit_tree():
+	thread.wait_to_finish()

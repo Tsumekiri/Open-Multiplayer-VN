@@ -1,5 +1,10 @@
 extends Resource
 
+# This is a VNImage resource, used in conjunction with VNImageSet
+# to help the user select the apropriate set of images to use.
+# Its main feature are the frames, loaded from images inside
+# their folders.
+
 # Expression data
 var data: Dictionary = {
 	"imageSet": "",
@@ -33,7 +38,8 @@ func load_vn_image(folderPath: String) -> void:
 # Frame loading function
 func load_frame(path: String) -> ImageTexture:
 	var image: Image = Image.new()
-	image.load(path)
+	if (image.load(path) != OK):
+		return null
 	
 	var texture: ImageTexture = ImageTexture.new()
 	texture.create_from_image(image, Texture.FLAG_FILTER)

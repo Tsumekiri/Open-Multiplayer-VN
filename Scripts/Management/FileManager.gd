@@ -38,7 +38,6 @@ func create_directories(baseFolder: String) -> bool:
 		return false
 	ROOT = baseFolder + "/"
 	
-	var dir: Directory = Directory.new()
 	for folder in PATH.values():
 		if (!(create_root_directory(folder))):
 			return false
@@ -72,5 +71,7 @@ func file_exists(path: String) -> bool:
 # Gets the base game path
 func get_game_path() -> String:
 	var dir: Directory = Directory.new()
-	dir.open(".")
+	if (dir.open(".") != OK):
+		return ""
+	
 	return dir.get_current_dir()

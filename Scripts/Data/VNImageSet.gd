@@ -1,9 +1,10 @@
 extends Resource
 
-# This is the resource used to store loaded character data.
-# It loads and stores several Expressions, as well as its
-# name, used for identification. Be careful with capitalization,
-# as a different OS may treat it differently.
+# This is the resource used to store loaded image set resources.
+# It loads and stores several VNImages, as well as its name,
+# used for identification. Be careful with capitalization,
+# as a different OS may treat it differently. The names are the
+# names of their respective folders.
 
 # Character data
 var data: Dictionary = {
@@ -13,13 +14,13 @@ var data: Dictionary = {
 }
 
 # Constructor
-func _init(name: String, folderPath: String):
+func setup(name: String, folderPath: String):
 	data.name = name
 	
 	if (folderPath == null):
 		print("ERROR: ROOT directory not set! Could not create character folder for " + data.name)
 	else:
-		FileManager.create_directory(folderPath)
+#		FileManager.create_directory(folderPath)
 		load_vn_images(folderPath)
 		load_sprite_frames()
 
@@ -47,8 +48,10 @@ func load_vn_images(folderPath: String) -> void:
 	regex.compile("^(.*)_(\\d+)\\.\\b(png)\\b$")
 	
 	var dir: Directory = Directory.new()
-	dir.open(folderPath)
-	dir.list_dir_begin()
+	if (dir.open(folderPath) != OK):
+		return
+	
+	dir.list_dir_begin() != OK
 	
 	while true:
 		var vnImage: String = dir.get_next()
