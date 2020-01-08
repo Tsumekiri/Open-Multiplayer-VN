@@ -24,6 +24,7 @@ config/icon="res://icon.png"
 FileManager="*res://Scripts/Management/FileManager.gd"
 MultiVN="*res://Scripts/Management/MultiVN.gd"
 CharacterManager="*res://Scripts/Management/CharacterManager.gd"
+VNResourceLoader="*res://Scripts/Management/VNResourceLoader.gd"
 
 [rendering]
 
