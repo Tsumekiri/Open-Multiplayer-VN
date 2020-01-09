@@ -20,7 +20,6 @@ func setup(name: String, folderPath: String):
 	if (folderPath == null):
 		print("ERROR: ROOT directory not set! Could not create character folder for " + data.name)
 	else:
-#		FileManager.create_directory(folderPath)
 		load_vn_images(folderPath)
 		load_sprite_frames()
 
