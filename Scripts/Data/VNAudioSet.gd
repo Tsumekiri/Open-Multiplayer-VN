@@ -16,4 +16,6 @@ func setup(name: String, folderPath: String):
 
 # Loads all the audio available in the particular VNAudioSet folder
 func load_vn_audio():
-	pass
+	var regex = RegEx.new()
+	
+	

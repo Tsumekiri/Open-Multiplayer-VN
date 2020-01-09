@@ -1,6 +1,7 @@
 extends Node
 
 var characters: Dictionary = {}
+const allowedExtensions: Array = ["png"]
 
 # Loads all characters present in the server folder
 func load_characters(args) -> void:
@@ -12,4 +13,4 @@ func load_characters(args) -> void:
 
 func load_resource(path: String):
 	var character: String = path.get_basename()
-	characters[character] = MultiVN.Character.new(character)
+	characters[character] = MultiVN.Character.new(character, allowedExtensions)

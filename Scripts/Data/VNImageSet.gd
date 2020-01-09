@@ -14,13 +14,14 @@ var data: Dictionary = {
 }
 
 # Constructor
-func setup(name: String, folderPath: String):
+# Note that allowedExtensions must contain an array of lowercase strings
+func setup(name: String, folderPath: String, allowedExtensions: Array):
 	data.name = name
 	
 	if (folderPath == null):
 		print("ERROR: ROOT directory not set! Could not create character folder for " + data.name)
 	else:
-		load_vn_images(folderPath)
+		load_vn_images(folderPath, allowedExtensions)
 		load_sprite_frames()
 
 # Returns the VNImages for this set
@@ -42,9 +43,9 @@ func get_sprite_frames() -> SpriteFrames:
 	return data.spriteFrames
 
 # Loads each VNImage found
-func load_vn_images(folderPath: String) -> void:
+func load_vn_images(folderPath: String, allowedExtensions: Array) -> void:
 	var regex: RegEx = RegEx.new()
-	regex.compile("^(.*)_(\\d+)\\.\\b(png)\\b$")
+	regex.compile("^(.*)_(\\d+)\\.\\b" + get_extension_regex_group(allowedExtensions) + "\\b$")
 	
 	var dir: Directory = Directory.new()
 	if (dir.open(folderPath) != OK):
@@ -61,10 +62,17 @@ func load_vn_images(folderPath: String) -> void:
 		
 		if (vnImageMatch != null):
 			add_dynamic_vn_image(vnImageMatch.get_string(1), folderPath, vnImageMatch.get_string(2))
-		elif (vnImage.get_extension() == "png"):
+		elif (vnImage.get_extension().to_lower() in allowedExtensions):
 			add_vn_image(vnImage.get_basename(), folderPath)
 	
 	dir.list_dir_end()
+
+# Forms the extensions group allowed by the RegEx
+func get_extension_regex_group(allowedExtensions: Array):
+	var result = "("
+	for i in allowedExtensions:
+		result += i + "|"
+	return (result.rstrip("|") + ")")
 
 # Puts the frames loaded by the VNImages into the character's sprite frames
 func load_sprite_frames() -> void:
