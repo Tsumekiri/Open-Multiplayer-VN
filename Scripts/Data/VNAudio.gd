@@ -1,12 +1,14 @@
 extends Resource
 
 var data: Dictionary = {
+	"audioSet": "",
 	"name": "",
 	"loop": false,
 	"type": ""
 }
 
-func _init(path: String):
+func setup(name: String, path: String):
+	data.audioSet = name
 	data.name = path.get_basename()
 	data.audio = import_audio(path)
 	data.type = path.get_extension().to_lower()

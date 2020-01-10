@@ -1,6 +1,8 @@
 extends Node
 
-func load_vn_images(path: String, manager):
+# Generic VN resource loader. Iterates directory and calls
+# the manager's load_resource function
+func load_vn_resources(path: String, manager):
 	var dir: Directory = Directory.new()
 	
 	if (dir.open(path) != OK):
@@ -9,10 +11,10 @@ func load_vn_images(path: String, manager):
 	dir.list_dir_begin()
 	
 	while true:
-		var vnImageFolder: String = dir.get_next()
-		if (vnImageFolder == ""):
+		var vnResourceFolder: String = dir.get_next()
+		if (vnResourceFolder == ""):
 			break
-		elif (not vnImageFolder.begins_with(".") and dir.current_is_dir()):
-			manager.load_resource(vnImageFolder)
+		elif (not vnResourceFolder.begins_with(".") and dir.current_is_dir()):
+			manager.load_resource(vnResourceFolder)
 	
 	dir.list_dir_end()
