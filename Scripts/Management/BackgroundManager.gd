@@ -17,6 +17,8 @@ func _load_backgrounds(args) -> void:
 	
 	print("========== BACKGROUNDS ==========")
 	print(backgroundList)
+	for background in backgroundList.values():
+		print(background.get_vn_images())
 	
 	_finish_loading()
 

@@ -7,11 +7,11 @@ var data: Dictionary = {
 	"type": ""
 }
 
-func setup(name: String, path: String):
-	data.audioSet = name
-	data.name = path.get_basename()
-	data.audio = import_audio(path)
-	data.type = path.get_extension().to_lower()
+func _init(audioSet: String, file: String, folderPath: String):
+	data.audioSet = audioSet
+	data.name = file.get_basename()
+	data.audio = import_audio(get_audio_path(file, folderPath))
+	data.type = file.get_extension().to_lower()
 
 # Loads a PoolByteArray from the audio file, for use with either
 # an AudioStreamOGGVorbis or an AudioStreamSample
@@ -48,3 +48,6 @@ func set_loop(mode: bool) -> void:
 			data.audio.set_loop_mode(AudioStreamSample.LOOP_FORWARD)
 		else:
 			data.audio.set_loop_mode(AudioStreamSample.LOOP_DISABLED)
+
+func get_audio_path(file: String, folderPath: String):
+	return folderPath + file

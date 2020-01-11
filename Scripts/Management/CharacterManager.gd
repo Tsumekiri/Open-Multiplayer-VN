@@ -17,6 +17,8 @@ func _load_characters(args) -> void:
 	
 	print("========== CHARACTERS ==========")
 	print(characterList)
+	for character in characterList.values():
+		print(character.get_vn_images())
 	
 	_finish_loading()
 

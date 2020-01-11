@@ -17,6 +17,8 @@ func _load_sfx(args) -> void:
 	
 	print("========== SFX ==========")
 	print(sfxList)
+	for sfx in sfxList.values():
+		print(sfx.get_vn_audio_dict())
 	
 	_finish_loading()
 

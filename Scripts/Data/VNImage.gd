@@ -9,13 +9,15 @@ extends Resource
 var data: Dictionary = {
 	"imageSet": "",
 	"name": "",
-	"frames": []
+	"frames": [],
+	"type": ""
 }
 
 # Constructor
-func _init(imageSet: String, name: String, folderPath: String):
+func _init(imageSet: String, file: String, folderPath: String):
 	data.imageSet = imageSet
-	data.name = name
+	data.name = file.get_basename()
+	data.type = file.get_extension()
 	
 	load_vn_image(folderPath)
 
@@ -58,12 +60,12 @@ func load_dynamic_vn_image_files(folderPath: String) -> void:
 
 # Helper functions that returns an expected static VNImage path
 func get_static_path(folderPath: String) -> String:
-	return folderPath + data.name + ".png"
+	return folderPath + data.name + "." + data.type
 
 # Helper function that returns the expected next path to frame of the
 # animated VNImage
 func get_next_dynamic_path(folderPath: String) -> String:
-	return folderPath + data.name + "_" + String(data.frames.size() + 1) + ".png"
+	return folderPath + data.name + "_" + String(data.frames.size() + 1) + "." + data.type
 
 # Returns number of frames > 1
 func is_dynamic() -> bool:

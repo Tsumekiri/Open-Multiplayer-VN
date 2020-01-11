@@ -51,7 +51,7 @@ func load_vn_images(folderPath: String, allowedExtensions: Array) -> void:
 	if (dir.open(folderPath) != OK):
 		return
 	
-	dir.list_dir_begin() != OK
+	dir.list_dir_begin()
 	
 	while true:
 		var vnImage: String = dir.get_next()
@@ -61,9 +61,9 @@ func load_vn_images(folderPath: String, allowedExtensions: Array) -> void:
 		var vnImageMatch: RegExMatch = regex.search(vnImage.get_file())
 		
 		if (vnImageMatch != null):
-			add_dynamic_vn_image(vnImageMatch.get_string(1), folderPath, vnImageMatch.get_string(2))
+			add_dynamic_vn_image(vnImageMatch.get_string(1), vnImage, folderPath, vnImageMatch.get_string(2))
 		elif (vnImage.get_extension().to_lower() in allowedExtensions):
-			add_vn_image(vnImage.get_basename(), folderPath)
+			add_vn_image(vnImage.get_basename(), vnImage, folderPath)
 	
 	dir.list_dir_end()
 
@@ -87,10 +87,10 @@ func load_sprite_each_frame(vnImage: String, texture: ImageTexture) -> void:
 	data.spriteFrames.add_frame(vnImage, texture, data.spriteFrames.get_frame_count(vnImage))
 
 # Adds the VNImage to the character's list of VNImages
-func add_vn_image(name: String, folderPath: String) -> void:
-	data.vnImages[name] = MultiVN.VNImage.new(data.name, name, folderPath)
+func add_vn_image(name: String, file: String, folderPath: String) -> void:
+	data.vnImages[name] = MultiVN.VNImage.new(data.name, file, folderPath)
 
 # Adds the animated VNImage to the set's list of VNImages
-func add_dynamic_vn_image(name: String, folderPath: String, frame: String) -> void:
+func add_dynamic_vn_image(name: String, file: String, folderPath: String, frame: String) -> void:
 	if (frame == "1"):
-		add_vn_image(name, folderPath)
+		add_vn_image(name, file, folderPath)

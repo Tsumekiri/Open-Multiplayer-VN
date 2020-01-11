@@ -15,12 +15,12 @@ func setup(name: String, folderPath: String, allowedExtensions: Array):
 		load_vn_audio(folderPath, allowedExtensions)
 
 # Loads all the audio available in the particular VNAudioSet folder
-func load_vn_audio(path: String, allowedExtensions: Array):
+func load_vn_audio(folderPath: String, allowedExtensions: Array):
 	var dir: Directory = Directory.new()
-	if (dir.open(path) != OK):
+	if (dir.open(folderPath) != OK):
 		return
 	
-	dir.list_dir_begin() != OK
+	dir.list_dir_begin()
 	
 	while true:
 		var vnAudio: String = dir.get_next()
@@ -28,14 +28,14 @@ func load_vn_audio(path: String, allowedExtensions: Array):
 			break
 		
 		if (vnAudio.get_extension().to_lower() in allowedExtensions):
-			add_vn_audio(path)
+			add_vn_audio(vnAudio, folderPath)
 	
 	dir.list_dir_end()
 
 # Adds a VNAudio to the vnAudio attribute of the VNAudioSet
-func add_vn_audio(path: String):
-	data.vnAudio[path.get_basename()] = MultiVN.VNAudio.new(data.name, path)
+func add_vn_audio(file: String, folderPath: String):
+	data.vnAudio[file.get_basename()] = MultiVN.VNAudio.new(data.name, file, folderPath)
 
 # Simple getter for VNAudio dictionary
-func get_vn_audio():
+func get_vn_audio_dict():
 	return data.vnAudio

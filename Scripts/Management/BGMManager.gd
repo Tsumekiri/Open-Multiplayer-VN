@@ -17,6 +17,8 @@ func _load_bgm(args) -> void:
 	
 	print("========== BGM ==========")
 	print(bgmList)
+	for bgm in bgmList.values():
+		print(bgm.get_vn_audio_dict())
 	
 	_finish_loading()
 
