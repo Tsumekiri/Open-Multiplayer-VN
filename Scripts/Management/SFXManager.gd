@@ -14,6 +14,10 @@ func _load_sfx(args) -> void:
 	VNResourceLoader.load_vn_resources(FileManager.get_folder_path(FileManager.SFX), self)
 	
 	# Add code to run after loading all sound effects
+	
+	print("========== SFX ==========")
+	print(sfxList)
+	
 	_finish_loading()
 
 # Called by the VNResourceLoader to load each folder

@@ -22,9 +22,12 @@ config/icon="res://icon.png"
 [autoload]
 
 FileManager="*res://Scripts/Management/FileManager.gd"
+VNResourceLoader="*res://Scripts/Management/VNResourceLoader.gd"
 MultiVN="*res://Scripts/Management/MultiVN.gd"
 CharacterManager="*res://Scripts/Management/CharacterManager.gd"
-VNResourceLoader="*res://Scripts/Management/VNResourceLoader.gd"
+BackgroundManager="*res://Scripts/Management/BackgroundManager.gd"
+BGMManager="*res://Scripts/Management/BGMManager.gd"
+SFXManager="*res://Scripts/Management/SFXManager.gd"
 
 [rendering]
 

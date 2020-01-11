@@ -7,13 +7,17 @@ var thread: Thread = Thread.new()
 
 # Starts loading on a separate thread
 func load_threaded() -> void:
-	thread.start(self, "_load_sfx")
+	thread.start(self, "_load_bgm")
 
 # Loads all background music present in the server folder
-func _load_sfx(args) -> void:
-	VNResourceLoader.load_vn_resources(FileManager.get_folder_path(FileManager.SFX), self)
+func _load_bgm(args) -> void:
+	VNResourceLoader.load_vn_resources(FileManager.get_folder_path(FileManager.BGM), self)
 	
 	# Add code to run after loading all sound effects
+	
+	print("========== BGM ==========")
+	print(bgmList)
+	
 	_finish_loading()
 
 # Called by the VNResourceLoader to load each folder

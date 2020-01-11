@@ -14,9 +14,9 @@ func _load_backgrounds(args) -> void:
 	VNResourceLoader.load_vn_resources(FileManager.get_folder_path(FileManager.BACKGROUNDS), self)
 	
 	# Add code to run after loading every background
+	
+	print("========== BACKGROUNDS ==========")
 	print(backgroundList)
-	for background in backgroundList.values():
-		print(background.get_vn_images())
 	
 	_finish_loading()
 

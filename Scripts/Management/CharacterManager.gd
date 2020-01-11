@@ -14,9 +14,9 @@ func _load_characters(args) -> void:
 	VNResourceLoader.load_vn_resources(FileManager.get_folder_path(FileManager.CHARACTERS), self)
 	
 	# Add code to run after loading all characters
+	
+	print("========== CHARACTERS ==========")
 	print(characterList)
-	for character in characterList.values():
-		print(character.get_vn_images())
 	
 	_finish_loading()
 

@@ -35,3 +35,7 @@ func load_vn_audio(path: String, allowedExtensions: Array):
 # Adds a VNAudio to the vnAudio attribute of the VNAudioSet
 func add_vn_audio(path: String):
 	data.vnAudio[path.get_basename()] = MultiVN.VNAudio.new(data.name, path)
+
+# Simple getter for VNAudio dictionary
+func get_vn_audio():
+	return data.vnAudio

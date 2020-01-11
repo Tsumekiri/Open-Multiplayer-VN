@@ -4,3 +4,6 @@ extends Node
 func _ready():
 	FileManager.create_directories(FileManager.get_game_path())
 	CharacterManager.load_threaded()
+	BackgroundManager.load_threaded()
+	SFXManager.load_threaded()
+	BGMManager.load_threaded()
