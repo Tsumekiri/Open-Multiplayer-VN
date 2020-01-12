@@ -9,7 +9,6 @@ func connect_network(assetsFolder: String, address: String, port: int, password)
 		return false
 	
 	get_tree().set_network_peer(peer)
-	# TODO: try password authentication
 	
 	return true
 

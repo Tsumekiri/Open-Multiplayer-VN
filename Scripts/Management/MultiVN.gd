@@ -18,3 +18,7 @@ var VNAudioSet = load("res://Scripts/Data/VNAudioSet.gd")
 var SFX = load("res://Scripts/Assets/SFX.gd")
 # warning-ignore:unused_class_variable
 var BGM = load("res://Scripts/Assets/BGM.gd")
+# warning-ignore:unused_class_variable
+var NetworkEvent = load("res://Scripts/Network/NetworkEvent.gd")
+# warning-ignore:unused_class_variable
+var CommKey = load("res://Scripts/Util/CommKey.gd")

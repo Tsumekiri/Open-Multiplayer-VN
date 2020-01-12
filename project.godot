@@ -28,6 +28,7 @@ CharacterManager="*res://Scripts/Management/CharacterManager.gd"
 BackgroundManager="*res://Scripts/Management/BackgroundManager.gd"
 BGMManager="*res://Scripts/Management/BGMManager.gd"
 SFXManager="*res://Scripts/Management/SFXManager.gd"
+NetworkManager="*res://Scripts/Management/NetworkManager.gd"
 
 [rendering]
 

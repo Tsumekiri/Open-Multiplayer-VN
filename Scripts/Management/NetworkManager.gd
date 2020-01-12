@@ -1,9 +1,26 @@
 extends Node
 
 const CONFIG_PASSWORD_KEY = "password"
+var commKey: Dictionary = {}
+
+func send_communication_key(id: int, key: String):
+	rpc_id(id, "set_communication_key", id, key)
+
+remotesync func set_communication_key(id: int, key: String):
+	commKey[id] = key
+
+# TODO: Missing usage of key, for communication with the correct user
+# and avoid cheating
+
+func attempt_login(username: String, password: String, serverPass: String):
+	var id = get_tree().get_network_unique_id()
+	rpc("login_player", id, username, password, serverPass)
+
+func receive_login():
+	pass
 
 # Attempts to log player in. Registers player if it wasn't registered.
-master func login_player(id: String, username: String, password: String, serverPass: String) -> bool:
+master func login_player(id: int, username: String, password: String, serverPass: String) -> bool:
 	if (register_player(id, username, password, serverPass)):
 		var path: String = FileManager.get_config_path(FileManager.PLAYER_LIST)
 		var config: ConfigFile = ConfigFile.new()
@@ -16,7 +33,7 @@ master func login_player(id: String, username: String, password: String, serverP
 
 # Attempts to register new player. Returns true if player was registered successfuly
 # or was already registered.
-master func register_player(id: String, username: String, password: String, serverPass: String) -> bool:
+master func register_player(id: int, username: String, password: String, serverPass: String) -> bool:
 	if (serverPass != password and password):
 		return false
 	
