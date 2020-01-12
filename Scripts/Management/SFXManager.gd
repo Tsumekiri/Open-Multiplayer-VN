@@ -4,6 +4,7 @@ var sfxList: Dictionary = {}
 const ALLOWED_EXTENSIONS = ["ogg", "wav"]
 
 var thread: Thread = Thread.new()
+var cancelLoading: bool = false
 
 # Starts loading on a separate thread
 func load_threaded() -> void:
@@ -24,6 +25,9 @@ func _load_sfx(args) -> void:
 
 # Called by the VNResourceLoader to load each folder
 func load_resource(path: String):
+	if (cancelLoading):
+		return
+	
 	var effect: String = path.get_basename()
 	sfxList[effect] = MultiVN.SFX.new(effect, ALLOWED_EXTENSIONS)
 	
@@ -36,4 +40,6 @@ func _finish_loading():
 # Called on exit
 func _exit_tree():
 	if (thread.is_active()):
+		cancelLoading = true
 		thread.wait_to_finish()
+		print("Stopped loading SFX...")

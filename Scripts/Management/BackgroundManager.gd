@@ -4,6 +4,7 @@ var backgroundList: Dictionary = {}
 const ALLOWED_EXTENSIONS: Array = ["png", "bmp", "jpg"]
 
 var thread: Thread = Thread.new()
+var cancelLoading: bool = false
 
 # Starts loading on a separate thread
 func load_threaded() -> void:
@@ -36,4 +37,6 @@ func _finish_loading() -> void:
 # Called on exit
 func _exit_tree():
 	if (thread.is_active()):
+		cancelLoading = true
 		thread.wait_to_finish()
+		print("Stopped loading backgrounds...")

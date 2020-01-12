@@ -49,5 +49,6 @@ func set_loop(mode: bool) -> void:
 		else:
 			data.audio.set_loop_mode(AudioStreamSample.LOOP_DISABLED)
 
+# Gets the full path to the resource
 func get_audio_path(file: String, folderPath: String):
 	return folderPath + file
