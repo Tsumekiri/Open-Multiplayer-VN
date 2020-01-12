@@ -1,0 +1,38 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scripts/Scenes/Connection/MainMenu/MainMenu.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Util/SceneSwitch.tscn" type="PackedScene" id=2]
+
+[node name="MainMenu" type="Panel"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -191.0
+margin_top = -75.0
+margin_right = 191.0
+margin_bottom = 75.0
+script = ExtResource( 1 )
+
+[node name="Create" parent="." instance=ExtResource( 2 )]
+margin_left = 89.0
+margin_top = 25.0
+margin_right = 279.0
+margin_bottom = 45.0
+text = "Create a server"
+target = "res://Scenes/Connection/CreateServer.tscn"
+
+[node name="Login" parent="." instance=ExtResource( 2 )]
+margin_left = 89.0
+margin_top = 65.0
+margin_right = 279.0
+margin_bottom = 85.0
+text = "Log into a server"
+target = "res://Scenes/Connection/Login.tscn"
+
+[node name="Exit" type="Button" parent="."]
+margin_left = 89.0
+margin_top = 105.0
+margin_right = 280.0
+margin_bottom = 125.0
+text = "Exit Game"

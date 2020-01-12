@@ -5,11 +5,11 @@ var target
 var event: String
 var function: String
 
-func _init(emitter, target, event: String, function: String):
-	self.emitter = emitter
-	self.target = target
-	self.event = event
-	self.function = function
+func _init(pEmitter, pTarget, pEvent: String, pFunction: String):
+	self.emitter = pEmitter
+	self.target = pTarget
+	self.event = pEvent
+	self.function = pFunction
 
 func connect_event() -> bool:
 	if (emitter.connect(event, target, function) != OK):

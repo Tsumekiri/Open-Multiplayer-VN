@@ -16,7 +16,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Open Multiplayer VN 0.2"
-run/main_scene="res://Root.tscn"
+run/main_scene="res://Scenes/Connection/MainMenu.tscn"
 config/icon="res://icon.png"
 
 [autoload]
@@ -29,6 +29,13 @@ BackgroundManager="*res://Scripts/Management/BackgroundManager.gd"
 BGMManager="*res://Scripts/Management/BGMManager.gd"
 SFXManager="*res://Scripts/Management/SFXManager.gd"
 NetworkManager="*res://Scripts/Management/NetworkManager.gd"
+
+[debug]
+
+gdscript/warnings/unused_variable=false
+gdscript/warnings/unused_class_variable=false
+gdscript/warnings/unused_signal=false
+gdscript/warnings/return_value_discarded=false
 
 [rendering]
 
