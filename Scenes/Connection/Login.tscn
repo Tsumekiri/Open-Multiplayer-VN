@@ -15,7 +15,7 @@ margin_right = 191.0
 margin_bottom = 139.0
 script = ExtResource( 1 )
 
-[node name="Create" type="Button" parent="."]
+[node name="Login" type="Button" parent="."]
 margin_left = 239.0
 margin_top = 211.0
 margin_right = 360.0
@@ -29,88 +29,10 @@ margin_left = 19.0
 margin_top = 211.0
 margin_right = 137.0
 margin_bottom = 231.0
+focus_next = NodePath("../Login")
+focus_previous = NodePath("../Password")
 text = "Cancel"
 target = "res://Scenes/Connection/MainMenu.tscn"
-
-[node name="Address" type="LineEdit" parent="."]
-editor/display_folded = true
-margin_left = 109.0
-margin_top = 44.0
-margin_right = 369.0
-margin_bottom = 68.0
-focus_next = NodePath("../Port")
-focus_previous = NodePath("../ServerPass")
-
-[node name="Label" type="Label" parent="Address"]
-margin_left = -100.0
-margin_right = -12.0
-margin_bottom = 24.0
-text = "Address:"
-valign = 1
-
-[node name="ServerPass" type="LineEdit" parent="."]
-editor/display_folded = true
-margin_left = 109.0
-margin_top = 104.0
-margin_right = 369.0
-margin_bottom = 128.0
-focus_next = NodePath("../MaxPlayers")
-focus_previous = NodePath("../AssetPath")
-
-[node name="Label" type="Label" parent="ServerPass"]
-margin_left = -100.0
-margin_right = -12.0
-margin_bottom = 24.0
-text = "Server Pswd:"
-valign = 1
-
-[node name="Port" type="LineEdit" parent="."]
-editor/display_folded = true
-margin_left = 109.0
-margin_top = 74.0
-margin_right = 369.0
-margin_bottom = 98.0
-focus_next = NodePath("../MaxPlayers")
-focus_previous = NodePath("../AssetPath")
-
-[node name="Label" type="Label" parent="Port"]
-margin_left = -100.0
-margin_right = -12.0
-margin_bottom = 24.0
-text = "Port:"
-valign = 1
-
-[node name="Username" type="LineEdit" parent="."]
-editor/display_folded = true
-margin_left = 109.0
-margin_top = 134.0
-margin_right = 369.0
-margin_bottom = 158.0
-focus_next = NodePath("../Cancel")
-focus_previous = NodePath("../MaxPlayers")
-
-[node name="Label" type="Label" parent="Username"]
-margin_left = -100.0
-margin_right = -62.0
-margin_bottom = 24.0
-text = "Username:"
-valign = 1
-
-[node name="Password" type="LineEdit" parent="."]
-editor/display_folded = true
-margin_left = 109.0
-margin_top = 164.0
-margin_right = 369.0
-margin_bottom = 188.0
-focus_next = NodePath("../Cancel")
-focus_previous = NodePath("../MaxPlayers")
-
-[node name="Label" type="Label" parent="Password"]
-margin_left = -100.0
-margin_right = -63.0
-margin_bottom = 24.0
-text = "Password:"
-valign = 1
 
 [node name="AssetPath" type="Button" parent="."]
 editor/display_folded = true
@@ -118,8 +40,8 @@ margin_left = 109.0
 margin_top = 13.0
 margin_right = 369.0
 margin_bottom = 33.0
-focus_next = NodePath("../ServerPass")
-focus_previous = NodePath("../Create")
+focus_next = NodePath("../Address")
+focus_previous = NodePath("../Login")
 script = ExtResource( 3 )
 
 [node name="Label" type="Label" parent="AssetPath"]
@@ -139,3 +61,83 @@ mode = 2
 access = 2
 current_dir = "D:/Gitlab/open-multiplayer-vn-0.2"
 current_path = "D:/Gitlab/open-multiplayer-vn-0.2/"
+
+[node name="Address" type="LineEdit" parent="."]
+editor/display_folded = true
+margin_left = 109.0
+margin_top = 44.0
+margin_right = 369.0
+margin_bottom = 68.0
+focus_next = NodePath("../Port")
+focus_previous = NodePath("../AssetPath")
+
+[node name="Label" type="Label" parent="Address"]
+margin_left = -100.0
+margin_right = -12.0
+margin_bottom = 24.0
+text = "Address:"
+valign = 1
+
+[node name="Port" type="LineEdit" parent="."]
+editor/display_folded = true
+margin_left = 109.0
+margin_top = 74.0
+margin_right = 369.0
+margin_bottom = 98.0
+focus_next = NodePath("../ServerPass")
+focus_previous = NodePath("../Address")
+
+[node name="Label" type="Label" parent="Port"]
+margin_left = -100.0
+margin_right = -12.0
+margin_bottom = 24.0
+text = "Port:"
+valign = 1
+
+[node name="ServerPass" type="LineEdit" parent="."]
+editor/display_folded = true
+margin_left = 109.0
+margin_top = 104.0
+margin_right = 369.0
+margin_bottom = 128.0
+focus_next = NodePath("../Username")
+focus_previous = NodePath("../Port")
+
+[node name="Label" type="Label" parent="ServerPass"]
+margin_left = -100.0
+margin_right = -12.0
+margin_bottom = 24.0
+text = "Server Pswd:"
+valign = 1
+
+[node name="Username" type="LineEdit" parent="."]
+editor/display_folded = true
+margin_left = 109.0
+margin_top = 134.0
+margin_right = 369.0
+margin_bottom = 158.0
+focus_next = NodePath("../Password")
+focus_previous = NodePath("../ServerPass")
+
+[node name="Label" type="Label" parent="Username"]
+margin_left = -100.0
+margin_right = -62.0
+margin_bottom = 24.0
+text = "Username:"
+valign = 1
+
+[node name="Password" type="LineEdit" parent="."]
+editor/display_folded = true
+margin_left = 109.0
+margin_top = 164.0
+margin_right = 369.0
+margin_bottom = 188.0
+focus_next = NodePath("../Cancel")
+focus_previous = NodePath("../Username")
+
+[node name="Label" type="Label" parent="Password"]
+margin_left = -100.0
+margin_right = -63.0
+margin_bottom = 24.0
+text = "Password:"
+valign = 1

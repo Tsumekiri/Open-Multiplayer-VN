@@ -29,6 +29,8 @@ margin_left = 19.0
 margin_top = 115.0
 margin_right = 137.0
 margin_bottom = 135.0
+focus_next = NodePath("../Create")
+focus_previous = NodePath("../Port")
 text = "Cancel"
 target = "res://Scenes/Connection/MainMenu.tscn"
 
