@@ -10,6 +10,9 @@ const BGM: String = "BGM"
 const SFX: String = "SFX"
 const VIDEOS: String = "VIDEOS"
 
+const PLAYER_LIST = "PLAYER_LIST"
+const BLACKLIST = "BLACKLIST"
+
 # Path dictionary
 const PATH: Dictionary = {
 	"CHARACTERS" : "Characters/",
@@ -17,6 +20,12 @@ const PATH: Dictionary = {
 	"BGM" : "BGM/",
 	"SFX" : "SFX/",
 	"VIDEOS" : "Videos/"
+}
+
+# Server config files dictionary
+const SERVER_CONFIG: Dictionary = {
+	"PLAYER_LIST": "players.json",
+	"BLACKLIST": "blacklist.json"
 }
 
 # Function for creating directories
@@ -56,6 +65,13 @@ func get_resource_path(key: String, resource: String):
 		return null
 	
 	return ROOT + PATH[key] + resource + "/"
+
+# Gets the path for the server config file
+func get_config_path(key: String):
+	if (!SERVER_CONFIG.has(key) or ROOT == null):
+		return null
+	
+	return ROOT + SERVER_CONFIG[key]
 
 # Checks that the resource exists
 func resource_exists(key: String, resource: String) -> bool:

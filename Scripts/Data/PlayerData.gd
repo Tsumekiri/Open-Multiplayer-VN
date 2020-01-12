@@ -2,7 +2,8 @@ extends Resource
 
 var serverData: Dictionary = {
 	"user": "",
-	"key": ""
+	"key": "",
+	"address": ""
 }
 
 var data: Dictionary = {
