@@ -2,6 +2,9 @@ extends Node
 
 const CONFIG_PASSWORD_KEY = "password"
 var commKey: Dictionary = {}
+var commNode
+
+signal login
 
 func send_communication_key(id: int, key: String):
 	rpc_id(id, "set_communication_key", id, key)
@@ -12,12 +15,19 @@ remotesync func set_communication_key(id: int, key: String):
 # TODO: Missing usage of key, for communication with the correct user
 # and avoid cheating
 
+func set_communication_node(pNode):
+	add_child(pNode)
+	commNode = pNode
+
+func get_communication_node():
+	return commNode
+
 func attempt_login(username: String, password: String, serverPass: String):
 	var id = get_tree().get_network_unique_id()
 	rpc("login_player", id, username, password, serverPass)
 
-func receive_login():
-	pass
+puppet func receive_login():
+	emit_signal("login")
 
 # Attempts to log player in. Registers player if it wasn't registered.
 master func login_player(id: int, username: String, password: String, serverPass: String) -> bool:
