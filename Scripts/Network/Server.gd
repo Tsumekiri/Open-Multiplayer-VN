@@ -1,17 +1,19 @@
-extends Node
+extends Resource
 
-var password: String
+var password: int
+var tree: SceneTree
 
-func connect_network(assetsFolder: String, port: int, maxPlayers: int, password, tree) -> bool:
+func _init(pTree: SceneTree, pPass: String):
+	self.tree = pTree
+	self.password = pPass.hash()
+
+func connect_network(assetsFolder: String, port: int, maxPlayers: int) -> bool:
 	if (not FileManager.create_directories(assetsFolder)):
 		return false
 	
 	var peer: NetworkedMultiplayerENet = NetworkedMultiplayerENet.new()
 	if (peer.create_server(port, maxPlayers) != OK):
 		return false
-	
-	if (password):
-		self.password = password.hash()
 	
 	tree.set_network_peer(peer)
 	var playerConnectedEvent = MultiVN.NetworkEvent.new(peer, self, "peer_connected", "create_key")

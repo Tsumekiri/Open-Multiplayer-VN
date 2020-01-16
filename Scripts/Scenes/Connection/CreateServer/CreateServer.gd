@@ -20,7 +20,7 @@ func mandatory_fields_filled() -> bool:
 			return false
 	return true
 
-func create_server():
+func create_server() -> void:
 	if (not mandatory_fields_filled()):
 		return
 	
@@ -29,9 +29,7 @@ func create_server():
 	var maxPlayers = int($MaxPlayers.get_text().strip_edges())
 	var port = int($Port.get_text().strip_edges())
 	
-	var server = MultiVN.Server.new()
-	if (server.connect_network(assetPath, port, maxPlayers, password, get_tree())):
-		NetworkManager.set_communication_node(server)
+	var server = MultiVN.Server.new(get_tree(), password)
+	if (server.connect_network(assetPath, port, maxPlayers)):
+		NetworkManager.set_communication_res(server)
 		switch_scene("res://Scenes/Util/Loading.tscn")
-	else:
-		server.queue_free()

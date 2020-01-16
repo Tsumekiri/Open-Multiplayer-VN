@@ -15,11 +15,10 @@ remotesync func set_communication_key(id: int, key: String):
 # TODO: Missing usage of key, for communication with the correct user
 # and avoid cheating
 
-func set_communication_node(pNode):
-	add_child(pNode)
+func set_communication_res(pNode):
 	commNode = pNode
 
-func get_communication_node():
+func get_communication_res():
 	return commNode
 
 func attempt_login(username: String, password: String, serverPass: String):
