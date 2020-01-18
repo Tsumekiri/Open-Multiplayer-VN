@@ -6,6 +6,8 @@ const ALLOWED_EXTENSIONS = ["ogg", "wav"]
 var thread: Thread = Thread.new()
 var cancelLoading: bool = false
 
+signal loading_complete_s
+
 # Starts loading on a separate thread
 func load_threaded() -> void:
 	thread.start(self, "_load_sfx")
@@ -36,6 +38,7 @@ func load_resource(path: String):
 # Sets thread to inactive after loading
 func _finish_loading():
 	thread.call_deferred("wait_to_finish")
+	emit_signal("loading_complete_s")
 
 # Called on exit
 func _exit_tree():

@@ -6,6 +6,8 @@ const ALLOWED_EXTENSIONS: Array = ["png", "bmp", "jpg"]
 var thread: Thread = Thread.new()
 var cancelLoading: bool = false
 
+signal loading_complete_s
+
 # Starts loading on a separate thread
 func load_threaded() -> void:
 	thread.start(self, "_load_backgrounds")
@@ -33,6 +35,7 @@ func load_resource(path: String):
 # Sets thread to inactive after loading
 func _finish_loading() -> void:
 	thread.call_deferred("wait_to_finish")
+	emit_signal("loading_complete_s")
 
 # Called on exit
 func _exit_tree():
