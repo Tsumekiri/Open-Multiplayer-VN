@@ -1,5 +1,10 @@
 extends Resource
 
+# This only really exists to centralize some event-related
+# error handling. Other than printing an error message
+# for debugging without cluttering the code, it's pretty
+# useless.
+
 var emitter
 var target
 var event: String

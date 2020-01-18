@@ -24,8 +24,8 @@ const PATH: Dictionary = {
 
 # Server config files dictionary
 const SERVER_CONFIG: Dictionary = {
-	"PLAYER_LIST": "players.json",
-	"BLACKLIST": "blacklist.json"
+	"PLAYER_LIST": "players.ini",
+	"BLACKLIST": "blacklist.ini"
 }
 
 # Function for creating directories

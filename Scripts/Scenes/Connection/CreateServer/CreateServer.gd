@@ -25,7 +25,7 @@ func create_server() -> void:
 		return
 	
 	var assetPath = $AssetPath.get_text().strip_edges()
-	var password = $ServerPass.get_text()
+	var password = $ServerPass.get_text().strip_edges()
 	var maxPlayers = int($MaxPlayers.get_text().strip_edges())
 	var port = int($Port.get_text().strip_edges())
 	
