@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scenes/Util/TopBar.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Util/BottomBar.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Util/RightBar.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Menu/CharacterMenu.tscn" type="PackedScene" id=4]
 
 [node name="Game" type="Control"]
 anchor_right = 1.0
@@ -14,3 +15,11 @@ mouse_filter = 2
 [node name="BottomBar" parent="." instance=ExtResource( 2 )]
 
 [node name="RightBar" parent="." instance=ExtResource( 3 )]
+
+[node name="CharacterMenu" parent="." instance=ExtResource( 4 )]
+visible = false
+margin_left = 270.0
+margin_top = 60.0
+margin_right = 690.0
+margin_bottom = 490.0
+[connection signal="open_menu" from="RightBar" to="CharacterMenu" method="_on_RightBar_open_menu"]
