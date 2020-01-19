@@ -24,36 +24,57 @@ margin_top = -40.0
 margin_right = 120.0
 mouse_filter = 1
 
+[node name="Panel" type="Panel" parent="DropdownList"]
+margin_left = -10.0
+margin_top = -30.0
+margin_right = 790.0
+margin_bottom = 40.0
+
 [node name="Expression" type="OptionButton" parent="DropdownList"]
+margin_top = 10.0
 margin_right = 180.0
-margin_bottom = 20.0
-__meta__ = {
-"_edit_lock_": true
-}
+margin_bottom = 30.0
+
+[node name="Label" type="Label" parent="DropdownList/Expression"]
+margin_top = -20.0
+margin_right = 40.0
+text = "Expression"
 
 [node name="Background" type="OptionButton" parent="DropdownList"]
+editor/display_folded = true
 margin_left = 200.0
+margin_top = 10.0
 margin_right = 380.0
-margin_bottom = 20.0
-__meta__ = {
-"_edit_lock_": true
-}
+margin_bottom = 30.0
+
+[node name="Label" type="Label" parent="DropdownList/Background"]
+margin_top = -20.0
+margin_right = 74.0
+text = "Background"
 
 [node name="BGM" type="OptionButton" parent="DropdownList"]
+editor/display_folded = true
 margin_left = 400.0
+margin_top = 10.0
 margin_right = 580.0
-margin_bottom = 20.0
-__meta__ = {
-"_edit_lock_": true
-}
+margin_bottom = 30.0
+
+[node name="Label" type="Label" parent="DropdownList/BGM"]
+margin_top = -20.0
+margin_right = 74.0
+text = "BGM"
 
 [node name="SFX" type="OptionButton" parent="DropdownList"]
+editor/display_folded = true
 margin_left = 600.0
+margin_top = 10.0
 margin_right = 780.0
-margin_bottom = 20.0
-__meta__ = {
-"_edit_lock_": true
-}
+margin_bottom = 30.0
+
+[node name="Label" type="Label" parent="DropdownList/SFX"]
+margin_top = -20.0
+margin_right = 40.0
+text = "SFX"
 
 [node name="Tween" type="Tween" parent="."]
 [connection signal="mouse_entered" from="Area2D" to="." method="_on_Area2D_mouse_entered"]

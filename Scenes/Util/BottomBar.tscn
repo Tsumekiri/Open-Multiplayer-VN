@@ -1,0 +1,23 @@
+[gd_scene format=2]
+
+[node name="BottomBar" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="MessageBox" type="RichTextLabel" parent="."]
+margin_top = 420.0
+margin_right = 1024.0
+margin_bottom = 570.0
+
+[node name="MessageLine" type="LineEdit" parent="."]
+margin_top = 570.0
+margin_right = 860.0
+margin_bottom = 600.0
+
+[node name="Send" type="Button" parent="."]
+margin_left = 860.0
+margin_top = 570.0
+margin_right = 1024.0
+margin_bottom = 600.0
+text = "Send"
