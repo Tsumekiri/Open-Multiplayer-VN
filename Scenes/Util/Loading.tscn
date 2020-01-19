@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Scripts/Scenes/Util/Loading.gd" type="Script" id=1]
+[ext_resource path="res://Resources/Animation/Loading/Loading.tres" type="SpriteFrames" id=2]
 
 [node name="Loading" type="Node"]
 script = ExtResource( 1 )
@@ -16,3 +17,8 @@ margin_right = 20.0
 margin_bottom = 20.0
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Control"]
+scale = Vector2( 0.3875, 0.3875 )
+frames = ExtResource( 2 )
+animation = "Default"
+frame = 4
+playing = true
