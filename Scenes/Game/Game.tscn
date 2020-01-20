@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scenes/Util/TopBar.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Util/BottomBar.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Util/RightBar.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Menu/CharacterMenu.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Menu/BackgroundMenu.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Menu/ConversationMenu.tscn" type="PackedScene" id=6]
 
 [node name="Game" type="Control"]
 anchor_right = 1.0
@@ -22,4 +24,21 @@ margin_left = 270.0
 margin_top = 60.0
 margin_right = 690.0
 margin_bottom = 490.0
+
+[node name="BackgroundMenu" parent="." instance=ExtResource( 5 )]
+visible = false
+margin_left = 270.0
+margin_top = 60.0
+margin_right = -334.0
+margin_bottom = -110.0
+selector = "Background"
+
+[node name="ConversationMenu" parent="." instance=ExtResource( 6 )]
+visible = false
+margin_left = 270.0
+margin_top = 60.0
+margin_right = -334.0
+margin_bottom = -110.0
+[connection signal="open_menu" from="RightBar" to="ConversationMenu" method="_on_RightBar_open_menu"]
 [connection signal="open_menu" from="RightBar" to="CharacterMenu" method="_on_RightBar_open_menu"]
+[connection signal="open_menu" from="RightBar" to="BackgroundMenu" method="_on_RightBar_open_menu"]

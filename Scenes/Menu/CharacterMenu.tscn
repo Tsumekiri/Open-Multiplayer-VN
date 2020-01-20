@@ -1,30 +1,17 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Scripts/Scenes/Menu/CharacterMenu.gd" type="Script" id=1]
-[ext_resource path="res://Resources/Collision/CharacterMenu.tres" type="Shape2D" id=2]
+[ext_resource path="res://Scenes/Menu/Generic/IngameMenu.tscn" type="PackedScene" id=2]
 
-[node name="CharacterMenu" type="Panel"]
+[node name="CharacterMenu" type="Control"]
 margin_right = 420.0
 margin_bottom = 430.0
 mouse_filter = 2
 script = ExtResource( 1 )
+selector = "Character"
 
-[node name="Title" type="Label" parent="."]
-margin_left = 150.0
-margin_top = 20.0
-margin_right = 250.0
-margin_bottom = 40.0
-text = "Character Menu"
-
-[node name="Area2D" type="Area2D" parent="."]
-editor/display_folded = true
-position = Vector2( 210, 215.415 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = ExtResource( 2 )
-__meta__ = {
-"_edit_lock_": true
-}
+[node name="IngameMenu" parent="." instance=ExtResource( 2 )]
+title = "Character Menu"
 
 [node name="Alias" type="LineEdit" parent="."]
 editor/display_folded = true
@@ -32,6 +19,8 @@ margin_left = 30.0
 margin_top = 70.0
 margin_right = 290.0
 margin_bottom = 94.0
+caret_blink = true
+caret_blink_speed = 0.5
 
 [node name="Button" type="Button" parent="Alias"]
 margin_left = 270.0
@@ -104,4 +93,4 @@ margin_top = 360.0
 margin_right = 377.0
 margin_bottom = 380.0
 text = "Far Right"
-[connection signal="input_event" from="Area2D" to="." method="_on_Area2D_input_event"]
+[connection signal="visibility_s" from="IngameMenu" to="." method="change_visibility"]

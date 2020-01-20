@@ -1,0 +1,85 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scripts/Scenes/Menu/ConversationMenu.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Menu/Generic/IngameMenu.tscn" type="PackedScene" id=2]
+
+[node name="ConversationMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -604.0
+margin_bottom = -170.0
+mouse_filter = 2
+script = ExtResource( 1 )
+selector = "Conversation"
+
+[node name="IngameMenu" parent="." instance=ExtResource( 2 )]
+title = "Conversation Menu"
+
+[node name="NewConversation" type="LineEdit" parent="."]
+margin_left = 20.0
+margin_top = 80.0
+margin_right = 250.0
+margin_bottom = 104.0
+
+[node name="Create" type="Button" parent="NewConversation"]
+margin_left = 240.0
+margin_right = 380.0
+margin_bottom = 24.0
+text = "Create Conversation"
+
+[node name="CurrentConversation" type="OptionButton" parent="."]
+margin_left = 20.0
+margin_top = 140.0
+margin_right = 250.0
+margin_bottom = 164.0
+
+[node name="Delete" type="Button" parent="CurrentConversation"]
+margin_left = 240.0
+margin_right = 382.0
+margin_bottom = 24.0
+text = "Delete Conversation"
+
+[node name="Positions" type="Control" parent="."]
+editor/display_folded = true
+margin_left = 20.0
+margin_top = 280.0
+margin_right = 60.0
+margin_bottom = 320.0
+
+[node name="FarLeft" type="Button" parent="Positions"]
+margin_left = 10.0
+margin_right = 70.0
+margin_bottom = 20.0
+text = "Far Left"
+
+[node name="Left" type="Button" parent="Positions"]
+margin_left = 80.0
+margin_right = 140.0
+margin_bottom = 20.0
+text = "Left"
+
+[node name="Center" type="Button" parent="Positions"]
+margin_left = 150.0
+margin_right = 210.0
+margin_bottom = 20.0
+text = "Center"
+
+[node name="Right" type="Button" parent="Positions"]
+margin_left = 220.0
+margin_right = 280.0
+margin_bottom = 20.0
+text = "Right"
+
+[node name="FarRight" type="Button" parent="Positions"]
+margin_left = 290.0
+margin_right = 357.0
+margin_bottom = 20.0
+text = "Far Right"
+
+[node name="Label" type="Label" parent="."]
+margin_left = 150.0
+margin_top = 250.0
+margin_right = 266.0
+margin_bottom = 270.0
+text = "Character Position"
+[connection signal="visibility_s" from="IngameMenu" to="." method="change_visibility"]

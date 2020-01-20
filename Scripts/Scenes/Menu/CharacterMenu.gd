@@ -1,4 +1,1 @@
-extends "res://Scripts/Util/GameMenu.gd"
-
-func _ready():
-	self.menuTitle = "Character"
+extends "res://Scripts/Scenes/Menu/Generic/IngameMenuParent.gd"
