@@ -1,19 +1,14 @@
-extends Node
+extends "res://Scripts/Data/ThreadedLoader.gd"
 
 var background_list: Dictionary = {}
 const ALLOWED_EXTENSIONS: Array = ["png", "bmp", "jpg"]
 
-var thread: Thread = Thread.new()
-var cancel_loading: bool = false
-
-signal loading_complete_s
-
-# Starts loading on a separate thread
-func load_threaded() -> void:
-	thread.start(self, "_load_backgrounds")
+# Getter for the background list
+func get_background_list():
+	return background_list
 
 # Loads all characters present in the server folder
-func _load_backgrounds(args) -> void:
+func _load_resources(args) -> void:
 	VNResourceLoader.load_vn_resources(FileManager.get_folder_path(FileManager.BACKGROUNDS), self)
 	
 	# Add code to run after loading every background
@@ -31,15 +26,3 @@ func load_resource(path: String):
 	background_list[background] = MultiVN.Background.new(background, ALLOWED_EXTENSIONS)
 	
 	# Add code to run while loading each background folder
-
-# Sets thread to inactive after loading
-func _finish_loading() -> void:
-	thread.call_deferred("wait_to_finish")
-	emit_signal("loading_complete_s")
-
-# Called on exit
-func _exit_tree():
-	if thread.is_active():
-		cancel_loading = true
-		thread.wait_to_finish()
-		print("Stopped loading backgrounds...")
