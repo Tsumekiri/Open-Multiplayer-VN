@@ -9,8 +9,8 @@ signal server_disconnected
 func _init(pTree: SceneTree):
 	self.tree = pTree
 
-func connect_network(assetsFolder: String, address: String, port: int):
-	if (not FileManager.create_directories(assetsFolder)):
+func connect_network(assets_folder: String, address: String, port: int):
+	if (not FileManager.create_directories(assets_folder)):
 		return false
 	
 	var peer = NetworkedMultiplayerENet.new()

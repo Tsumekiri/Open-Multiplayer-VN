@@ -15,12 +15,12 @@ func check_server_password(pPassword: int):
 	return false
 
 # Called to start up the server
-func connect_network(assetsFolder: String, port: int, maxPlayers: int) -> bool:
-	if (not FileManager.create_directories(assetsFolder)):
+func connect_network(assets_folder: String, port: int, max_players: int) -> bool:
+	if (not FileManager.create_directories(assets_folder)):
 		return false
 	
 	var peer: NetworkedMultiplayerENet = NetworkedMultiplayerENet.new()
-	if (peer.create_server(port, maxPlayers) != OK):
+	if (peer.create_server(port, max_players) != OK):
 		return false
 	
 	tree.set_network_peer(peer)

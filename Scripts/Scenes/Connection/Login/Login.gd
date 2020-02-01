@@ -8,10 +8,10 @@ const fields = [
 	"Password"
 ]
 
-var assetPath: String
+var asset_path: String
 var address: String
 var port: int
-var serverPass: int
+var server_password: int
 var username: String
 var password: int
 
@@ -34,10 +34,10 @@ func login() -> void:
 	if (not mandatory_fields_filled()):
 		return
 	
-	assetPath = $AssetPath.get_text().strip_edges()
+	asset_path = $AssetPath.get_text().strip_edges()
 	address = $Address.get_text().strip_edges()
 	port = int($Port.get_text().strip_edges())
-	serverPass = $ServerPass.get_text().strip_edges().hash()
+	server_password = $ServerPass.get_text().strip_edges().hash()
 	username = $Username.get_text().strip_edges()
 	password = $Password.get_text().strip_edges().hash()
 	
@@ -45,14 +45,14 @@ func login() -> void:
 	client.connect("connection_succeeded", self, "client_connected")
 	client.connect("connection_failed", self, "client_connection_failed")
 	
-	if (client.connect_network(assetPath, address, port)):
-		NetworkManager.set_communication_res(client)
+	if client.connect_network(asset_path, address, port):
+		NetworkManager.set_communication_resource(client)
 
 func client_connected() -> void:
-	NetworkManager.attempt_login(username, password, serverPass)
+	NetworkManager.attempt_login(username, password, server_password)
 
 func client_connection_failed() -> void:
-	NetworkManager.set_communication_res(null)
+	NetworkManager.set_communication_resource(null)
 
 func load_resources():
 	switch_scene("res://Scenes/Util/Loading.tscn")

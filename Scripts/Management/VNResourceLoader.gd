@@ -11,10 +11,10 @@ func load_vn_resources(path: String, manager):
 	dir.list_dir_begin()
 	
 	while true:
-		var vnResourceFolder: String = dir.get_next()
-		if (vnResourceFolder == ""):
+		var vn_resource_folder: String = dir.get_next()
+		if (vn_resource_folder == ""):
 			break
-		elif (not vnResourceFolder.begins_with(".") and dir.current_is_dir()):
-			manager.load_resource(vnResourceFolder)
+		elif (not vn_resource_folder.begins_with(".") and dir.current_is_dir()):
+			manager.load_resource(vn_resource_folder)
 	
 	dir.list_dir_end()

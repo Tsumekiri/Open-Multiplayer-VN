@@ -42,10 +42,10 @@ func create_root_directory(subdirectory: String) -> bool:
 	return create_directory(ROOT + subdirectory)
 
 # Function to create the base directories for the server
-func create_directories(baseFolder: String) -> bool:
-	if (baseFolder == null || baseFolder.empty()):
+func create_directories(base_folder: String) -> bool:
+	if (base_folder == null || base_folder.empty()):
 		return false
-	ROOT = baseFolder + "/"
+	ROOT = base_folder + "/"
 	
 	for folder in PATH.values():
 		if (!(create_root_directory(folder))):

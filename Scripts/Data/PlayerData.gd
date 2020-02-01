@@ -1,6 +1,6 @@
 extends Resource
 
-var serverData: Dictionary = {
+var server_data: Dictionary = {
 	"user": "",
 	"key": "",
 	"address": ""
@@ -27,13 +27,13 @@ func get_full_data():
 	return data
 
 func set_server_data(key: String, value: String):
-	serverData[key] = value
+	server_data[key] = value
 
 func get_server_data(key: String):
-	return serverData[key]
+	return server_data[key]
 
 func set_full_server_data(dict: Dictionary):
-	serverData = dict
+	server_data = dict
 
 func get_full_server_data():
-	return serverData
+	return server_data

@@ -1,10 +1,10 @@
 extends Node
 
-var backgroundList: Dictionary = {}
+var background_list: Dictionary = {}
 const ALLOWED_EXTENSIONS: Array = ["png", "bmp", "jpg"]
 
 var thread: Thread = Thread.new()
-var cancelLoading: bool = false
+var cancel_loading: bool = false
 
 signal loading_complete_s
 
@@ -19,8 +19,8 @@ func _load_backgrounds(args) -> void:
 	# Add code to run after loading every background
 	
 	print("========== BACKGROUNDS ==========")
-	print(backgroundList)
-	for background in backgroundList.values():
+	print(background_list)
+	for background in background_list.values():
 		print(background.get_vn_images())
 	
 	_finish_loading()
@@ -28,7 +28,7 @@ func _load_backgrounds(args) -> void:
 # Called by the VNResourceLoader to load each folder
 func load_resource(path: String):
 	var background: String = path.get_basename()
-	backgroundList[background] = MultiVN.Background.new(background, ALLOWED_EXTENSIONS)
+	background_list[background] = MultiVN.Background.new(background, ALLOWED_EXTENSIONS)
 	
 	# Add code to run while loading each background folder
 
@@ -39,7 +39,7 @@ func _finish_loading() -> void:
 
 # Called on exit
 func _exit_tree():
-	if (thread.is_active()):
-		cancelLoading = true
+	if thread.is_active():
+		cancel_loading = true
 		thread.wait_to_finish()
 		print("Stopped loading backgrounds...")

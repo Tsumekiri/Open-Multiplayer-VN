@@ -1,10 +1,10 @@
 extends Node
 
-var characterList: Dictionary = {}
+var character_list: Dictionary = {}
 const ALLOWED_EXTENSIONS: Array = ["png"]
 
 var thread: Thread = Thread.new()
-var cancelLoading: bool = false
+var cancel_loading: bool = false
 
 signal loading_complete_s
 
@@ -19,8 +19,8 @@ func _load_characters(args) -> void:
 	# Add code to run after loading all characters
 	
 	print("========== CHARACTERS ==========")
-	print(characterList)
-	for character in characterList.values():
+	print(character_list)
+	for character in character_list.values():
 		print(character.get_vn_images())
 	
 	_finish_loading()
@@ -28,7 +28,7 @@ func _load_characters(args) -> void:
 # Called by the VNResourceLoader to load each folder
 func load_resource(path: String):
 	var character: String = path.get_basename()
-	characterList[character] = MultiVN.Character.new(character, ALLOWED_EXTENSIONS)
+	character_list[character] = MultiVN.Character.new(character, ALLOWED_EXTENSIONS)
 	
 	# Add code to run while loading each character folder
 
@@ -39,7 +39,7 @@ func _finish_loading():
 
 # Called on exit
 func _exit_tree():
-	if (thread.is_active()):
-		cancelLoading = true
+	if thread.is_active():
+		cancel_loading = true
 		thread.wait_to_finish()
 		print("Stopped loading characters...")

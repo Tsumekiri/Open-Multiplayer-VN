@@ -24,7 +24,7 @@ func _ready():
 	BGMManager.load_threaded()
 
 func switch_scene(scene: PackedScene):
-	if (scene):
+	if scene:
 		yield($Control/AnimatedSprite, "animation_finished")
 		get_tree().change_scene_to(scene)
 
@@ -39,5 +39,5 @@ func finish_loading(key: String):
 		BGM:
 			loaded_bgm = true
 	
-	if (loaded_characters and loaded_backgrounds and loaded_sfx and loaded_bgm):
+	if loaded_characters and loaded_backgrounds and loaded_sfx and loaded_bgm:
 		switch_scene(game_scene)

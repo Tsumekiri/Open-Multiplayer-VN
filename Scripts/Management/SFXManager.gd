@@ -1,10 +1,10 @@
 extends Node
 
-var sfxList: Dictionary = {}
+var sfx_list: Dictionary = {}
 const ALLOWED_EXTENSIONS = ["ogg", "wav"]
 
 var thread: Thread = Thread.new()
-var cancelLoading: bool = false
+var cancel_loading: bool = false
 
 signal loading_complete_s
 
@@ -19,19 +19,19 @@ func _load_sfx(args) -> void:
 	# Add code to run after loading all sound effects
 	
 	print("========== SFX ==========")
-	print(sfxList)
-	for sfx in sfxList.values():
+	print(sfx_list)
+	for sfx in sfx_list.values():
 		print(sfx.get_vn_audio_dict())
 	
 	_finish_loading()
 
 # Called by the VNResourceLoader to load each folder
 func load_resource(path: String):
-	if (cancelLoading):
+	if cancel_loading:
 		return
 	
 	var effect: String = path.get_basename()
-	sfxList[effect] = MultiVN.SFX.new(effect, ALLOWED_EXTENSIONS)
+	sfx_list[effect] = MultiVN.SFX.new(effect, ALLOWED_EXTENSIONS)
 	
 	# Add code to run after loading each sound effect folder
 
@@ -42,7 +42,7 @@ func _finish_loading():
 
 # Called on exit
 func _exit_tree():
-	if (thread.is_active()):
-		cancelLoading = true
+	if thread.is_active():
+		cancel_loading = true
 		thread.wait_to_finish()
 		print("Stopped loading SFX...")

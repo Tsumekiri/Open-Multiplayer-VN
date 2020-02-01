@@ -1,10 +1,10 @@
 extends Node
 
-var bgmList: Dictionary = {}
+var bgm_list: Dictionary = {}
 const ALLOWED_EXTENSIONS = ["ogg", "wav"]
 
 var thread: Thread = Thread.new()
-var cancelLoading: bool = false
+var cancel_loading: bool = false
 
 signal loading_complete_s
 
@@ -19,8 +19,8 @@ func _load_bgm(args) -> void:
 	# Add code to run after loading all sound effects
 	
 	print("========== BGM ==========")
-	print(bgmList)
-	for bgm in bgmList.values():
+	print(bgm_list)
+	for bgm in bgm_list.values():
 		print(bgm.get_vn_audio_dict())
 	
 	_finish_loading()
@@ -28,7 +28,7 @@ func _load_bgm(args) -> void:
 # Called by the VNResourceLoader to load each folder
 func load_resource(path: String):
 	var soundtrack: String = path.get_basename()
-	bgmList[soundtrack] = MultiVN.BGM.new(soundtrack, ALLOWED_EXTENSIONS)
+	bgm_list[soundtrack] = MultiVN.BGM.new(soundtrack, ALLOWED_EXTENSIONS)
 	
 	# Add code to run after loading each sound effect folder
 
@@ -39,7 +39,7 @@ func _finish_loading():
 
 # Called on exit
 func _exit_tree():
-	if (thread.is_active()):
-		cancelLoading = true
+	if thread.is_active():
+		cancel_loading = true
 		thread.wait_to_finish()
 		print("Stopped loading BGM...")
