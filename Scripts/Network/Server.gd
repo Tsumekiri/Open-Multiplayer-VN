@@ -24,6 +24,7 @@ func connect_network(assets_folder: String, port: int, max_players: int) -> bool
 		return false
 	
 	tree.set_network_peer(peer)
+	NetworkManager.init_server()
 	return true
 
 # Called to close the server's connection

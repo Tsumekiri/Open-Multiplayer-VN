@@ -8,9 +8,80 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "VNAudioSet",
+"class": "BGM",
+"language": "GDScript",
+"path": "res://Scripts/Assets/BGM.gd"
+}, {
+"base": "VNImageSet",
+"class": "BackgroundSet",
+"language": "GDScript",
+"path": "res://Scripts/Assets/BackgroundSet.gd"
+}, {
+"base": "VNImageSet",
+"class": "Character",
+"language": "GDScript",
+"path": "res://Scripts/Assets/Character.gd"
+}, {
+"base": "Resource",
+"class": "CommunicationKey",
+"language": "GDScript",
+"path": "res://Scripts/Util/CommKey.gd"
+}, {
+"base": "Resource",
+"class": "NetworkEvent",
+"language": "GDScript",
+"path": "res://Scripts/Network/NetworkEvent.gd"
+}, {
+"base": "Resource",
+"class": "PlayerData",
+"language": "GDScript",
+"path": "res://Scripts/Data/PlayerData.gd"
+}, {
+"base": "VNAudioSet",
+"class": "SFX",
+"language": "GDScript",
+"path": "res://Scripts/Assets/SFX.gd"
+}, {
+"base": "Node",
+"class": "ThreadedResourceLoader",
+"language": "GDScript",
+"path": "res://Scripts/Data/ThreadedLoader.gd"
+}, {
+"base": "Resource",
+"class": "VNAudio",
+"language": "GDScript",
+"path": "res://Scripts/Data/VNAudio.gd"
+}, {
+"base": "Resource",
+"class": "VNAudioSet",
+"language": "GDScript",
+"path": "res://Scripts/Data/VNAudioSet.gd"
+}, {
+"base": "Resource",
+"class": "VNImage",
+"language": "GDScript",
+"path": "res://Scripts/Data/VNImage.gd"
+}, {
+"base": "Resource",
+"class": "VNImageSet",
+"language": "GDScript",
+"path": "res://Scripts/Data/VNImageSet.gd"
+} ]
 _global_script_class_icons={
-
+"BGM": "",
+"BackgroundSet": "",
+"Character": "",
+"CommunicationKey": "",
+"NetworkEvent": "",
+"PlayerData": "",
+"SFX": "",
+"ThreadedResourceLoader": "",
+"VNAudio": "",
+"VNAudioSet": "",
+"VNImage": "",
+"VNImageSet": ""
 }
 
 [application]

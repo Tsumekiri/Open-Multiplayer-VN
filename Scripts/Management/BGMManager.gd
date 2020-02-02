@@ -1,10 +1,10 @@
-extends "res://Scripts/Data/ThreadedLoader.gd"
+extends ThreadedResourceLoader
 
 var bgm_list: Dictionary = {}
 const ALLOWED_EXTENSIONS = ["ogg", "wav"]
 
 # Getter for the bgm list
-func get_bgm_list():
+func get_bgm_list() -> Dictionary:
 	return bgm_list
 
 # Loads all background music present in the server folder
@@ -22,7 +22,10 @@ func _load_resources(args) -> void:
 
 # Called by the VNResourceLoader to load each folder
 func load_resource(path: String):
+	if cancel_loading:
+		return
+	
 	var soundtrack: String = path.get_basename()
-	bgm_list[soundtrack] = MultiVN.BGM.new(soundtrack, ALLOWED_EXTENSIONS)
+	bgm_list[soundtrack] = BGM.new(soundtrack, ALLOWED_EXTENSIONS)
 	
 	# Add code to run after loading each sound effect folder

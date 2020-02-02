@@ -1,10 +1,10 @@
-extends "res://Scripts/Data/ThreadedLoader.gd"
+extends ThreadedResourceLoader
 
 var background_list: Dictionary = {}
 const ALLOWED_EXTENSIONS: Array = ["png", "bmp", "jpg"]
 
 # Getter for the background list
-func get_background_list():
+func get_background_list() -> Dictionary:
 	return background_list
 
 # Loads all characters present in the server folder
@@ -21,8 +21,11 @@ func _load_resources(args) -> void:
 	_finish_loading()
 
 # Called by the VNResourceLoader to load each folder
-func load_resource(path: String):
+func load_resource(path: String) -> void:
+	if cancel_loading:
+		return
+	
 	var background: String = path.get_basename()
-	background_list[background] = MultiVN.Background.new(background, ALLOWED_EXTENSIONS)
+	background_list[background] = BackgroundSet.new(background, ALLOWED_EXTENSIONS)
 	
 	# Add code to run while loading each background folder

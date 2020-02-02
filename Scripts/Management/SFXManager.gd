@@ -1,10 +1,10 @@
-extends "res://Scripts/Data/ThreadedLoader.gd"
+extends ThreadedResourceLoader
 
 var sfx_list: Dictionary = {}
 const ALLOWED_EXTENSIONS = ["ogg", "wav"]
 
 # Getter for the sfx list
-func get_sfx_list():
+func get_sfx_list() -> Dictionary:
 	return sfx_list
 
 # Loads all sound effects present in the server folder
@@ -26,6 +26,6 @@ func load_resource(path: String):
 		return
 	
 	var effect: String = path.get_basename()
-	sfx_list[effect] = MultiVN.SFX.new(effect, ALLOWED_EXTENSIONS)
+	sfx_list[effect] = SFX.new(effect, ALLOWED_EXTENSIONS)
 	
 	# Add code to run after loading each sound effect folder

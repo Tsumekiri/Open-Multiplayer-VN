@@ -1,4 +1,5 @@
-extends "res://Scripts/Data/VNAudioSet.gd"
+extends VNAudioSet
+class_name SFX
 
 # Extension of VNAudioSet meant for sound effects. They are separated
 # from background music, for instance, as a means to facilitate writing

@@ -1,4 +1,5 @@
 extends Node
+class_name ThreadedResourceLoader
 
 var thread: Thread = Thread.new()
 var cancel_loading: bool = false

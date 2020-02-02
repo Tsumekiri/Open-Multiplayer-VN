@@ -1,4 +1,5 @@
 extends Resource
+class_name VNImageSet
 
 # This is the resource used to store loaded image set resources.
 # It loads and stores several VNImages, as well as its name,
@@ -90,7 +91,7 @@ func load_sprite_each_frame(vn_image: String, texture: ImageTexture) -> void:
 
 # Adds the VNImage to the character's list of VNImages
 func add_vn_image(name: String, file: String, folder_path: String) -> void:
-	data.vn_images[name] = MultiVN.VNImage.new(data.name, file, folder_path)
+	data.vn_images[name] = VNImage.new(data.name, file, folder_path)
 
 # Adds the animated VNImage to the set's list of VNImages
 func add_dynamic_vn_image(name: String, file: String, folder_path: String, frame: String) -> void:

@@ -1,10 +1,10 @@
-extends "res://Scripts/Data/ThreadedLoader.gd"
+extends ThreadedResourceLoader
 
 var character_list: Dictionary = {}
 const ALLOWED_EXTENSIONS: Array = ["png"]
 
 # Getter for the character list
-func get_character_list():
+func get_character_list() -> Dictionary:
 	return character_list
 
 # Loads all characters present in the server folder
@@ -22,7 +22,10 @@ func _load_resources(args) -> void:
 
 # Called by the VNResourceLoader to load each folder
 func load_resource(path: String):
+	if cancel_loading:
+		return
+	
 	var character: String = path.get_basename()
-	character_list[character] = MultiVN.Character.new(character, ALLOWED_EXTENSIONS)
+	character_list[character] = Character.new(character, ALLOWED_EXTENSIONS)
 	
 	# Add code to run while loading each character folder

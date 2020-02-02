@@ -1,4 +1,5 @@
 extends Resource
+class_name VNImage
 
 # This is a VNImage resource, used in conjunction with VNImageSet
 # to help the user select the apropriate set of images to use.

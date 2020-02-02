@@ -11,17 +11,22 @@ signal login_s
 # and in the specific player's client, as well as initialize it into
 # the dictionary
 func send_player_init(id: int):
-	var communication_key = MultiVN.CommKey.new()
+	var communication_key: CommunicationKey = CommunicationKey.new()
 	init_logged_player(id, communication_key.key)
 	rpc_id(id, "init_logged_player", id, communication_key.key)
 
 # Setter for the player's communication key, in serverData dictionary,
 # as well as initializes player data
 puppet func init_logged_player(id: int, key: String):
-	players[id] = MultiVN.PlayerData.new()
+	players[id] = PlayerData.new()
 	players[id].set_server_data("key", key)
 	if (get_tree().get_network_unique_id() == id):
 		receive_login()
+
+# Initializes the server data
+func init_server():
+	var communication_key: CommunicationKey = CommunicationKey.new()
+	init_logged_player(1, communication_key.key)
 
 # Setter for communication_resource. Should be careful not to ser a Client on a server, or the other way around
 func set_communication_resource(new_resource):
@@ -75,3 +80,9 @@ func register_player(username: String, password: int, server_password: int) -> b
 	if (config.save(path) != OK):
 		return false
 	return true
+
+# Gets a specific player's data
+func get_player_data(id: int):
+	if players.has(id):
+		return players[id]
+	return null

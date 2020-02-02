@@ -1,4 +1,5 @@
 extends Resource
+class_name VNAudioSet
 
 var data: Dictionary = {
 	"name": "",
@@ -34,7 +35,7 @@ func load_vn_audio(folder_path: String, allowed_extensions: Array):
 
 # Adds a VNAudio to the vnAudio attribute of the VNAudioSet
 func add_vn_audio(file: String, folder_path: String):
-	data.vn_audio[file.get_basename()] = MultiVN.VNAudio.new(data.name, file, folder_path)
+	data.vn_audio[file.get_basename()] = VNAudio.new(data.name, file, folder_path)
 
 # Simple getter for VNAudio dictionary
 func get_vn_audio_dict():

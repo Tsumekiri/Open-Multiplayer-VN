@@ -1,4 +1,5 @@
 extends Resource
+class_name PlayerData
 
 var server_data: Dictionary = {
 	"user": "",

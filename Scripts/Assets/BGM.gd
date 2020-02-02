@@ -1,4 +1,5 @@
-extends "res://Scripts/Data/VNAudioSet.gd"
+extends VNAudioSet
+class_name BGM
 
 # Extension of VNAudioSet meant for background music. They are separated
 # from sound effects, for instance, as a means to facilitate writing

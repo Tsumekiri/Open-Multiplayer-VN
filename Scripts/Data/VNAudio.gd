@@ -1,4 +1,5 @@
 extends Resource
+class_name VNAudio
 
 var data: Dictionary = {
 	"audio_set": "",

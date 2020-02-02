@@ -1,4 +1,5 @@
 extends Resource
+class_name NetworkEvent
 
 # This only really exists to centralize some event-related
 # error handling. Other than printing an error message

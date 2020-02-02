@@ -1,4 +1,5 @@
-extends "res://Scripts/Data/VNImageSet.gd"
+extends VNImageSet
+class_name BackgroundSet
 
 # Extension of VNImageSet meant for Backgrounds. They are separated
 # from Characters, for instance, as a means to facilitate writing
