@@ -3,6 +3,7 @@ extends Node
 const CONFIG_PASSWORD_KEY: String = "password"
 var communication_resource # Either a Client or a Server
 
+var player_id
 var players: Dictionary = {}
 
 signal login_s
@@ -86,3 +87,19 @@ func get_player_data(id: int):
 	if players.has(id):
 		return players[id]
 	return null
+
+# Getter for own player id
+func get_id():
+	return player_id
+
+# Setter for own player id
+func set_id(new_id):
+	player_id = new_id
+
+# Getter for the player's communication key
+func get_key():
+	return players[player_id].get_server_data("key")
+
+# Checks that the key is valid
+func validate_key(id: int, key: String):
+	return players[id].get_server_data("key") == key

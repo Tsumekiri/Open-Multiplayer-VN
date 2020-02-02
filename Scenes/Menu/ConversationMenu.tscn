@@ -10,6 +10,9 @@ margin_right = -604.0
 margin_bottom = -170.0
 mouse_filter = 2
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 selector = "Conversation"
 
 [node name="IngameMenu" parent="." instance=ExtResource( 2 )]
@@ -38,48 +41,4 @@ margin_left = 240.0
 margin_right = 382.0
 margin_bottom = 24.0
 text = "Delete Conversation"
-
-[node name="Positions" type="Control" parent="."]
-editor/display_folded = true
-margin_left = 20.0
-margin_top = 280.0
-margin_right = 60.0
-margin_bottom = 320.0
-
-[node name="FarLeft" type="Button" parent="Positions"]
-margin_left = 10.0
-margin_right = 70.0
-margin_bottom = 20.0
-text = "Far Left"
-
-[node name="Left" type="Button" parent="Positions"]
-margin_left = 80.0
-margin_right = 140.0
-margin_bottom = 20.0
-text = "Left"
-
-[node name="Center" type="Button" parent="Positions"]
-margin_left = 150.0
-margin_right = 210.0
-margin_bottom = 20.0
-text = "Center"
-
-[node name="Right" type="Button" parent="Positions"]
-margin_left = 220.0
-margin_right = 280.0
-margin_bottom = 20.0
-text = "Right"
-
-[node name="FarRight" type="Button" parent="Positions"]
-margin_left = 290.0
-margin_right = 357.0
-margin_bottom = 20.0
-text = "Far Right"
-
-[node name="Label" type="Label" parent="."]
-margin_left = 150.0
-margin_top = 250.0
-margin_right = 266.0
-margin_bottom = 270.0
-text = "Character Position"
 [connection signal="visibility_s" from="IngameMenu" to="." method="change_visibility"]
