@@ -7,12 +7,12 @@ signal server_data_changed(dictionary)
 signal server_data_value_changed(key, value)
 
 var server_data: Dictionary = {
-	"user": "",
 	"key": "",
 	"address": ""
 }
 
 var data: Dictionary = {
+	"user": "",
 	"alias": "",
 	"character": "",
 	"expression": "",

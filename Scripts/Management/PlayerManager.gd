@@ -10,6 +10,8 @@ const BGM_DATA = "bgm"
 const SFX_SET_DATA = "sfx_set"
 const SFX_DATA = "sfx"
 
+signal data_changed(key, value)
+
 func request_change_data(id: int, type: String, value):
 	var key = NetworkManager.get_key()
 	rpc_id(1, "process_change_data", key, id, type, value)
@@ -19,6 +21,8 @@ puppet func change_data(id: int, key: String, type: String, value):
 		return
 	
 	NetworkManager.get_player_data(id).set_data(type, value)
+	if id == NetworkManager.get_id():
+		emit_signal("data_changed", type, value)
 
 master func process_change_data(key: String, id: int, type: String, value):
 	if not NetworkManager.validate_key(id, key):

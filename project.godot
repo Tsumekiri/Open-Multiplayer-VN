@@ -27,7 +27,12 @@ _global_script_classes=[ {
 "base": "Resource",
 "class": "CommunicationKey",
 "language": "GDScript",
-"path": "res://Scripts/Util/CommKey.gd"
+"path": "res://Scripts/Util/CommunicationKey.gd"
+}, {
+"base": "Resource",
+"class": "ConversationData",
+"language": "GDScript",
+"path": "res://Scripts/Data/ConversationData.gd"
 }, {
 "base": "Resource",
 "class": "NetworkEvent",
@@ -38,6 +43,11 @@ _global_script_classes=[ {
 "class": "PlayerData",
 "language": "GDScript",
 "path": "res://Scripts/Data/PlayerData.gd"
+}, {
+"base": "OptionButton",
+"class": "PopulatedDropdown",
+"language": "GDScript",
+"path": "res://Scripts/Scenes/Menu/Generic/PopulatedDropdown.gd"
 }, {
 "base": "VNAudioSet",
 "class": "SFX",
@@ -74,8 +84,10 @@ _global_script_class_icons={
 "BackgroundSet": "",
 "Character": "",
 "CommunicationKey": "",
+"ConversationData": "",
 "NetworkEvent": "",
 "PlayerData": "",
+"PopulatedDropdown": "",
 "SFX": "",
 "ThreadedResourceLoader": "",
 "VNAudio": "",
@@ -100,6 +112,7 @@ BackgroundManager="*res://Scripts/Management/BackgroundManager.gd"
 BGMManager="*res://Scripts/Management/BGMManager.gd"
 SFXManager="*res://Scripts/Management/SFXManager.gd"
 NetworkManager="*res://Scripts/Management/NetworkManager.gd"
+PlayerManager="*res://Scripts/Management/PlayerManager.gd"
 
 [debug]
 

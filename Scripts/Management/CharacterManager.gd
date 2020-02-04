@@ -1,5 +1,13 @@
 extends ThreadedResourceLoader
 
+enum POSITIONS {
+	FAR_LEFT,
+	LEFT,
+	CENTER,
+	FAR_RIGHT,
+	RIGHT
+}
+
 var character_list: Dictionary = {}
 const ALLOWED_EXTENSIONS: Array = ["png"]
 
