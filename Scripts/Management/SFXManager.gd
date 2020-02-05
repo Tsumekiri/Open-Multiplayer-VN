@@ -8,7 +8,7 @@ func get_sfx_list() -> Dictionary:
 	return sfx_list
 
 # Loads all sound effects present in the server folder
-func _load_resources(args) -> void:
+func _load_resources(_args) -> void:
 	VNResourceLoader.load_vn_resources(FileManager.get_folder_path(FileManager.SFX), self)
 	
 	# Add code to run after loading all sound effects

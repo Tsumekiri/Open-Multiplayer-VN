@@ -8,7 +8,7 @@ func get_bgm_list() -> Dictionary:
 	return bgm_list
 
 # Loads all background music present in the server folder
-func _load_resources(args) -> void:
+func _load_resources(_args) -> void:
 	VNResourceLoader.load_vn_resources(FileManager.get_folder_path(FileManager.BGM), self)
 	
 	# Add code to run after loading all sound effects

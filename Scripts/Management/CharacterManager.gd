@@ -16,7 +16,7 @@ func get_character_list() -> Dictionary:
 	return character_list
 
 # Loads all characters present in the server folder
-func _load_resources(args) -> void:
+func _load_resources(_args) -> void:
 	VNResourceLoader.load_vn_resources(FileManager.get_folder_path(FileManager.CHARACTERS), self)
 	
 	# Add code to run after loading all characters

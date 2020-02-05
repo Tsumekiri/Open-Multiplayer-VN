@@ -29,7 +29,7 @@ func connect_network(assets_folder: String, port: int, max_players: int) -> bool
 	return true
 
 # Called to close the server's connection
-func close_connection(tree):
+func close_connection():
 	NetworkManager.set_id(null)
 	tree.get_network_peer().close_connection()
 	tree.set_network_peer(null)

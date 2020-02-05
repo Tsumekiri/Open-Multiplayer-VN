@@ -43,6 +43,14 @@ func get_vn_images_size() -> int:
 func get_sprite_frames() -> SpriteFrames:
 	return data.sprite_frames
 
+# Checks that required image exists
+func has_vn_image(vn_image: String) -> bool:
+	return data.vn_images.has(vn_image)
+
+# Returns a specific image
+func get_vn_image(vn_image: String):
+	return data.vn_images[vn_image]
+
 # Loads each VNImage found
 func load_vn_images(folder_path: String, allowed_extensions: Array) -> void:
 	var regex: RegEx = RegEx.new()

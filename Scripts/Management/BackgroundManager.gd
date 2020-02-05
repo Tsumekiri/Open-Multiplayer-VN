@@ -7,8 +7,14 @@ const ALLOWED_EXTENSIONS: Array = ["png", "bmp", "jpg"]
 func get_background_list() -> Dictionary:
 	return background_list
 
+# Getter for a specific background set
+func get_background_set(set_name: String):
+	if background_list.has(set_name):
+		return background_list[set_name]
+	return null
+
 # Loads all characters present in the server folder
-func _load_resources(args) -> void:
+func _load_resources(_args) -> void:
 	VNResourceLoader.load_vn_resources(FileManager.get_folder_path(FileManager.BACKGROUNDS), self)
 	
 	# Add code to run after loading every background
