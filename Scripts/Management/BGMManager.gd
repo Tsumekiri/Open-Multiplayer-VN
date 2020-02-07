@@ -7,6 +7,12 @@ const ALLOWED_EXTENSIONS = ["ogg", "wav"]
 func get_bgm_list() -> Dictionary:
 	return bgm_list
 
+# Getter for a bgm set
+func get_bgm_set(target: String):
+	if bgm_list.has(target):
+		return bgm_list.get(target)
+	return null
+
 # Loads all background music present in the server folder
 func _load_resources(_args) -> void:
 	VNResourceLoader.load_vn_resources(FileManager.get_folder_path(FileManager.BGM), self)
@@ -16,7 +22,7 @@ func _load_resources(_args) -> void:
 	print("========== BGM ==========")
 	print(bgm_list)
 	for bgm in bgm_list.values():
-		print(bgm.get_vn_audio_dict())
+		print(bgm.get_vn_audios())
 	
 	_finish_loading()
 

@@ -15,6 +15,12 @@ const ALLOWED_EXTENSIONS: Array = ["png"]
 func get_character_list() -> Dictionary:
 	return character_list
 
+# Getter for specific characters
+func get_character(target: String):
+	if target in character_list:
+		return character_list.get(target)
+	return null
+
 # Loads all characters present in the server folder
 func _load_resources(_args) -> void:
 	VNResourceLoader.load_vn_resources(FileManager.get_folder_path(FileManager.CHARACTERS), self)

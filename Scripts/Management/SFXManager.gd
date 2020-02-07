@@ -7,6 +7,12 @@ const ALLOWED_EXTENSIONS = ["ogg", "wav"]
 func get_sfx_list() -> Dictionary:
 	return sfx_list
 
+#Getter for a specific sfx set
+func get_sfx_set(target: String):
+	if sfx_list.has(target):
+		return sfx_list.get(target)
+	return null
+
 # Loads all sound effects present in the server folder
 func _load_resources(_args) -> void:
 	VNResourceLoader.load_vn_resources(FileManager.get_folder_path(FileManager.SFX), self)
@@ -16,7 +22,7 @@ func _load_resources(_args) -> void:
 	print("========== SFX ==========")
 	print(sfx_list)
 	for sfx in sfx_list.values():
-		print(sfx.get_vn_audio_dict())
+		print(sfx.get_vn_audios())
 	
 	_finish_loading()
 

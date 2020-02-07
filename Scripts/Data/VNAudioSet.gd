@@ -38,5 +38,5 @@ func add_vn_audio(file: String, folder_path: String):
 	data.vn_audio[file.get_basename()] = VNAudio.new(data.name, file, folder_path)
 
 # Simple getter for VNAudio dictionary
-func get_vn_audio_dict():
+func get_vn_audios():
 	return data.vn_audio

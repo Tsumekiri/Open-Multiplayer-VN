@@ -1,0 +1,49 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scenes/Menu/Generic/IngameMenu.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Menu/Dropdown/SFXDropdown.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Menu/Dropdown/SFXSetDropdown.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scripts/Scenes/Menu/SFXMenu.gd" type="Script" id=4]
+
+[node name="SFXMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -604.0
+margin_bottom = -170.0
+mouse_filter = 2
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+selector = "SFX"
+
+[node name="IngameMenu" parent="." instance=ExtResource( 1 )]
+title = "SFX Menu"
+
+[node name="SFXSetDropdown" parent="." instance=ExtResource( 3 )]
+margin_left = 130.194
+margin_top = 119.0
+margin_right = 359.194
+margin_bottom = 139.0
+
+[node name="Label" type="Label" parent="SFXSetDropdown"]
+margin_left = -69.8061
+margin_right = -19.8061
+margin_bottom = 20.0
+text = "SFX Set:"
+
+[node name="SFXDropdown" parent="." instance=ExtResource( 2 )]
+margin_left = 130.194
+margin_top = 188.685
+margin_right = 359.194
+margin_bottom = 208.685
+
+[node name="Label" type="Label" parent="SFXDropdown"]
+margin_left = -69.8061
+margin_right = -19.8061
+margin_bottom = 20.0
+text = "SFX:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="visibility_s" from="IngameMenu" to="." method="change_visibility"]

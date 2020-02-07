@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scripts/Scenes/Util/TopBar.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Menu/Dropdown/BackgroundDropdown.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Menu/Dropdown/ExpressionDropdown.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Menu/Dropdown/BGMDropdown.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Menu/Dropdown/SFXDropdown.tscn" type="PackedScene" id=5]
 
 [node name="TopBar" type="Control"]
 anchor_right = 1.0
@@ -16,7 +20,6 @@ margin_left = -8.0
 margin_top = -40.0
 margin_right = 1030.0
 margin_bottom = 91.0
-mouse_filter = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -40,33 +43,25 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Expression" type="OptionButton" parent="DropdownList/Children"]
+[node name="Expression" parent="DropdownList/Children" instance=ExtResource( 3 )]
 margin_top = 10.0
 margin_right = 180.0
 margin_bottom = 30.0
-mouse_filter = 1
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="Label" type="Label" parent="DropdownList/Children/Expression"]
 margin_top = -20.0
-margin_right = 40.0
+margin_right = 69.0
 mouse_filter = 1
 text = "Expression"
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Background" type="OptionButton" parent="DropdownList/Children"]
+[node name="Background" parent="DropdownList/Children" instance=ExtResource( 2 )]
 margin_left = 200.0
 margin_top = 10.0
 margin_right = 380.0
 margin_bottom = 30.0
-mouse_filter = 1
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="Label" type="Label" parent="DropdownList/Children/Background"]
 margin_top = -20.0
@@ -77,15 +72,11 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="BGM" type="OptionButton" parent="DropdownList/Children"]
+[node name="BGM" parent="DropdownList/Children" instance=ExtResource( 4 )]
 margin_left = 400.0
 margin_top = 10.0
 margin_right = 580.0
 margin_bottom = 30.0
-mouse_filter = 1
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="Label" type="Label" parent="DropdownList/Children/BGM"]
 margin_top = -20.0
@@ -96,15 +87,11 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="SFX" type="OptionButton" parent="DropdownList/Children"]
+[node name="SFX" parent="DropdownList/Children" instance=ExtResource( 5 )]
 margin_left = 600.0
 margin_top = 10.0
 margin_right = 780.0
 margin_bottom = 30.0
-mouse_filter = 1
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="Label" type="Label" parent="DropdownList/Children/SFX"]
 margin_top = -20.0

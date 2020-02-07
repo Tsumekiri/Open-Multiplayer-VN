@@ -1,0 +1,51 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scenes/Menu/Generic/IngameMenu.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/Scenes/Menu/BGMMenu.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/Menu/Dropdown/BGMSetDropdown.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Menu/Dropdown/BGMDropdown.tscn" type="PackedScene" id=4]
+
+[node name="BGMMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -604.0
+margin_bottom = -170.0
+mouse_filter = 2
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+selector = "BGM"
+
+[node name="IngameMenu" parent="." instance=ExtResource( 1 )]
+title = "BGM Menu"
+
+[node name="BGMSetDropdown" parent="." instance=ExtResource( 3 )]
+margin_left = 135.0
+margin_top = 114.0
+margin_right = 360.0
+margin_bottom = 134.0
+
+[node name="Label" type="Label" parent="BGMSetDropdown"]
+margin_left = -74.7369
+margin_right = -15.7369
+margin_bottom = 20.0
+text = "BGM Set:"
+valign = 1
+
+[node name="BGMDropdown" parent="." instance=ExtResource( 4 )]
+margin_left = 135.0
+margin_top = 172.947
+margin_right = 360.0
+margin_bottom = 192.947
+
+[node name="Label" type="Label" parent="BGMDropdown"]
+margin_left = -74.7369
+margin_right = -15.7369
+margin_bottom = 20.0
+text = "BGM:"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="visibility_s" from="IngameMenu" to="." method="change_visibility"]
