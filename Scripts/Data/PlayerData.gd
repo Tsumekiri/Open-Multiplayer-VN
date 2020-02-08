@@ -21,7 +21,9 @@ var data: Dictionary = {
 	"bgm_set": "",
 	"bgm": "",
 	"sfx_set": "",
-	"sfx": ""
+	"sfx": "",
+	"position": "Center",
+	"conversation": ""
 }
 
 func set_data(key: String, value: String):
