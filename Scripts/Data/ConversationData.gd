@@ -18,6 +18,14 @@ var data: Dictionary = {
 func _init(name: String):
 	data.name = name
 
+# Simple getter for the conversation data
+func get_data() -> Dictionary:
+	return data
+
+# Simple setter for the conversation data
+func set_data(new_data: Dictionary) -> void:
+	data = new_data
+
 # Simple getter for the conversation name
 func get_name() -> String:
 	return data.name

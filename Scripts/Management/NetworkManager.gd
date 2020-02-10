@@ -82,6 +82,10 @@ func register_player(username: String, password: int, server_password: int) -> b
 		return false
 	return true
 
+# Simple getter for players
+func get_players() -> Dictionary:
+	return players
+
 # Gets a specific player's data
 func get_player_data(id: int):
 	if players.has(id):
