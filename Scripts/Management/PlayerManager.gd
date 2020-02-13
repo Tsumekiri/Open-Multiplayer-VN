@@ -35,11 +35,3 @@ master func process_change_data(key: String, id: int, type: String, value):
 		rpc_id(id, "change_data", id, key, type, value)
 
 # ======== CONVERSATION FUNCTIONS ========
-
-func request_conversation_change(id: int, key: String, conversation: String, operation: String) -> void:
-	if not NetworkManager.validate_key(id, key):
-		return
-	
-	#TODO: Validate
-	
-	#TODO: Change

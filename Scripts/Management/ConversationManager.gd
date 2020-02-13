@@ -8,25 +8,55 @@ const POS_CENTER = "Center"
 const POS_RIGHT = "Right"
 const POS_FAR_RIGHT = "Far Right"
 
-# Asks server to create a new conversation
-func request_create_conversation(conversation_name: String):
-	var id = NetworkManager.get_id()
-	var key = NetworkManager.get_key()
-	
-	if id != 1:
-		rpc_id(1, "process_create_conversation", id, key, conversation_name)
-	else:
-		process_create_conversation(id, key, conversation_name)
+# ========== Server Processing Functions ==========
 
 # Server function to process a request to create a new conversation
 master func process_create_conversation(id: int, key: String, conversation_name: String):
+	if (conversation_exists(conversation_name) or
+			conversation_name == null or
+			conversation_name.empty()):
+		return
+	
+	process_conversation_request(id, key, "create_conversation", conversation_name)
+
+# Server function to process a request to remove an existing conversation
+master func process_remove_conversation(id: int, key: String, conversation_name: String):
+	if not conversation_exists(conversation_name):
+		return
+	
+	process_conversation_request(id, key, "remove_conversation", conversation_name)
+
+# Server function to process a request for a player to enter an existing conversation
+master func process_enter_conversation(id: int, key: String, conversation_name: String, position: String):
+	if not conversation_exists(conversation_name):
+		return
+	
+	process_player_conversation_request(id, key, "enter_conversation", conversation_name, position)
+
+# Server function to process a request for a player to leave conversations
+master func process_leave_conversation(id: int, key: String, conversation_name: String, position: String):
+	#TODO: Validate
+	process_player_conversation_request(id, key, "leave_conversation", conversation_name, position)
+
+# ========== Server Processing Helper Functions ==========
+
+# Helper function to process conversation requests that need the player's data
+func process_player_conversation_request(id: int, key: String, request: String, conversation_name: String, position: String):
 	if not NetworkManager.validate_key(id, key):
 		return
 	
-	#TODO: Validate
+	var player_data: PlayerData = NetworkManager.get_player_data(id)
+	call_deferred(request, player_data, conversation_name, position)
+
+# Helper function used to process a simple conversation request
+func process_conversation_request(id: int, key: String, request: String, conversation_name: String):
+	if not NetworkManager.validate_key(id, key):
+		return
 	
-	create_conversation(conversation_name)
+	call_deferred(request, conversation_name)
 	send_update_conversation_list()
+
+# ========== Conversation Management Functions ==========
 
 # Gets a dictionary with each conversation data
 func get_conversation_data_list() -> Dictionary:
@@ -70,14 +100,20 @@ func enter_conversation(player: PlayerData, conversation: String, position: Stri
 	if conversation_list.has(conversation):
 		var target = conversation_list.get(conversation)
 		if not target.is_position_filled(position):
-			leave_conversation(player)
+			leave_conversation(player, null, null)
 			target.add_player(player, position)
 			player.set_data("conversation", conversation)
 
 # Removes player from a conversation entirely
-func leave_conversation(player: PlayerData) -> void:
+func leave_conversation(player: PlayerData, _conversation, _position) -> void:
 	var conversation = player.get_data("conversation")
 	if conversation_list.has(conversation):
 		var target = conversation_list.get(conversation)
 		target.remove_player(player)
 		player.set_data("conversation", "")
+
+func conversation_exists(conversation) -> bool:
+	if conversation == null:
+		return false
+	
+	return conversation_list.has(conversation)
