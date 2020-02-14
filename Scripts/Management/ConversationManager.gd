@@ -58,6 +58,12 @@ func process_conversation_request(id: int, key: String, request: String, convers
 
 # ========== Conversation Management Functions ==========
 
+# Gets a specific conversation from the list
+func get_conversation(conversation_name: String):
+	if conversation_list.has(conversation_name):
+		return conversation_list.get(conversation_name)
+	return null
+
 # Gets a dictionary with each conversation data
 func get_conversation_data_list() -> Dictionary:
 	var result: Dictionary = {}
