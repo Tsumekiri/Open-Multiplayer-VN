@@ -19,7 +19,7 @@ func send_player_init(id: int):
 # Setter for the player's communication key, in serverData dictionary,
 # as well as initializes player data
 puppet func init_logged_player(id: int, key: String):
-	players[id] = PlayerData.new()
+	players[id] = PlayerData.new(id)
 	players[id].set_server_data("key", key)
 	if (get_tree().get_network_unique_id() == id):
 		receive_login()
@@ -90,6 +90,13 @@ func get_players() -> Dictionary:
 func get_player_data(id: int):
 	if players.has(id):
 		return players[id]
+	return null
+
+# Gets a specific player's data based on username
+func get_player_by_user(user: String):
+	for player in players.values():
+		if player.get_data("user") == user:
+			return player
 	return null
 
 # Getter for own player id

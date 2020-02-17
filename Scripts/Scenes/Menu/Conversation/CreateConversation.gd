@@ -15,6 +15,7 @@ func request_create_conversation():
 		ConversationManager.process_create_conversation(player_id,
 				player_key, conversation_selection.get_text())
 
+# Checks that a conversation is currently selected and exists on manager
 func conversation_exists() -> bool:
 	if conversation_data != null:
 		if (ConversationManager.conversation_exists(conversation_data.get_name()) or

@@ -48,9 +48,24 @@ func add_player(player: PlayerData, position: String) -> void:
 	if data.players.has(position):
 		data.players[position] = player
 
-# Removes a player from the conversation
+# Removes a player from the conversation. Should be called by the server
 func remove_player(player: PlayerData) -> void:
 	var target = player.get_data("user")
 	for person in data.players:
 		if data.players[person].get_data("user") == target:
+			var target_id = target.get_server_data("id")
+			var target_key = target.get_server_data("key")
+			
+			PlayerManager.process_change_data(target_id, target_key, "conversation", "")
 			data.players[person] = ""
+
+# Removes all players from the conversation. Should be called by the server
+func clear_players() -> void:
+	for target in data.players:
+		if data.players[target] != "":
+			var player = data.players[target]
+			var player_id = player.get_server_data("id")
+			var player_key = player.get_server_data("key")
+			
+			PlayerManager.process_change_data(player_id, player_key, "conversation", "")
+			data.players[target] = ""

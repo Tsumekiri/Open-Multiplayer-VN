@@ -98,8 +98,8 @@ func create_conversation(conversation_name: String) -> void:
 # Removes a conversation from the list
 func remove_conversation(target: String) -> void:
 	if conversation_list.has(target):
+		conversation_list[target].clear_players()
 		conversation_list.erase(target)
-		#TODO: Have each player in conversation leave it
 
 # Adds a specified PlayerData into a position in a conversation already on the list
 func enter_conversation(player: PlayerData, conversation: String, position: String) -> void:
@@ -116,8 +116,9 @@ func leave_conversation(player: PlayerData, _conversation, _position) -> void:
 	if conversation_list.has(conversation):
 		var target = conversation_list.get(conversation)
 		target.remove_player(player)
-		player.set_data("conversation", "")
 
+# Checks that a conversation exists in list. Returns false if it's null or
+# is not on the conversation_list
 func conversation_exists(conversation) -> bool:
 	if conversation == null:
 		return false

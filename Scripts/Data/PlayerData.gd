@@ -26,6 +26,9 @@ var data: Dictionary = {
 	"conversation": ""
 }
 
+func _init(player_id: int):
+	server_data.id = player_id
+
 func set_data(key: String, value: String):
 	data[key] = value
 	emit_signal("data_value_changed", key, value)
