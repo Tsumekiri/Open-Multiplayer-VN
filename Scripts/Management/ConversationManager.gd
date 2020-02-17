@@ -8,6 +8,8 @@ const POS_CENTER = "Center"
 const POS_RIGHT = "Right"
 const POS_FAR_RIGHT = "Far Right"
 
+signal conversation_list_updated()
+
 # ========== Server Processing Functions ==========
 
 # Server function to process a request to create a new conversation
@@ -54,7 +56,6 @@ func process_conversation_request(id: int, key: String, request: String, convers
 		return
 	
 	call_deferred(request, conversation_name)
-	send_update_conversation_list()
 
 # ========== Conversation Management Functions ==========
 
@@ -63,6 +64,10 @@ func get_conversation(conversation_name: String):
 	if conversation_list.has(conversation_name):
 		return conversation_list.get(conversation_name)
 	return null
+
+# Getter for conversation_list
+func get_conversation_list():
+	return conversation_list
 
 # Gets a dictionary with each conversation data
 func get_conversation_data_list() -> Dictionary:
@@ -79,7 +84,9 @@ master func send_update_conversation_list() -> void:
 	
 	for player in player_list:
 		var key = player_list.get(player).get_server_data("key")
-		rpc_id(player, "update_conversation_list", player, key, new_list)
+		if player != 1:
+			rpc_id(player, "update_conversation_list", player, key, new_list)
+		emit_signal("conversation_list_updated")
 
 # Updates conversation_list with a dictionary of conversation data
 puppet func update_conversation_list(id: int, key: String, list: Dictionary) -> void:
@@ -87,19 +94,26 @@ puppet func update_conversation_list(id: int, key: String, list: Dictionary) -> 
 		return
 	
 	for conversation in list.values():
-		conversation_list[conversation.name] = ConversationData.new(conversation.name)
-		conversation_list[conversation.name].set_data(conversation)
+		if conversation_list.has(conversation.name):
+			conversation_list[conversation.name].set_data(conversation)
+		else:
+			conversation_list[conversation.name] = ConversationData.new(conversation.name)
+			conversation_list[conversation.name].set_data(conversation)
+	
+	emit_signal("conversation_list_updated")
 
 # Creates a new conversation and adds it to the list
 func create_conversation(conversation_name: String) -> void:
 	var conversation: ConversationData = ConversationData.new(conversation_name)
-	conversation_list[conversation.get_name] = conversation
+	conversation_list[conversation.get_name()] = conversation
+	send_update_conversation_list()
 
 # Removes a conversation from the list
 func remove_conversation(target: String) -> void:
 	if conversation_list.has(target):
 		conversation_list[target].clear_players()
 		conversation_list.erase(target)
+		send_update_conversation_list()
 
 # Adds a specified PlayerData into a position in a conversation already on the list
 func enter_conversation(player: PlayerData, conversation: String, position: String) -> void:
@@ -109,6 +123,7 @@ func enter_conversation(player: PlayerData, conversation: String, position: Stri
 			leave_conversation(player, null, null)
 			target.add_player(player, position)
 			player.set_data("conversation", conversation)
+			send_update_conversation_list()
 
 # Removes player from a conversation entirely
 func leave_conversation(player: PlayerData, _conversation, _position) -> void:
@@ -116,6 +131,7 @@ func leave_conversation(player: PlayerData, _conversation, _position) -> void:
 	if conversation_list.has(conversation):
 		var target = conversation_list.get(conversation)
 		target.remove_player(player)
+		send_update_conversation_list()
 
 # Checks that a conversation exists in list. Returns false if it's null or
 # is not on the conversation_list

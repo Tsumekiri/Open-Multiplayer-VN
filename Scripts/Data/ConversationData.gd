@@ -4,11 +4,11 @@ class_name ConversationData
 var data: Dictionary = {
 	"name": "",
 	"players": {
-		ConversationManager.FAR_LEFT: "",
-		ConversationManager.LEFT: "",
-		ConversationManager.CENTER: "",
-		ConversationManager.RIGHT: "",
-		ConversationManager.FAR_RIGHT: ""
+		ConversationManager.POS_FAR_LEFT: "",
+		ConversationManager.POS_LEFT: "",
+		ConversationManager.POS_CENTER: "",
+		ConversationManager.POS_RIGHT: "",
+		ConversationManager.POS_FAR_RIGHT: ""
 	},
 	"background": "",
 	"bgm": "",

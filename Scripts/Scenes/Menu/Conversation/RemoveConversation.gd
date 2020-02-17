@@ -1,7 +1,7 @@
 extends ConversationButton
 
 func _ready():
-	connect("button_pressed", self, "request_remove_conversation")
+	connect("pressed", self, "request_remove_conversation")
 
 # Asks server to remove a conversation
 func request_remove_conversation():
