@@ -91,4 +91,7 @@ margin_top = 360.0
 margin_right = 377.0
 margin_bottom = 380.0
 text = "Far Right"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="visibility_s" from="IngameMenu" to="." method="change_visibility"]

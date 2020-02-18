@@ -4,11 +4,11 @@ class_name ConversationData
 var data: Dictionary = {
 	"name": "",
 	"players": {
-		ConversationManager.POS_FAR_LEFT: "",
-		ConversationManager.POS_LEFT: "",
-		ConversationManager.POS_CENTER: "",
-		ConversationManager.POS_RIGHT: "",
-		ConversationManager.POS_FAR_RIGHT: ""
+		ConversationManager.POS_FAR_LEFT: null,
+		ConversationManager.POS_LEFT: null,
+		ConversationManager.POS_CENTER: null,
+		ConversationManager.POS_RIGHT: null,
+		ConversationManager.POS_FAR_RIGHT: null
 	},
 	"background": "",
 	"bgm": "",
@@ -30,10 +30,14 @@ func set_data(new_data: Dictionary) -> void:
 func get_name() -> String:
 	return data.name
 
+# Getter for item in position
+func get_position(position: String):
+	return data.players[position]
+
 # Returns whether a specific position already has a player
 func is_position_filled(position: String) -> bool:
 	if data.players.has(position):
-		return data.players.get(position).is_empty()
+		return data.players[position] != null
 	return false
 
 # Check that a player is already in the conversation
@@ -52,11 +56,14 @@ func add_player(player: PlayerData, position: String) -> void:
 func remove_player(player: PlayerData) -> void:
 	var target = player.get_data("user")
 	for person in data.players:
+		if not data.players[person]:
+			continue
+		
 		if data.players[person].get_data("user") == target:
-			var target_id = target.get_server_data("id")
-			var target_key = target.get_server_data("key")
+			var target_id = player.get_server_data("id")
+			var target_key = player.get_server_data("key")
 			
-			PlayerManager.process_change_data(target_id, target_key, "conversation", "")
+			PlayerManager.process_change_data(target_key, target_id, "conversation", "")
 			data.players[person] = ""
 
 # Removes all players from the conversation. Should be called by the server
@@ -67,5 +74,5 @@ func clear_players() -> void:
 			var player_id = player.get_server_data("id")
 			var player_key = player.get_server_data("key")
 			
-			PlayerManager.process_change_data(player_id, player_key, "conversation", "")
+			PlayerManager.process_change_data(player_key, player_id, "conversation", "")
 			data.players[target] = ""

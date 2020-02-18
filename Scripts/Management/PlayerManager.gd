@@ -13,7 +13,7 @@ const SFX_DATA = "sfx"
 signal data_changed(key, value)
 
 func request_change_data(id: int, type: String, value):
-	var key = NetworkManager.get_key()
+	var key = NetworkManager.get_player_data(id).get_server_data("key")
 	rpc_id(1, "process_change_data", key, id, type, value)
 
 puppet func change_data(id: int, key: String, type: String, value):

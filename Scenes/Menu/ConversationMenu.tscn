@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scripts/Scenes/Menu/ConversationMenu.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Menu/Generic/IngameMenu.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scripts/Scenes/Menu/Conversation/RemoveConversation.gd" type="Script" id=3]
 [ext_resource path="res://Scripts/Scenes/Menu/Conversation/CreateConversation.gd" type="Script" id=4]
 [ext_resource path="res://Scripts/Scenes/Menu/Conversation/ConversationSelection.gd" type="Script" id=5]
+[ext_resource path="res://Scripts/Scenes/Menu/Conversation/PositionButton.gd" type="Script" id=6]
 
 [node name="ConversationMenu" type="Control"]
 anchor_right = 1.0
@@ -52,4 +53,54 @@ margin_bottom = 24.0
 text = "Delete Conversation"
 script = ExtResource( 3 )
 conversation_selection = NodePath("..")
+
+[node name="Positions" type="Control" parent="."]
+margin_top = 278.0
+margin_right = 40.0
+margin_bottom = 318.0
+
+[node name="FarLeft" type="Button" parent="Positions"]
+margin_left = 30.0
+margin_right = 90.0
+margin_bottom = 20.0
+text = "Far Left"
+script = ExtResource( 6 )
+conversation_selection = NodePath("../../CurrentConversation")
+player_position = "Far Left"
+
+[node name="Left" type="Button" parent="Positions"]
+margin_left = 100.0
+margin_right = 160.0
+margin_bottom = 20.0
+text = "Left"
+script = ExtResource( 6 )
+conversation_selection = NodePath("../../CurrentConversation")
+player_position = "Left"
+
+[node name="Center" type="Button" parent="Positions"]
+margin_left = 170.0
+margin_right = 230.0
+margin_bottom = 20.0
+text = "Center"
+script = ExtResource( 6 )
+conversation_selection = NodePath("../../CurrentConversation")
+player_position = "Center"
+
+[node name="Right" type="Button" parent="Positions"]
+margin_left = 240.0
+margin_right = 300.0
+margin_bottom = 20.0
+text = "Right"
+script = ExtResource( 6 )
+conversation_selection = NodePath("../../CurrentConversation")
+player_position = "Right"
+
+[node name="FarRight" type="Button" parent="Positions"]
+margin_left = 310.0
+margin_right = 377.0
+margin_bottom = 20.0
+text = "Far Right"
+script = ExtResource( 6 )
+conversation_selection = NodePath("../../CurrentConversation")
+player_position = "Far Right"
 [connection signal="visibility_s" from="IngameMenu" to="." method="change_visibility"]
