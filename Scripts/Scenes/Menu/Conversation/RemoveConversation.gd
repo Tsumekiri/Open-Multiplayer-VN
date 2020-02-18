@@ -5,8 +5,9 @@ func _ready():
 
 # Asks server to remove a conversation
 func request_remove_conversation():
-	if conversation_data != null:
-		var conversation_name = conversation_data.get_name()
+	var conversation_name = selection_node.get_item_name()
+	
+	if conversation_name != "":
 		if not ConversationManager.conversation_exists(conversation_name):
 			return
 		

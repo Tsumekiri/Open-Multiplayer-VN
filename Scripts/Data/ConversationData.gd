@@ -69,7 +69,7 @@ func remove_player(player: PlayerData) -> void:
 # Removes all players from the conversation. Should be called by the server
 func clear_players() -> void:
 	for target in data.players:
-		if data.players[target] != "":
+		if data.players[target]:
 			var player = data.players[target]
 			var player_id = player.get_server_data("id")
 			var player_key = player.get_server_data("key")
