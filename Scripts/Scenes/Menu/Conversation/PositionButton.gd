@@ -56,6 +56,6 @@ func update_button_text() -> void:
 	if conversation_data:
 		var position_player = conversation_data.get_position(player_position)
 		if position_player:
-			set_text(position_player.get_data("user"))
+			set_text(position_player)
 			return
 	set_text(player_position)

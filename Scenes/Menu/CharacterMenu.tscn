@@ -10,6 +10,9 @@ margin_right = 420.0
 margin_bottom = 430.0
 mouse_filter = 2
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 selector = "Character"
 
 [node name="IngameMenu" parent="." instance=ExtResource( 2 )]
@@ -54,44 +57,4 @@ margin_right = -17.0
 margin_bottom = 20.0
 text = "Expression:"
 valign = 1
-
-[node name="Position" type="Control" parent="."]
-
-[node name="FarLeft" type="Button" parent="Position"]
-margin_left = 30.0
-margin_top = 360.0
-margin_right = 90.0
-margin_bottom = 380.0
-text = "Far left"
-
-[node name="Left" type="Button" parent="Position"]
-margin_left = 100.0
-margin_top = 360.0
-margin_right = 160.0
-margin_bottom = 380.0
-text = "Left"
-
-[node name="Center" type="Button" parent="Position"]
-margin_left = 170.0
-margin_top = 360.0
-margin_right = 230.0
-margin_bottom = 380.0
-text = "Center"
-
-[node name="Right" type="Button" parent="Position"]
-margin_left = 240.0
-margin_top = 360.0
-margin_right = 300.0
-margin_bottom = 380.0
-text = "Right"
-
-[node name="FarRight" type="Button" parent="Position"]
-margin_left = 310.0
-margin_top = 360.0
-margin_right = 377.0
-margin_bottom = 380.0
-text = "Far Right"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 [connection signal="visibility_s" from="IngameMenu" to="." method="change_visibility"]

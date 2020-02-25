@@ -132,6 +132,7 @@ SFXManager="*res://Scripts/Management/SFXManager.gd"
 NetworkManager="*res://Scripts/Management/NetworkManager.gd"
 PlayerManager="*res://Scripts/Management/PlayerManager.gd"
 ConversationManager="*res://Scripts/Management/ConversationManager.gd"
+MessageManager="*res://Scripts/Management/MessageManager.gd"
 
 [debug]
 

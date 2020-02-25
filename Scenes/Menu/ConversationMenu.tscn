@@ -55,9 +55,13 @@ script = ExtResource( 3 )
 conversation_selection = NodePath("..")
 
 [node name="Positions" type="Control" parent="."]
-margin_top = 278.0
+margin_top = 280.585
 margin_right = 40.0
-margin_bottom = 318.0
+margin_bottom = 320.585
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
 
 [node name="FarLeft" type="Button" parent="Positions"]
 margin_left = 30.0

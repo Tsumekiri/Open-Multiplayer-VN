@@ -33,5 +33,3 @@ master func process_change_data(key: String, id: int, type: String, value):
 	change_data(id, key, type, value)
 	if (id != NetworkManager.get_id()):
 		rpc_id(id, "change_data", id, key, type, value)
-
-# ======== CONVERSATION FUNCTIONS ========

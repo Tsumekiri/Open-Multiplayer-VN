@@ -10,9 +10,10 @@ var data: Dictionary = {
 		ConversationManager.POS_RIGHT: null,
 		ConversationManager.POS_FAR_RIGHT: null
 	},
+	"background_set": "",
 	"background": "",
-	"bgm": "",
-	"sfx": ""
+	"bgm_set": "",
+	"bgm": ""
 }
 
 func _init(name: String):
@@ -40,6 +41,26 @@ func is_position_filled(position: String) -> bool:
 		return data.players[position] != null
 	return false
 
+# Returns background set and name
+func get_background() -> Dictionary:
+	var background_data: Dictionary = {}
+	background_data.background_set = data.background_set
+	background_data.background =  data.background
+	
+	return background_data
+
+# Returns bgm set and name
+func get_bgm() -> Dictionary:
+	var bgm_data: Dictionary = {}
+	bgm_data.bgm_set = data.bgm_set
+	bgm_data.bgm = data.bgm
+	
+	return bgm_data
+
+# Getter for players
+func get_players():
+	return data.players
+
 # Check that a player is already in the conversation
 func is_player_in(user: String) -> bool:
 	for player in data.players.values():
@@ -47,24 +68,32 @@ func is_player_in(user: String) -> bool:
 			return true
 	return false
 
+# Returns position of user if he is in the conversation
+func find_user_position(user: String):
+	for position in data.players:
+		if data.players[position]:
+			if data.players[position] == user:
+				return position
+	return null
+
 # Adds a player to the conversation in the specified position
-func add_player(player: PlayerData, position: String) -> void:
+func add_player(player: String, position: String) -> void:
 	if data.players.has(position):
 		data.players[position] = player
 
 # Removes a player from the conversation. Should be called by the server
-func remove_player(player: PlayerData) -> void:
-	var target = player.get_data("user")
+func remove_player(target: String) -> void:
 	for person in data.players:
 		if not data.players[person]:
 			continue
 		
-		if data.players[person].get_data("user") == target:
+		if data.players[person] == target:
+			var player = NetworkManager.get_player_by_user(target)
 			var target_id = player.get_server_data("id")
 			var target_key = player.get_server_data("key")
 			
 			PlayerManager.process_change_data(target_key, target_id, "conversation", "")
-			data.players[person] = ""
+			data.players[person] = null
 
 # Removes all players from the conversation. Should be called by the server
 func clear_players() -> void:
@@ -76,3 +105,17 @@ func clear_players() -> void:
 			
 			PlayerManager.process_change_data(player_key, player_id, "conversation", "")
 			data.players[target] = ""
+
+# Gets formatted characters data for message sending
+func get_characters() -> Array:
+	var characters_data: Array = []
+
+	for position in data.players:
+		if data.players[position]:
+			var player_data: PlayerData = NetworkManager.get_player_by_user(data.players[position])
+			var message_data: Dictionary = player_data.get_character()
+			message_data.position = position
+
+			characters_data.append(message_data)
+
+	return characters_data

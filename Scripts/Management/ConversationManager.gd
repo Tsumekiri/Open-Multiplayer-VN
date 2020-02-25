@@ -9,6 +9,7 @@ const POS_RIGHT = "Right"
 const POS_FAR_RIGHT = "Far Right"
 
 signal conversation_list_updated()
+signal data_changed(conversation, type, value)
 
 # ========== Server Processing Functions ==========
 
@@ -121,7 +122,7 @@ func enter_conversation(player: PlayerData, conversation: String, position: Stri
 		var target = conversation_list.get(conversation)
 		if not target.is_position_filled(position):
 			leave_conversation(player, null, null)
-			target.add_player(player, position)
+			target.add_player(player.get_data("user"), position)
 			player.set_data("conversation", conversation)
 			send_update_conversation_list()
 
@@ -130,7 +131,7 @@ func leave_conversation(player: PlayerData, _conversation, _position) -> void:
 	var conversation = player.get_data("conversation")
 	if conversation_list.has(conversation):
 		var target = conversation_list.get(conversation)
-		target.remove_player(player)
+		target.remove_player(player.get_data("user"))
 		send_update_conversation_list()
 
 # Checks that a conversation exists in list. Returns false if it's null or
@@ -140,3 +141,5 @@ func conversation_exists(conversation) -> bool:
 		return false
 	
 	return conversation_list.has(conversation)
+
+# ======== Conversation Data Operations ========

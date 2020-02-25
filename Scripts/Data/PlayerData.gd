@@ -56,3 +56,32 @@ func set_full_server_data(dict: Dictionary):
 
 func get_full_server_data():
 	return server_data
+
+# Returns all character data necessary to send a message
+func get_character() -> Dictionary:
+	return {
+		"name": data.character,
+		"expression": data.expression,
+		"position": data.position
+	}
+
+# Returns all background data necessary to send a message
+func get_background() -> Dictionary:
+	return {
+		"background_set": data.background_set,
+		"background": data.background
+	}
+
+# Returns all bgm data necessary to send a message
+func get_bgm() -> Dictionary:
+	return {
+		"bgm_set": data.bgm_set,
+		"bgm": data.bgm
+	}
+
+# Returns all sfx data necessary to send a message
+func get_sfx() -> Dictionary:
+	return {
+		"sfx_set": data.sfx_set,
+		"sfx": data.sfx
+	}
