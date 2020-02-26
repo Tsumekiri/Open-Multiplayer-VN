@@ -27,6 +27,11 @@ func get_data() -> Dictionary:
 func set_data(new_data: Dictionary) -> void:
 	data = new_data
 
+# Simple setter for different conversation values, except for players
+func set_value(key: String, value: String) -> void:
+	if key in data:
+		data[key] = value
+
 # Simple getter for the conversation name
 func get_name() -> String:
 	return data.name

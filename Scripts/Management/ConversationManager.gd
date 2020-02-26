@@ -9,7 +9,6 @@ const POS_RIGHT = "Right"
 const POS_FAR_RIGHT = "Far Right"
 
 signal conversation_list_updated()
-signal data_changed(conversation, type, value)
 
 # ========== Server Processing Functions ==========
 
@@ -143,3 +142,16 @@ func conversation_exists(conversation) -> bool:
 	return conversation_list.has(conversation)
 
 # ======== Conversation Data Operations ========
+
+func process_change_conversation_data(id: int, key: String, conversation_name: String, data: Dictionary) -> void:
+	if not NetworkManager.validate_key(id, key):
+		return
+	
+	#TODO: Validate
+	
+	var conversation = conversation_list.get(conversation_name)
+	if conversation:
+		for key in data:
+			conversation.set_value(key, data[key])
+	
+	send_update_conversation_list()
