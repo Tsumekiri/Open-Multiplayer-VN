@@ -143,15 +143,22 @@ func conversation_exists(conversation) -> bool:
 
 # ======== Conversation Data Operations ========
 
-func process_change_conversation_data(id: int, key: String, conversation_name: String, data: Dictionary) -> void:
-	if not NetworkManager.validate_key(id, key):
+# Gets value from specific conversation
+func get_conversation_data(conversation_name: String, key: String):
+	var conversation = conversation_list.get(conversation_name)
+	if conversation:
+		return conversation.get_value(key)
+	return null
+
+# Attempts to change a value in conversation, at the request of a player or the server
+func process_change_conversation_data(id: int, player_key: String, conversation_name: String, key: String, value) -> void:
+	if not NetworkManager.validate_key(id, player_key):
 		return
 	
 	#TODO: Validate
 	
 	var conversation = conversation_list.get(conversation_name)
 	if conversation:
-		for key in data:
-			conversation.set_value(key, data[key])
+		conversation.set_value(key, value)
 	
 	send_update_conversation_list()

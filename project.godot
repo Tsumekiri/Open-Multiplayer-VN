@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "LineEdit",
+"class": "AndroidLineEdit",
+"language": "GDScript",
+"path": "res://Scripts/Scenes/Menu/Generic/AndroidLineEdit.gd"
+}, {
 "base": "VNAudioSet",
 "class": "BGM",
 "language": "GDScript",
@@ -38,6 +43,11 @@ _global_script_classes=[ {
 "class": "ConversationData",
 "language": "GDScript",
 "path": "res://Scripts/Data/ConversationData.gd"
+}, {
+"base": "OptionButton",
+"class": "ConversationValueDropdown",
+"language": "GDScript",
+"path": "res://Scripts/Scenes/Menu/Conversation/ConversationValueDropdown.gd"
 }, {
 "base": "Resource",
 "class": "NetworkEvent",
@@ -95,12 +105,14 @@ _global_script_classes=[ {
 "path": "res://Scripts/Data/VNImageSet.gd"
 } ]
 _global_script_class_icons={
+"AndroidLineEdit": "",
 "BGM": "",
 "BackgroundSet": "",
 "Character": "",
 "CommunicationKey": "",
 "ConversationButton": "",
 "ConversationData": "",
+"ConversationValueDropdown": "",
 "NetworkEvent": "",
 "PlayerData": "",
 "PopulatedChildDropdown": "",

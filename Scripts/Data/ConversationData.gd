@@ -32,6 +32,11 @@ func set_value(key: String, value: String) -> void:
 	if key in data:
 		data[key] = value
 
+# Simple getter for different conversation values
+func get_value(key: String):
+	if key in data:
+		return data[key]
+
 # Simple getter for the conversation name
 func get_name() -> String:
 	return data.name
