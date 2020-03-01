@@ -9,6 +9,7 @@ onready var conversation_name_node = get_node(conversation_name_path)
 
 signal item_selected_name(item_name)
 signal data_selected(id, key, value)
+signal updated_selection()
 
 func _ready():
 	connect("item_selected", self, "emit_item_name_selected")
@@ -33,7 +34,7 @@ func request_change_data(id: int, key: String, value: String) -> void:
 				conversation_name_node.get_item_name(), key, value)
 
 # Emits custom signal for item_selected that includes its text
-func emit_item_name_selected(id: int):
+func emit_item_name_selected(id: int) -> void:
 	var item_name: String = get_item_text(get_item_index(id))
 	emit_signal("item_selected_name", item_name)
 	emit_signal("data_selected", NetworkManager.get_id(), data_key, item_name)
@@ -49,4 +50,8 @@ func select_item_name(pName: String) -> void:
 func select_server_data() -> void:
 	var target_conversation = conversation_name_node.get_item_name()
 	if target_conversation:
-		select_item_name(ConversationManager.get_conversation_data(target_conversation, data_key))
+		var conversation_data = ConversationManager.get_conversation_data(target_conversation, data_key)
+		if conversation_data:
+			select_item_name(conversation_data)
+	else:
+		select(0)

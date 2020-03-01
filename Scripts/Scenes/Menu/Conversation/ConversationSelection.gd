@@ -1,19 +1,21 @@
 extends OptionButton
 
 func _ready():
-	ConversationManager.connect("conversation_list_updated", self, "populate")
-	connect("item_selected", self, "emit_item_name_selected")
-	
 	# Required to work with has_user_signal(signal). When that is not needed,
 	# custom signals are declared on top, using the signal keyword
 	add_user_signal("item_selected_name")
+	
+	populate()
+	
+	ConversationManager.connect("conversation_list_updated", self, "populate")
+	connect("item_selected", self, "emit_item_name_selected")
 
 # Populates list by ConversationManager.conversation_list
-func populate():
+func populate() -> void:
 	var current_selection = get_item_name()
 	
 	clear()
-	add_item("")
+	add_item("None")
 	
 	for item in ConversationManager.get_conversation_list():
 		add_item(item)
@@ -38,9 +40,15 @@ func select_item_name(pName: String) -> void:
 	for item in range(get_item_count()):
 		if get_item_text(item) == pName:
 			select(item)
-			return
+			break
+	
+	emit_item_name_selected(get_selected_id())
+	return
 
 # Emits custom signal for item_selected that includes its text
-func emit_item_name_selected(id: int):
-	var item_name: String = get_item_text(get_item_index(id))
-	emit_signal("item_selected_name", item_name)
+func emit_item_name_selected(id: int) -> void:
+	if id > 0:
+		var item_name = get_item_text(get_item_index(id))
+		emit_signal("item_selected_name", item_name)
+	else:
+		emit_signal("item_selected_name", "")

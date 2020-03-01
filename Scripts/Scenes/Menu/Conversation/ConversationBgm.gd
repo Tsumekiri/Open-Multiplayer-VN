@@ -12,7 +12,7 @@ func _ready():
 	
 # Repopulates dropdown based on parent selection
 func repopulate(_id, _key, _value) -> void:
-	populate(get_background_list())
+	populate(get_bgm_list())
 	select_current()
 
 # Updates current selection based on parent
@@ -20,22 +20,22 @@ func update_selection() -> void:
 	repopulate(null, null, null)
 
 # Attempts to get the background list based on the current selected conversation
-func get_background_list() -> Dictionary:
+func get_bgm_list() -> Dictionary:
 	var conversation_name = conversation_name_node.get_item_name()
 	if conversation_name:
-		var background_set_name = ConversationManager.get_conversation_data(conversation_name, "background_set")
-		if background_set_name and not background_set_name.empty():
-			var background_set = BackgroundManager.get_background_set(background_set_name)
-			if background_set:
-				return background_set.get_vn_images()
+		var bgm_set_name = ConversationManager.get_conversation_data(conversation_name, "bgm_set")
+		if bgm_set_name and not bgm_set_name.empty():
+			var bgm_set = BGMManager.get_bgm_set(bgm_set_name)
+			if bgm_set:
+				return bgm_set.get_vn_audios()
 	return {}
 
 # Selects the player's current background in conversation
 func select_current() -> void:
 	var conversation = conversation_name_node.get_item_name()
 	if conversation:
-		var background = ConversationManager.get_conversation_data(conversation, "background")
-		if background:
-			select_item_name(background)
+		var bgm = ConversationManager.get_conversation_data(conversation, "bgm")
+		if bgm:
+			select_item_name(bgm)
 		else:
 			select(0)

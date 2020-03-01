@@ -109,12 +109,13 @@ func remove_player(target: String) -> void:
 func clear_players() -> void:
 	for target in data.players:
 		if data.players[target]:
-			var player = data.players[target]
-			var player_id = player.get_server_data("id")
-			var player_key = player.get_server_data("key")
-			
-			PlayerManager.process_change_data(player_key, player_id, "conversation", "")
-			data.players[target] = ""
+			var player = NetworkManager.get_player_by_user(data.players[target])
+			if player:
+				var player_id = player.get_server_data("id")
+				var player_key = player.get_server_data("key")
+				
+				PlayerManager.process_change_data(player_key, player_id, "conversation", "")
+				data.players[target] = ""
 
 # Gets formatted characters data for message sending
 func get_characters() -> Array:
