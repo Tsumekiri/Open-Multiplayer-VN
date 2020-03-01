@@ -2,11 +2,16 @@ extends Node
 
 var conversation_list: Dictionary = {}
 
-const POS_FAR_LEFT = "Far Left"
-const POS_LEFT = "Left"
-const POS_CENTER = "Center"
-const POS_RIGHT = "Right"
-const POS_FAR_RIGHT = "Far Right"
+const POS_FAR_LEFT: String = "Far Left"
+const POS_LEFT: String = "Left"
+const POS_CENTER: String = "Center"
+const POS_RIGHT: String = "Right"
+const POS_FAR_RIGHT: String = "Far Right"
+
+const CONVERSATION_SET_VALUES: Dictionary = {
+	"background_set": "background",
+	"bgm_set": "bgm"
+}
 
 signal conversation_list_updated()
 
@@ -160,5 +165,7 @@ func process_change_conversation_data(id: int, player_key: String, conversation_
 	var conversation = conversation_list.get(conversation_name)
 	if conversation:
 		conversation.set_value(key, value)
+		if key in CONVERSATION_SET_VALUES:
+			conversation.set_value(CONVERSATION_SET_VALUES[key], "")
 	
 	send_update_conversation_list()

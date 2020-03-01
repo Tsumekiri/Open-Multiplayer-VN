@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scripts/Scenes/Menu/ConversationMenu.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Menu/Generic/IngameMenu.tscn" type="PackedScene" id=2]
@@ -6,6 +6,8 @@
 [ext_resource path="res://Scripts/Scenes/Menu/Conversation/CreateConversation.gd" type="Script" id=4]
 [ext_resource path="res://Scripts/Scenes/Menu/Conversation/ConversationSelection.gd" type="Script" id=5]
 [ext_resource path="res://Scripts/Scenes/Menu/Conversation/PositionButton.gd" type="Script" id=6]
+[ext_resource path="res://Scripts/Scenes/Menu/Conversation/ConversationBackground.gd" type="Script" id=7]
+[ext_resource path="res://Scripts/Scenes/Menu/Conversation/ConversationBackgroundSet.gd" type="Script" id=8]
 
 [node name="ConversationMenu" type="Control"]
 anchor_right = 1.0
@@ -45,6 +47,9 @@ margin_top = 140.0
 margin_right = 250.0
 margin_bottom = 164.0
 script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Delete" type="Button" parent="CurrentConversation"]
 margin_left = 240.0
@@ -55,9 +60,9 @@ script = ExtResource( 3 )
 conversation_selection = NodePath("..")
 
 [node name="Positions" type="Control" parent="."]
-margin_top = 280.585
+margin_top = 365.881
 margin_right = 40.0
-margin_bottom = 320.585
+margin_bottom = 405.881
 __meta__ = {
 "_edit_group_": true,
 "_edit_use_anchors_": false
@@ -107,4 +112,26 @@ text = "Far Right"
 script = ExtResource( 6 )
 conversation_selection = NodePath("../../CurrentConversation")
 player_position = "Far Right"
+
+[node name="BackgroundSet" type="OptionButton" parent="."]
+margin_left = 100.0
+margin_top = 215.0
+margin_right = 400.0
+margin_bottom = 235.0
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+data_key = "background_set"
+conversation_name_path = NodePath("../CurrentConversation")
+
+[node name="Background" type="OptionButton" parent="."]
+margin_left = 100.0
+margin_top = 258.0
+margin_right = 400.0
+margin_bottom = 278.0
+script = ExtResource( 7 )
+data_key = "background"
+conversation_name_path = NodePath("../CurrentConversation")
+parent_node_path = NodePath("../BackgroundSet")
 [connection signal="visibility_s" from="IngameMenu" to="." method="change_visibility"]
