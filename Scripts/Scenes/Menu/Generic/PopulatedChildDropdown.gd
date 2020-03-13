@@ -1,7 +1,6 @@
 extends PopulatedDropdown
 class_name PopulatedChildDropdown
 
-export(String) var parent_data_key
 var dropdown_list
 var player: PlayerData = NetworkManager.get_player_data(NetworkManager.get_id())
 
@@ -10,7 +9,7 @@ func _ready():
 	PlayerManager.connect("data_changed", self, "reload_items_on_change")
 
 func reload_items_on_change(key, _value):
-	if key == parent_data_key:
+	if key == data_key:
 		load_items()
 
 func load_items():

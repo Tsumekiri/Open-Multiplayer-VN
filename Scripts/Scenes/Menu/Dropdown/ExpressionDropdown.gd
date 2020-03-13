@@ -2,7 +2,6 @@ extends PopulatedChildDropdown
 
 func _ready():
 	data_key = "expression"
-	parent_data_key = "character"
 	load_items()
 
 func get_asset_data():

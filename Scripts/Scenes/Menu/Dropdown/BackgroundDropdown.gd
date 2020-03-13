@@ -2,7 +2,6 @@ extends PopulatedChildDropdown
 
 func _ready():
 	data_key = "background"
-	parent_data_key = "background_set"
 	load_items()
 
 func get_asset_data():

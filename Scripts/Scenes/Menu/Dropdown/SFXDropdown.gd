@@ -2,7 +2,6 @@ extends PopulatedChildDropdown
 
 func _ready():
 	data_key = "sfx"
-	parent_data_key = "sfx_set"
 	load_items()
 
 func get_asset_data():

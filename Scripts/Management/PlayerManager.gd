@@ -10,6 +10,13 @@ const BGM_DATA = "bgm"
 const SFX_SET_DATA = "sfx_set"
 const SFX_DATA = "sfx"
 
+const PARENT_VALUES = {
+	CHARACTER_DATA: EXPRESSION_DATA,
+	BACKGROUND_SET_DATA: BACKGROUND_DATA,
+	BGM_SET_DATA: BGM_DATA,
+	SFX_SET_DATA: SFX_DATA
+}
+
 signal data_changed(key, value)
 
 func request_change_data(id: int, type: String, value):
@@ -33,3 +40,8 @@ master func process_change_data(key: String, id: int, type: String, value):
 	change_data(id, key, type, value)
 	if (id != NetworkManager.get_id()):
 		rpc_id(id, "change_data", id, key, type, value)
+	
+	if type in PARENT_VALUES:
+		change_data(id, key, PARENT_VALUES[type], "")
+		if (id != NetworkManager.get_id()):
+			rpc_id(id, "change_data", id, key, PARENT_VALUES[type], value)
