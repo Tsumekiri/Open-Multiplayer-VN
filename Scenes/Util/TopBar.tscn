@@ -103,5 +103,3 @@ __meta__ = {
 }
 
 [node name="Tween" type="Tween" parent="."]
-[connection signal="mouse_entered" from="DropdownList" to="." method="mouse_entered_area"]
-[connection signal="mouse_exited" from="DropdownList" to="." method="mouse_exited_area"]
