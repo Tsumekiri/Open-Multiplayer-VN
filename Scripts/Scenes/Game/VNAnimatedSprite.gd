@@ -4,7 +4,6 @@ class_name VNAnimatedSprite
 export(String) var sprite_position = ""
 
 const MAX_HEIGHT: float = 600.0 # Change this if you change the target resolution on your project settings
-const EMPTY_ANIMATION: String = "None"
 
 func _ready():
 	MessageManager.connect("message_received", self, "receive_message")
@@ -15,18 +14,42 @@ func receive_message(data) -> void:
 		return
 	
 	hide()
+	if sprite_position:
+		check_characters(data)
+	else:
+		check_background(data)
+
+# Checks whether background exists and sets it up
+func check_background(data: Dictionary) -> void:
+	var target = BackgroundManager.get_background_set(data.background.background_set)
+	if target:
+		setup_background(target, data.background.background)
+
+# Sets background, fits it to screen and plays animation
+func setup_background(background_set: BackgroundSet, background: String) -> void:
+	set_sprite_frames(background_set.get_sprite_frames())
+	if frames.has_animation(background):
+		fit_sprite(background)
+		play(background)
+		show()
+
+# Is a character sprite, checks received characters in message and sets it up if
+# the position is right
+func check_characters(data: Dictionary) -> void:
 	for character in data.characters:
 		if character.position == sprite_position and character.name:
 			setup_character(character.name, character.expression)
 
 # Sets character, fits to screen and plays animation
-func setup_character(character: String, expression: String):
+func setup_character(character: String, expression: String) -> void:
 	var target = CharacterManager.get_character(character)
-	set_sprite_frames(target.get_sprite_frames())
-	fit_sprite(expression)
-	play(expression)
-	
-	show()
+	if target:
+		set_sprite_frames(target.get_sprite_frames())
+		
+		if frames.has_animation(expression):
+			fit_sprite(expression)
+			play(expression)
+			show()
 
 # Gets the tallest frame in the animation, to fit the sprite to the screen
 func get_tallest_texture(target_animation: String) -> Texture:
@@ -40,9 +63,6 @@ func get_tallest_texture(target_animation: String) -> Texture:
 # Fits the sprite to the screen, resizes up if the sprite is too small, and
 # resizes down if the sprite is to tall
 func fit_sprite(target_animation: String) -> void:
-	if not target_animation or target_animation == EMPTY_ANIMATION:
-		return
-	
 	var original_height = get_tallest_texture(target_animation).get_height()
 	if original_height and original_height > 0:
 		var ratio: float = MAX_HEIGHT / original_height

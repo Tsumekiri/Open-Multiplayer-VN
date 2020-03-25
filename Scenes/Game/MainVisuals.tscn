@@ -9,11 +9,16 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Background" parent="." instance=ExtResource( 1 )]
+position = Vector2( 492, 280 )
+centered = true
+
 [node name="Sprites" type="Container" parent="."]
 margin_right = 1024.0
 margin_bottom = 600.0
 size_flags_stretch_ratio = 0.0
 __meta__ = {
+"_edit_group_": true,
 "_edit_use_anchors_": false
 }
 

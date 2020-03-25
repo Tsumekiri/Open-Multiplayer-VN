@@ -47,6 +47,7 @@ __meta__ = {
 margin_top = 10.0
 margin_right = 180.0
 margin_bottom = 30.0
+clip_text = true
 
 [node name="Label" type="Label" parent="DropdownList/Children/Expression"]
 margin_top = -20.0
@@ -62,6 +63,7 @@ margin_left = 200.0
 margin_top = 10.0
 margin_right = 380.0
 margin_bottom = 30.0
+clip_text = true
 
 [node name="Label" type="Label" parent="DropdownList/Children/Background"]
 margin_top = -20.0
@@ -77,6 +79,7 @@ margin_left = 400.0
 margin_top = 10.0
 margin_right = 580.0
 margin_bottom = 30.0
+clip_text = true
 
 [node name="Label" type="Label" parent="DropdownList/Children/BGM"]
 margin_top = -20.0
@@ -92,6 +95,7 @@ margin_left = 600.0
 margin_top = 10.0
 margin_right = 780.0
 margin_bottom = 30.0
+clip_text = true
 
 [node name="Label" type="Label" parent="DropdownList/Children/SFX"]
 margin_top = -20.0
