@@ -29,7 +29,7 @@ master func send_message(id: int, key: String, message: String):
 			data.background = conversation.get_background()
 			data.bgm = conversation.get_bgm()
 	else:
-		data.characters = player_data.get_character()
+		data.characters = [player_data.get_character()]
 		data.background = player_data.get_background()
 		data.bgm = player_data.get_bgm()
 	

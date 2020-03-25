@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scripts/Scenes/Game/VNAnimatedSprite.gd" type="Script" id=1]
+
+[node name="VNAnimatedSprite" type="AnimatedSprite"]
+centered = false
+script = ExtResource( 1 )

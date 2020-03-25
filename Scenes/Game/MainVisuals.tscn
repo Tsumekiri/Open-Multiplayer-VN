@@ -1,0 +1,37 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scenes/Game/VNAnimatedSprite.tscn" type="PackedScene" id=1]
+
+[node name="MainVisuals" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprites" type="Container" parent="."]
+margin_right = 1024.0
+margin_bottom = 600.0
+size_flags_stretch_ratio = 0.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FarLeftSprite" parent="Sprites" instance=ExtResource( 1 )]
+sprite_position = "Far Left"
+
+[node name="LeftSprite" parent="Sprites" instance=ExtResource( 1 )]
+position = Vector2( 204, 0 )
+sprite_position = "Left"
+
+[node name="CenterSprite" parent="Sprites" instance=ExtResource( 1 )]
+position = Vector2( 408, 0 )
+sprite_position = "Center"
+
+[node name="RightSprite" parent="Sprites" instance=ExtResource( 1 )]
+position = Vector2( 612, 0 )
+sprite_position = "Right"
+
+[node name="FarRightSprite" parent="Sprites" instance=ExtResource( 1 )]
+position = Vector2( 816, 0 )
+sprite_position = "Far Right"
