@@ -9,7 +9,7 @@ func _ready():
 
 # Action, when button is pressed
 func request_enter_or_leave_conversation():
-	if selection_node.get_text() == "":
+	if selection_node.get_text() == "" or selection_node.get_text() == "None":
 		PlayerManager.request_change_data(player_id, "position", player_position)
 		return
 	
