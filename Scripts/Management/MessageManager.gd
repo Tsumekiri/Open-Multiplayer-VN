@@ -1,8 +1,12 @@
 extends Node
 
+const MAX_MESSAGE_STORAGE : int = 80
+
+var current_message : int = -1
 var message_list : Array = []
 
 signal message_received(data)
+signal unread_messages()
 
 # Gets data and propagates message
 master func send_message(id: int, key: String, message: String):
@@ -57,4 +61,45 @@ puppet func receive_message(key: String, data: Dictionary):
 		return
 	
 	print(data)
-	emit_signal("message_received", data)
+	store_message(data)
+	emit_signal("unread_messages")
+	# This is what shows a message. Will later be used with _input(event)
+	#emit_signal("message_received", data)
+
+# Stores a message as it's received. If storage is maxed, shows first message and
+# deletes it, before storing new one
+func store_message(data: Dictionary) -> void:
+	if message_list.size() < MAX_MESSAGE_STORAGE:
+		message_list.append(data)
+	else:
+		var first_message = message_list.pop_front()
+		message_list.append(data)
+		if current_message == 0:
+			emit_signal("message_received", first_message)
+		else:
+			current_message -= 1
+	
+	Logger.log_message(data)
+
+# Checks whether current_message is the first message on list
+func is_on_first_message() -> bool:
+	return current_message == 0
+
+# Checks whether current_message is the last received message
+func is_on_last_message() -> bool:
+	return current_message == (message_list.size() - 1)
+
+# Shows next message and increments current_message
+func show_next_message():
+	if not is_on_last_message():
+		emit_signal("message_received", message_list[current_message])
+		current_message += 1
+		if not is_on_last_message():
+			emit_signal("unread_messages")
+
+# Shows previous message and decrements current_message
+func show_previous_message():
+	if not is_on_first_message():
+		current_message -= 1
+		emit_signal("message_received", message_list[current_message])
+		emit_signal("unread_messages")
