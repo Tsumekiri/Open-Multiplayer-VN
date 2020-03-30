@@ -4,6 +4,7 @@ const MAX_MESSAGE_STORAGE : int = 80
 
 var current_message : int = -1
 var message_list : Array = []
+var read_messages : Array = []
 
 signal message_received(data)
 signal unread_messages()
@@ -81,6 +82,15 @@ func store_message(data: Dictionary) -> void:
 	
 	Logger.log_message(data)
 
+# Stores a message that's been read. Used so that players can read messages
+# they have already been through.
+func store_read_message(data: Dictionary) -> void:
+	if read_messages.size() < MAX_MESSAGE_STORAGE:
+		read_messages.append(data)
+	else:
+		read_messages.pop_front()
+		message_list.append(data)
+
 # Checks whether current_message is the first message on list
 func is_on_first_message() -> bool:
 	return current_message == 0
@@ -93,6 +103,7 @@ func is_on_last_message() -> bool:
 func show_next_message():
 	if not is_on_last_message():
 		emit_signal("message_received", message_list[current_message])
+		store_read_message(message_list[current_message])
 		current_message += 1
 		if not is_on_last_message():
 			emit_signal("unread_messages")
