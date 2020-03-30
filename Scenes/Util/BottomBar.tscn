@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Scenes/Menu/BottomBar/Send.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/Scenes/Menu/BottomBar/TextBox.gd" type="Script" id=2]
 
 [node name="BottomBar" type="Control"]
 anchor_right = 1.0
@@ -11,11 +12,19 @@ mouse_filter = 2
 margin_top = 420.0
 margin_right = 1024.0
 margin_bottom = 570.0
+bbcode_enabled = true
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="MessageLine" type="LineEdit" parent="."]
 margin_top = 570.0
 margin_right = 860.0
 margin_bottom = 600.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Send" parent="." instance=ExtResource( 1 )]
 margin_left = 860.0
