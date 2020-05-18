@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Scripts/Scenes/Menu/ConversationMenu.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Menu/Generic/IngameMenu.tscn" type="PackedScene" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://Scripts/Scenes/Menu/Conversation/ConversationBackgroundSet.gd" type="Script" id=8]
 [ext_resource path="res://Scripts/Scenes/Menu/Conversation/ConversationBgmSet.gd" type="Script" id=9]
 [ext_resource path="res://Scripts/Scenes/Menu/Conversation/ConversationBgm.gd" type="Script" id=10]
+[ext_resource path="res://Resources/Theme/MainTheme.tres" type="Theme" id=11]
 
 [node name="ConversationMenu" type="Control"]
 anchor_right = 1.0
@@ -17,6 +18,7 @@ anchor_bottom = 1.0
 margin_right = -604.0
 margin_bottom = -170.0
 mouse_filter = 2
+theme = ExtResource( 11 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false

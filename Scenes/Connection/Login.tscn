@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scripts/Scenes/Connection/Login/Login.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Util/SceneSwitch.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scripts/Scenes/Connection/CreateServer/AssetPath.gd" type="Script" id=3]
+[ext_resource path="res://Resources/Theme/MainTheme.tres" type="Theme" id=4]
 
 [node name="Login" type="Panel"]
 anchor_left = 0.5
@@ -13,6 +14,7 @@ margin_left = -191.0
 margin_top = -114.0
 margin_right = 191.0
 margin_bottom = 139.0
+theme = ExtResource( 4 )
 script = ExtResource( 1 )
 
 [node name="Login" type="Button" parent="."]
@@ -35,7 +37,6 @@ text = "Cancel"
 target = "res://Scenes/Connection/MainMenu.tscn"
 
 [node name="AssetPath" type="Button" parent="."]
-editor/display_folded = true
 margin_left = 109.0
 margin_top = 13.0
 margin_right = 369.0
@@ -63,7 +64,6 @@ current_dir = "D:/Gitlab/open-multiplayer-vn-0.2"
 current_path = "D:/Gitlab/open-multiplayer-vn-0.2/"
 
 [node name="Address" type="LineEdit" parent="."]
-editor/display_folded = true
 margin_left = 109.0
 margin_top = 44.0
 margin_right = 369.0
@@ -79,7 +79,6 @@ text = "Address:"
 valign = 1
 
 [node name="Port" type="LineEdit" parent="."]
-editor/display_folded = true
 margin_left = 109.0
 margin_top = 74.0
 margin_right = 369.0
@@ -95,7 +94,6 @@ text = "Port:"
 valign = 1
 
 [node name="ServerPass" type="LineEdit" parent="."]
-editor/display_folded = true
 margin_left = 109.0
 margin_top = 104.0
 margin_right = 369.0
@@ -111,7 +109,6 @@ text = "Server Pswd:"
 valign = 1
 
 [node name="Username" type="LineEdit" parent="."]
-editor/display_folded = true
 margin_left = 109.0
 margin_top = 134.0
 margin_right = 369.0
@@ -127,7 +124,6 @@ text = "Username:"
 valign = 1
 
 [node name="Password" type="LineEdit" parent="."]
-editor/display_folded = true
 margin_left = 109.0
 margin_top = 164.0
 margin_right = 369.0

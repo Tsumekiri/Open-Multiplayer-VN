@@ -1,15 +1,17 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scripts/Scenes/Util/TopBar.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Menu/Dropdown/BackgroundDropdown.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Menu/Dropdown/ExpressionDropdown.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Menu/Dropdown/BGMDropdown.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Menu/Dropdown/SFXDropdown.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Resources/Theme/MainTheme.tres" type="Theme" id=6]
 
 [node name="TopBar" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
+theme = ExtResource( 6 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
