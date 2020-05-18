@@ -10,7 +10,6 @@
 [node name="CharacterMenu" type="Control"]
 margin_right = 420.0
 margin_bottom = 430.0
-mouse_filter = 2
 theme = ExtResource( 5 )
 script = ExtResource( 1 )
 __meta__ = {
