@@ -102,9 +102,9 @@ func is_on_last_message() -> bool:
 # Shows next message and increments current_message
 func show_next_message():
 	if not is_on_last_message():
+		current_message += 1
 		emit_signal("message_received", message_list[current_message])
 		store_read_message(message_list[current_message])
-		current_message += 1
 		if not is_on_last_message():
 			emit_signal("unread_messages")
 
