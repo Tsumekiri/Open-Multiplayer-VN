@@ -60,8 +60,8 @@ margin_bottom = 240.0
 window_title = "Open a Directory"
 mode = 2
 access = 2
-current_dir = "D:/Gitlab/open-multiplayer-vn-0.2"
-current_path = "D:/Gitlab/open-multiplayer-vn-0.2/"
+current_dir = "D:/MultiVN/Open Multiplayer VN"
+current_path = "D:/MultiVN/Open Multiplayer VN/"
 
 [node name="Address" type="LineEdit" parent="."]
 margin_left = 109.0
@@ -100,6 +100,10 @@ margin_right = 369.0
 margin_bottom = 128.0
 focus_next = NodePath("../Username")
 focus_previous = NodePath("../Port")
+secret = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Label" type="Label" parent="ServerPass"]
 margin_left = -100.0
@@ -130,6 +134,7 @@ margin_right = 369.0
 margin_bottom = 188.0
 focus_next = NodePath("../Cancel")
 focus_previous = NodePath("../Username")
+secret = true
 
 [node name="Label" type="Label" parent="Password"]
 margin_left = -100.0

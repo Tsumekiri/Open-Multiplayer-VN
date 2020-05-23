@@ -93,7 +93,7 @@ func store_read_message(data: Dictionary) -> void:
 
 # Checks whether current_message is the first message on list
 func is_on_first_message() -> bool:
-	return current_message == 0
+	return current_message == 0 or current_message == -1
 
 # Checks whether current_message is the last received message
 func is_on_last_message() -> bool:

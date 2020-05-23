@@ -43,6 +43,7 @@ margin_right = 369.0
 margin_bottom = 69.0
 focus_next = NodePath("../MaxPlayers")
 focus_previous = NodePath("../AssetPath")
+secret = true
 
 [node name="Label" type="Label" parent="ServerPass"]
 margin_left = -100.0
@@ -105,5 +106,5 @@ margin_bottom = 240.0
 window_title = "Open a Directory"
 mode = 2
 access = 2
-current_dir = "D:/Gitlab/open-multiplayer-vn-0.2"
-current_path = "D:/Gitlab/open-multiplayer-vn-0.2/"
+current_dir = "D:/MultiVN/Open Multiplayer VN"
+current_path = "D:/MultiVN/Open Multiplayer VN/"
