@@ -50,7 +50,7 @@ func set_loop(mode: bool) -> void:
 		data.audio.set_loop(mode)
 	elif data.type == "wav":
 		if mode:
-			data.audio.set_loop_end(data.audio.get_data().size() / 4)
+			data.audio.set_loop_end((data.audio.get_data().size() / 4) - 200) # TODO : Change this once we have an alternative. Currently getting bits, converting to bytes and removing wav header.
 			data.audio.set_loop_mode(AudioStreamSample.LOOP_FORWARD)
 		else:
 			data.audio.set_loop_mode(AudioStreamSample.LOOP_DISABLED)

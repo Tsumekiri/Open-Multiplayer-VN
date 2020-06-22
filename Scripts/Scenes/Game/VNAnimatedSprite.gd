@@ -17,13 +17,16 @@ func receive_message(data) -> void:
 	if sprite_position:
 		check_characters(data)
 	else:
-		check_background(data)
+		if data.background.is_video:
+			hide()
+		else:
+			check_background(data.background)
 
 # Checks whether background exists and sets it up
 func check_background(data: Dictionary) -> void:
-	var target = BackgroundManager.get_background_set(data.background.background_set)
+	var target = BackgroundManager.get_background_set(data.background_set)
 	if target:
-		setup_background(target, data.background.background)
+		setup_background(target, data.background)
 
 # Sets background, fits it to screen and plays animation
 func setup_background(background_set: BackgroundSet, background: String) -> void:

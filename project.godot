@@ -113,6 +113,21 @@ _global_script_classes=[ {
 "class": "VNImageSet",
 "language": "GDScript",
 "path": "res://Scripts/Data/VNImageSet.gd"
+}, {
+"base": "Resource",
+"class": "VNVideo",
+"language": "GDScript",
+"path": "res://Scripts/Data/VNVideo.gd"
+}, {
+"base": "Resource",
+"class": "VNVideoSet",
+"language": "GDScript",
+"path": "res://Scripts/Data/VNVideoSet.gd"
+}, {
+"base": "VNVideoSet",
+"class": "VideoSet",
+"language": "GDScript",
+"path": "res://Scripts/Assets/VideoSet.gd"
 } ]
 _global_script_class_icons={
 "AndroidLineEdit": "",
@@ -135,7 +150,10 @@ _global_script_class_icons={
 "VNAudio": "",
 "VNAudioSet": "",
 "VNImage": "",
-"VNImageSet": ""
+"VNImageSet": "",
+"VNVideo": "",
+"VNVideoSet": "",
+"VideoSet": ""
 }
 
 [application]
@@ -157,6 +175,7 @@ NetworkManager="*res://Scripts/Management/NetworkManager.gd"
 PlayerManager="*res://Scripts/Management/PlayerManager.gd"
 ConversationManager="*res://Scripts/Management/ConversationManager.gd"
 MessageManager="*res://Scripts/Management/MessageManager.gd"
+VideoManager="*res://Scripts/Management/VideoManager.gd"
 
 [debug]
 

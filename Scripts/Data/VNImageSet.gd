@@ -20,7 +20,7 @@ func setup(name: String, folder_path: String, allowed_extensions: Array):
 	data.name = name
 	
 	if (folder_path == null):
-		print("ERROR: ROOT directory not set! Could not create character folder for " + data.name)
+		print("ERROR: ROOT directory not set! Could not create image folder for " + data.name)
 	else:
 		load_vn_images(folder_path, allowed_extensions)
 		load_sprite_frames()

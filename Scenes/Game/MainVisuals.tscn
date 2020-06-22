@@ -55,6 +55,7 @@ position = Vector2( 816, 0 )
 sprite_position = "Far Right"
 
 [node name="BGMPlayer" type="AudioStreamPlayer" parent="."]
+volume_db = -5.0
 script = ExtResource( 4 )
 
 [node name="SFXPlayer" type="AudioStreamPlayer" parent="."]
