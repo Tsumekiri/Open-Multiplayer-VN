@@ -5,6 +5,7 @@ var data: Dictionary = {
 	"audio_set": "",
 	"name": "",
 	"loop": false,
+	"audio": null,
 	"type": ""
 }
 
@@ -53,3 +54,7 @@ func set_loop(mode: bool) -> void:
 # Gets the full path to the resource
 func get_audio_path(file: String, folder_path: String):
 	return folder_path + file
+
+# Returns audio stream
+func get_audio():
+	return data.audio

@@ -40,3 +40,9 @@ func add_vn_audio(file: String, folder_path: String):
 # Simple getter for VNAudio dictionary
 func get_vn_audios():
 	return data.vn_audio
+
+# Simple getter for a specific VNAudio
+func get_vn_audio(name: String):
+	if data.vn_audio.has(name):
+		return data.vn_audio[name].get_audio()
+	return null
