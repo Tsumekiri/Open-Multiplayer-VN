@@ -18,14 +18,13 @@ var data: Dictionary = {
 	"expression": "",
 	"background_set": "",
 	"background": "",
+	"is_video": "false",
 	"bgm_set": "",
 	"bgm": "",
 	"sfx_set": "",
 	"sfx": "",
 	"position": "Center",
-	"conversation": "",
-	"video_set": "",
-	"video": ""
+	"conversation": ""
 }
 
 func _init(player_id: int):
@@ -69,17 +68,10 @@ func get_character() -> Dictionary:
 
 # Returns all background data necessary to send a message
 func get_background() -> Dictionary:
-	if data.video_set and data.video:
-		return {
-			"video_set": data.video_set,
-			"video": data.video,
-			"is_video": "true"
-		}
-	
 	return {
 		"background_set": data.background_set,
 		"background": data.background,
-		"is_video": "false"
+		"is_video": data.is_video
 	}
 
 # Returns all bgm data necessary to send a message

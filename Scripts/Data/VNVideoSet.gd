@@ -54,4 +54,4 @@ func load_vn_videos(folder_path: String, allowed_extensions: Array):
 
 # Adds a VNVideo to the vn_videos attribute of the VNVideoSet
 func add_vn_video(file: String, folder_path: String):
-	data.vn_video[file.get_basename()] = VNVideo.new(file, folder_path)
+	data.vn_videos[file.get_basename()] = VNVideo.new(file, folder_path)

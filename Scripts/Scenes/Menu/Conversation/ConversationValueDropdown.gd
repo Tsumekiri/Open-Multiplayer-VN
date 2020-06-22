@@ -17,12 +17,14 @@ func _ready():
 	ConversationManager.connect("conversation_list_updated", self, "select_server_data")
 
 # Populates items based on a dictionary
-func populate(dictionary: Dictionary) -> void:
+func populate(dictionary: Dictionary, metadata=null) -> void:
 	clear()
 	
 	add_item("None")
 	for item in dictionary:
 		add_item(item)
+		if metadata:
+			set_item_metadata(get_item_count() - 1, metadata)
 
 # Requests to server a change in a conversation data
 func request_change_data(id: int, key: String, value: String) -> void:

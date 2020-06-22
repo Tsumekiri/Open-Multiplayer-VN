@@ -4,11 +4,11 @@ var video_list: Dictionary = {}
 const ALLOWED_EXTENSIONS: Array = ["webm", "o"]
 
 # Getter for the video list
-func get_background_list() -> Dictionary:
+func get_video_list() -> Dictionary:
 	return video_list
 
 # Getter for a specific video set
-func get_background_set(set_name: String):
+func get_video_set(set_name: String):
 	if video_list.has(set_name):
 		return video_list[set_name]
 	return null

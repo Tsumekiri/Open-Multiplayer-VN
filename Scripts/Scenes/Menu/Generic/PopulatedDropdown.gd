@@ -12,12 +12,14 @@ func _ready():
 	PlayerManager.connect("data_changed", self, "select_server_data")
 
 # Populates items based on a dictionary
-func populate(dictionary: Dictionary) -> void:
+func populate(dictionary: Dictionary, metadata=null) -> void:
 	clear()
 	
 	add_item("None")
 	for item in dictionary:
 		add_item(item)
+		if metadata:
+			set_item_metadata(get_item_count() - 1, metadata)
 
 # Emits custom signal for item_selected that includes its text
 func emit_item_name_selected(id: int):

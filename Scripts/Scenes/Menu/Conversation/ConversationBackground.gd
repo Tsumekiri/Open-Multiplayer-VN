@@ -24,10 +24,16 @@ func get_background_list() -> Dictionary:
 	var conversation_name = conversation_name_node.get_item_name()
 	if conversation_name:
 		var background_set_name = ConversationManager.get_conversation_data(conversation_name, "background_set")
-		if background_set_name and not background_set_name.empty():
-			var background_set = BackgroundManager.get_background_set(background_set_name)
-			if background_set:
-				return background_set.get_vn_images()
+		var is_video = ConversationManager.get_conversation_data(conversation_name, "is_video")
+		if background_set_name and not background_set_name.empty() and is_video and not is_video.empty():
+			if is_video == "false":
+				var background_set = BackgroundManager.get_background_set(background_set_name)
+				if background_set:
+					return background_set.get_vn_images()
+			else:
+				var video_set = VideoManager.get_video_set(background_set_name)
+				if video_set:
+					return video_set.get_vn_videos()
 	return {}
 
 # Selects the player's current background in conversation

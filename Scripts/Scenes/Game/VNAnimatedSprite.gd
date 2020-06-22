@@ -17,9 +17,7 @@ func receive_message(data) -> void:
 	if sprite_position:
 		check_characters(data)
 	else:
-		if data.background.is_video:
-			hide()
-		else:
+		if data.background.is_video == "false":
 			check_background(data.background)
 
 # Checks whether background exists and sets it up

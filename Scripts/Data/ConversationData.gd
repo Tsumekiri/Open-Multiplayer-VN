@@ -12,8 +12,7 @@ var data: Dictionary = {
 	},
 	"background_set": "",
 	"background": "",
-	"video_set": "",
-	"video": "",
+	"is_video": "false",
 	"bgm_set": "",
 	"bgm": ""
 }
@@ -55,17 +54,10 @@ func is_position_filled(position: String) -> bool:
 
 # Returns background set and name
 func get_background() -> Dictionary:
-	if data.video_set and data.video:
-		return {
-			"video_set": data.video_set,
-			"video": data.video,
-			"is_video": "true"
-		}
-
 	return {
 		"background_set": data.background_set,
 		"background": data.background,
-		"is_video": "false"
+		"is_video": data.is_video
 	}
 
 # Returns bgm set and name
