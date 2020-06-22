@@ -37,6 +37,7 @@ func import_audio(path: String):
 	elif path.get_extension().to_lower() == "wav":
 		stream = AudioStreamSample.new()
 		stream.set_format(AudioStreamSample.FORMAT_16_BITS)
+		stream.set_mix_rate(44100)
 		stream.set_stereo(true)
 	
 	stream.set_data(bytes)
@@ -49,6 +50,7 @@ func set_loop(mode: bool) -> void:
 		data.audio.set_loop(mode)
 	elif data.type == "wav":
 		if mode:
+			data.audio.set_loop_end(data.audio.get_data().size() / 4)
 			data.audio.set_loop_mode(AudioStreamSample.LOOP_FORWARD)
 		else:
 			data.audio.set_loop_mode(AudioStreamSample.LOOP_DISABLED)
