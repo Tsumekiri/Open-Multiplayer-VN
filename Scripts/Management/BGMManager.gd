@@ -23,6 +23,8 @@ func _load_resources(_args) -> void:
 	print(bgm_list)
 	for bgm in bgm_list.values():
 		print(bgm.get_vn_audios())
+		for audio in bgm.get_vn_audios().values():
+			audio.set_loop(true)
 	
 	_finish_loading()
 

@@ -20,12 +20,9 @@ func load_bgm(data: Dictionary) -> bool:
 		return false
 	
 	var bgm_set = BGMManager.get_bgm_set(data.bgm_set)
-	print(bgm_set)
 	if bgm_set and bgm_set is VNAudioSet:
 		var audio_stream = bgm_set.get_vn_audio(data.bgm)
-		print(audio_stream)
 		if audio_stream:
-			print("Set stream")
 			self.set_stream(audio_stream)
 	return true
 

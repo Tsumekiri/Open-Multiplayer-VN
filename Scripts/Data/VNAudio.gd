@@ -36,6 +36,8 @@ func import_audio(path: String):
 		stream = AudioStreamOGGVorbis.new()
 	elif path.get_extension().to_lower() == "wav":
 		stream = AudioStreamSample.new()
+		stream.set_format(AudioStreamSample.FORMAT_16_BITS)
+		stream.set_stereo(true)
 	
 	stream.set_data(bytes)
 	return stream
