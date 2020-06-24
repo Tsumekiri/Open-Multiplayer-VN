@@ -52,6 +52,7 @@ func process_player_conversation_request(id: int, key: String, request: String, 
 	if not NetworkManager.validate_key(id, key):
 		return
 	
+	print(id)
 	var player_data: PlayerData = NetworkManager.get_player_data(id)
 	call_deferred(request, player_data, conversation_name, position)
 
@@ -122,6 +123,8 @@ func remove_conversation(target: String) -> void:
 
 # Adds a specified PlayerData into a position in a conversation already on the list
 func enter_conversation(player: PlayerData, conversation: String, position: String) -> void:
+	print(player)
+	print(player.get_data("user"))
 	if conversation_list.has(conversation):
 		var target = conversation_list.get(conversation)
 		if not target.is_position_filled(position):
@@ -156,7 +159,7 @@ func get_conversation_data(conversation_name: String, key: String):
 	return null
 
 # Attempts to change a value in conversation, at the request of a player or the server
-func process_change_conversation_data(id: int, player_key: String, conversation_name: String, key: String, value) -> void:
+master func process_change_conversation_data(id: int, player_key: String, conversation_name: String, key: String, value) -> void:
 	if not NetworkManager.validate_key(id, player_key):
 		return
 	

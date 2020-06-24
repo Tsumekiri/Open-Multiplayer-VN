@@ -12,7 +12,7 @@ var server_data: Dictionary = {
 }
 
 var data: Dictionary = {
-	"user": "[SERVER]",
+	"user": "",
 	"alias": "",
 	"character": "",
 	"expression": "",

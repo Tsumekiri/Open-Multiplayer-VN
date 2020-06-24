@@ -11,23 +11,24 @@ signal login_s
 # Called by the server to assign a key to the player, both on itself
 # and in the specific player's client, as well as initialize it into
 # the dictionary
-func send_player_init(id: int):
+func send_player_init(id: int, username: String):
 	var communication_key: String = CommunicationKey.create_unique_key()
-	init_logged_player(id, communication_key)
-	rpc_id(id, "init_logged_player", id, communication_key)
+	init_logged_player(id, communication_key, username)
+	rpc_id(id, "init_logged_player", id, communication_key, username)
 
 # Setter for the player's communication key, in serverData dictionary,
 # as well as initializes player data
-puppet func init_logged_player(id: int, key: String):
+puppet func init_logged_player(id: int, key: String, username: String):
 	players[id] = PlayerData.new(id)
 	players[id].set_server_data("key", key)
+	players[id].set_data("user", username)
 	if (get_tree().get_network_unique_id() == id):
 		receive_login()
 
 # Initializes the server data
 func init_server():
 	var communication_key: String = CommunicationKey.create_unique_key()
-	init_logged_player(1, communication_key)
+	init_logged_player(1, communication_key, "[Server]")
 
 # Setter for communication_resource. Should be careful not to ser a Client on a server, or the other way around
 func set_communication_resource(new_resource):
@@ -50,7 +51,7 @@ func receive_login():
 # Starts player connection to server. Called by client
 master func start_player_connection(id: int, username: String, password: int, server_password: int) -> void:
 	if (login_player(username, password, server_password)):
-		send_player_init(id)
+		send_player_init(id, username)
 
 # Attempts to log player in. Registers player if it wasn't registered.
 func login_player(username: String, password: int, server_password: int) -> bool:
