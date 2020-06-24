@@ -36,9 +36,6 @@ func receive_message(data) -> void:
 			_last_sprite = null
 	elif "background_set" in data.background and "background" in data.background and data.background.is_video == "false":
 		if not (data.background.background_set == _last_sprite_set and data.background.background == _last_sprite):
-			if is_no_background(data.background) and self.playing:
-				stop()
-			
 			check_background(data.background)
 			
 			_last_sprite_set = data.background.background_set
