@@ -3,7 +3,7 @@ extends ConversationValueDropdown
 func _ready():
 	populate(BackgroundManager.get_background_list(), "image")
 	add_separator()
-	populate(VideoManager.get_video_list(), "video")
+	add_dictionary(VideoManager.get_video_list(), "video", false)
 
 	select_current()
 	

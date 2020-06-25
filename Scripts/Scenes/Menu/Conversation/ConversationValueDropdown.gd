@@ -16,11 +16,16 @@ func _ready():
 	connect("data_selected", self, "request_change_data")
 	ConversationManager.connect("conversation_list_updated", self, "select_server_data")
 
-# Populates items based on a dictionary
+# Clears dropdown and populates items based on a dictionary
 func populate(dictionary: Dictionary, metadata=null) -> void:
 	clear()
+	add_dictionary(dictionary, metadata, true)
+
+# Adds values based on a dictionary
+func add_dictionary(dictionary: Dictionary, metadata=null, add_none: bool = true) -> void:
+	if add_none:
+		add_item("None")
 	
-	add_item("None")
 	for item in dictionary:
 		add_item(item)
 		if metadata:

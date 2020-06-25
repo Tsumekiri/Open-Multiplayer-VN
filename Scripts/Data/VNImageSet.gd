@@ -103,5 +103,7 @@ func add_vn_image(name: String, file: String, folder_path: String) -> void:
 
 # Adds the animated VNImage to the set's list of VNImages
 func add_dynamic_vn_image(name: String, file: String, folder_path: String, frame: String) -> void:
-	if frame == "1" or not has_vn_image(name):
+	if frame == "1":
 		add_vn_image(name, file, folder_path)
+	elif not has_vn_image(name):
+		add_vn_image(name + "_" + frame, file, folder_path) # Is probably a separate image not meant for animations
