@@ -9,7 +9,7 @@ func _ready():
 func load_items():
 	populate(BackgroundManager.get_background_list(), "image")
 	add_separator()
-	populate(VideoManager.get_video_list(), "video")
+	add_dictionary(VideoManager.get_video_list(), "video", false)
 
 # Emits custom signal for item_selected that includes its text
 func emit_item_name_selected(id: int):

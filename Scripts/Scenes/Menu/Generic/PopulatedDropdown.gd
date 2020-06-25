@@ -14,8 +14,13 @@ func _ready():
 # Populates items based on a dictionary
 func populate(dictionary: Dictionary, metadata=null) -> void:
 	clear()
+	add_dictionary(dictionary, metadata, true)
+
+# Adds items based on a dictionary
+func add_dictionary(dictionary: Dictionary, metadata=null, add_none=true) -> void:
+	if add_none:
+		add_item("None")
 	
-	add_item("None")
 	for item in dictionary:
 		add_item(item)
 		if metadata:
