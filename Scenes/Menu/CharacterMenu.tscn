@@ -10,6 +10,7 @@
 [node name="CharacterMenu" type="Control"]
 margin_right = 420.0
 margin_bottom = 430.0
+mouse_filter = 1
 theme = ExtResource( 5 )
 script = ExtResource( 1 )
 __meta__ = {
@@ -18,50 +19,125 @@ __meta__ = {
 selector = "Character"
 
 [node name="IngameMenu" parent="." instance=ExtResource( 2 )]
+mouse_filter = 1
 title = "Character Menu"
 
-[node name="Alias" type="LineEdit" parent="."]
-margin_left = 30.0
-margin_top = 70.0
-margin_right = 290.0
-margin_bottom = 94.0
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+margin_left = 35.0
+margin_top = 83.0
+margin_right = 385.0
+margin_bottom = 347.0
+custom_constants/separation = 54
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="AliasContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+margin_right = 350.0
+margin_bottom = 28.0
+custom_constants/separation = 20
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Alias" type="LineEdit" parent="CenterContainer/VBoxContainer/AliasContainer"]
+margin_right = 250.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 250, 0 )
 caret_blink = true
 caret_blink_speed = 0.5
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Button" type="Button" parent="Alias"]
+[node name="SetAlias" type="Button" parent="CenterContainer/VBoxContainer/AliasContainer"]
 margin_left = 270.0
-margin_right = 360.0
-margin_bottom = 24.0
+margin_right = 350.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 80, 0 )
 text = "Set Alias"
 script = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-alias_input = NodePath("..")
+alias_input = NodePath("../Alias")
 
-[node name="Character" parent="." instance=ExtResource( 3 )]
-margin_left = 120.0
-margin_top = 150.0
-margin_right = 390.0
-margin_bottom = 170.0
+[node name="CharacterContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+margin_top = 82.0
+margin_right = 350.0
+margin_bottom = 106.0
+custom_constants/separation = 20
 
-[node name="Label" type="Label" parent="Character"]
-margin_left = -90.0
-margin_right = -26.0
-margin_bottom = 20.0
+[node name="CharacterLabel" type="Label" parent="CenterContainer/VBoxContainer/CharacterContainer"]
+margin_top = 3.0
+margin_right = 80.0
+margin_bottom = 21.0
+rect_min_size = Vector2( 80, 0 )
 text = "Character:"
 valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Expression" parent="." instance=ExtResource( 4 )]
-margin_left = 120.0
-margin_top = 240.0
-margin_right = 390.0
-margin_bottom = 260.0
+[node name="Character" parent="CenterContainer/VBoxContainer/CharacterContainer" instance=ExtResource( 3 )]
+margin_left = 100.0
+margin_right = 350.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 250, 0 )
 
-[node name="Label" type="Label" parent="Expression"]
-margin_left = -90.0
-margin_right = -17.0
-margin_bottom = 20.0
+[node name="ExpressionContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+margin_top = 160.0
+margin_right = 350.0
+margin_bottom = 184.0
+custom_constants/separation = 20
+
+[node name="ExpressionLabel" type="Label" parent="CenterContainer/VBoxContainer/ExpressionContainer"]
+margin_top = 3.0
+margin_right = 80.0
+margin_bottom = 21.0
+rect_min_size = Vector2( 80, 0 )
 text = "Expression:"
 valign = 1
-[connection signal="visibility_s" from="IngameMenu" to="." method="change_visibility"]
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Expression" parent="CenterContainer/VBoxContainer/ExpressionContainer" instance=ExtResource( 4 )]
+margin_left = 100.0
+margin_right = 350.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 250, 0 )
+
+[node name="FlipContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+margin_top = 238.0
+margin_right = 350.0
+margin_bottom = 264.0
+custom_constants/separation = 20
+
+[node name="FlipLabel" type="Label" parent="CenterContainer/VBoxContainer/FlipContainer"]
+margin_top = 4.0
+margin_right = 28.0
+margin_bottom = 22.0
+text = "Flip:"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Flip" type="CheckBox" parent="CenterContainer/VBoxContainer/FlipContainer"]
+margin_left = 48.0
+margin_right = 72.0
+margin_bottom = 26.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="gui_input" from="." to="." method="_on_IngameMenu_gui_input"]

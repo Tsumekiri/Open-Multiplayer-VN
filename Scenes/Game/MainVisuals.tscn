@@ -34,6 +34,7 @@ __meta__ = {
 
 [node name="Background" parent="CenterContainer" instance=ExtResource( 1 )]
 centered = true
+sprite_position = null
 
 [node name="Sprites" type="Container" parent="."]
 margin_right = 1024.0
@@ -46,22 +47,27 @@ __meta__ = {
 }
 
 [node name="FarLeftSprite" parent="Sprites" instance=ExtResource( 1 )]
+centered = true
 sprite_position = "Far Left"
 
 [node name="LeftSprite" parent="Sprites" instance=ExtResource( 1 )]
 position = Vector2( 204, 0 )
+centered = true
 sprite_position = "Left"
 
 [node name="CenterSprite" parent="Sprites" instance=ExtResource( 1 )]
 position = Vector2( 408, 0 )
+centered = true
 sprite_position = "Center"
 
 [node name="RightSprite" parent="Sprites" instance=ExtResource( 1 )]
 position = Vector2( 612, 0 )
+centered = true
 sprite_position = "Right"
 
 [node name="FarRightSprite" parent="Sprites" instance=ExtResource( 1 )]
 position = Vector2( 816, 0 )
+centered = true
 sprite_position = "Far Right"
 
 [node name="BGMPlayer" type="AudioStreamPlayer" parent="."]

@@ -13,3 +13,7 @@ func change_visibility(pShow: bool):
 		show()
 	else:
 		hide()
+
+func _on_IngameMenu_gui_input(event):
+	if (event is InputEventMouseButton and event.pressed and event.button_index == BUTTON_RIGHT):
+		change_visibility(false)

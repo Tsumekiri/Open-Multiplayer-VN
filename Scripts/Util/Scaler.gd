@@ -3,6 +3,8 @@ extends Node
 # Change these if you change the target resolution on your project settings
 var MAX_HEIGHT: float = float(ProjectSettings.get_setting("display/window/size/height"))
 var MAX_WIDTH: float = float(ProjectSettings.get_setting("display/window/size/width"))
+var HORIZONTAL_MARGIN: float = 100.0
+var MAX_SPRITES: float = 6.0
 
 # Gets the tallest frame in the animation, to fit the sprite to the screen's height
 func get_tallest_texture(sprite: AnimatedSprite, target_animation: String) -> Texture:
@@ -39,17 +41,45 @@ func get_ratio_fullscreen(sprite: AnimatedSprite, target_animation: String) -> f
 		return target_height
 
 # Centers the sprite, for use after scaling
-func center_sprite(sprite: AnimatedSprite) -> void:
+func center_sprite_fullscreen(sprite: AnimatedSprite) -> void:
 	sprite.position.y = int(MAX_HEIGHT / 2.0);
 	sprite.position.x = int(MAX_WIDTH / 2.0);
 
+# Centers the character sprite, for use after scaling
+func center_sprite_height(sprite: AnimatedSprite, position: String):
+	var index = 1
+	match position:
+		"Left":
+			index = 2
+		
+		"Center":
+			index = 3
+		
+		"Right":
+			index = 4
+		
+		"Far Right":
+			index = 5
+	
+	var target_pos_x = (MAX_WIDTH - HORIZONTAL_MARGIN) / MAX_SPRITES
+	target_pos_x *= index
+
+	var target_pos_y = MAX_HEIGHT / 2.0
+
+	sprite.position.x = target_pos_x + (HORIZONTAL_MARGIN / 2.0)
+	sprite.position.y = target_pos_y
+
+	print("X: ", target_pos_x + (HORIZONTAL_MARGIN / 2.0))
+	print("Y: ", target_pos_y)
+
 # Fits the sprite to the screen's height, resizes up if the sprite is too small, and
 # resizes down if the sprite is too tall
-func fit_sprite_height(sprite: AnimatedSprite, target_animation: String) -> void:
+func fit_sprite_height(sprite: AnimatedSprite, target_animation: String, position: String) -> void:
 	var original_height = get_tallest_texture(sprite, target_animation).get_height()
 	if original_height and original_height != 0:
 		var ratio: float = MAX_HEIGHT / original_height
 		sprite.set_scale(Vector2(ratio, ratio))
+		center_sprite_height(sprite, position)
 
 # Fits the sprite to the screen's width, resizes up if the sprite is too small, and
 # resizes down if the sprite is too wide
@@ -57,4 +87,4 @@ func fit_sprite_fullscreen(sprite: AnimatedSprite, target_animation: String) -> 
 	var ratio = get_ratio_fullscreen(sprite, target_animation)
 	if ratio != 0.0:
 		sprite.set_scale(Vector2(ratio, ratio))
-		center_sprite(sprite)
+		center_sprite_fullscreen(sprite)

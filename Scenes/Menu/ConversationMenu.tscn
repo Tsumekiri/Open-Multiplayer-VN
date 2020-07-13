@@ -17,6 +17,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_right = -604.0
 margin_bottom = -170.0
+mouse_filter = 1
 theme = ExtResource( 11 )
 script = ExtResource( 1 )
 __meta__ = {
@@ -25,6 +26,7 @@ __meta__ = {
 selector = "Conversation"
 
 [node name="IngameMenu" parent="." instance=ExtResource( 2 )]
+mouse_filter = 1
 title = "Conversation Menu"
 
 [node name="NewConversation" type="LineEdit" parent="."]
@@ -162,4 +164,4 @@ __meta__ = {
 data_key = "bgm"
 conversation_name_path = NodePath("../CurrentConversation")
 parent_node_path = NodePath("../BgmSet")
-[connection signal="visibility_s" from="IngameMenu" to="." method="change_visibility"]
+[connection signal="gui_input" from="." to="." method="_on_IngameMenu_gui_input"]

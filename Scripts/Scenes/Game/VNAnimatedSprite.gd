@@ -81,6 +81,6 @@ func setup_character(character: String, expression: String) -> void:
 		set_sprite_frames(target.get_sprite_frames())
 		
 		if frames.has_animation(expression):
-			Scaler.fit_sprite_height(self, expression)
+			Scaler.fit_sprite_height(self, expression, sprite_position)
 			play(expression)
 			show()
