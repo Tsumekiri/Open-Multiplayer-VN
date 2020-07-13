@@ -3,8 +3,6 @@ class_name VNAnimatedSprite
 
 export(String) var sprite_position = ""
 
-const MAX_HEIGHT: float = 600.0 # Change this if you change the target resolution on your project settings
-
 var _last_sprite_set
 var _last_sprite
 
@@ -63,7 +61,7 @@ func check_background(data: Dictionary) -> bool:
 func setup_background(background_set: BackgroundSet, background: String) -> bool:
 	set_sprite_frames(background_set.get_sprite_frames())
 	if frames.has_animation(background):
-		fit_sprite(background)
+		Scaler.fit_sprite_fullscreen(self, background)
 		play(background)
 		show()
 		return true
@@ -83,23 +81,6 @@ func setup_character(character: String, expression: String) -> void:
 		set_sprite_frames(target.get_sprite_frames())
 		
 		if frames.has_animation(expression):
-			fit_sprite(expression)
+			Scaler.fit_sprite_height(self, expression)
 			play(expression)
 			show()
-
-# Gets the tallest frame in the animation, to fit the sprite to the screen
-func get_tallest_texture(target_animation: String) -> Texture:
-	var tallest: Texture
-	for idx in range(frames.get_frame_count(target_animation)):
-		var target = frames.get_frame(target_animation, idx)
-		if not tallest or target.get_height() > tallest.get_height():
-			tallest = target
-	return tallest
-
-# Fits the sprite to the screen, resizes up if the sprite is too small, and
-# resizes down if the sprite is to tall
-func fit_sprite(target_animation: String) -> void:
-	var original_height = get_tallest_texture(target_animation).get_height()
-	if original_height and original_height > 0:
-		var ratio: float = MAX_HEIGHT / original_height
-		set_scale(Vector2(ratio, ratio))

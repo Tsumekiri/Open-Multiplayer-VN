@@ -176,6 +176,7 @@ PlayerManager="*res://Scripts/Management/PlayerManager.gd"
 ConversationManager="*res://Scripts/Management/ConversationManager.gd"
 MessageManager="*res://Scripts/Management/MessageManager.gd"
 VideoManager="*res://Scripts/Management/VideoManager.gd"
+Scaler="*res://Scripts/Util/Scaler.gd"
 
 [debug]
 

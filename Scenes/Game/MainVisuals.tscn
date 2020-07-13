@@ -15,16 +15,24 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VideoBackground" type="VideoPlayer" parent="."]
+[node name="CenterContainer" type="CenterContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VideoBackground" type="VideoPlayer" parent="CenterContainer"]
+margin_left = 512.0
+margin_top = 300.0
+margin_right = 512.0
+margin_bottom = 300.0
 script = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Background" parent="." instance=ExtResource( 1 )]
-position = Vector2( 492, 280 )
+[node name="Background" parent="CenterContainer" instance=ExtResource( 1 )]
 centered = true
 
 [node name="Sprites" type="Container" parent="."]
