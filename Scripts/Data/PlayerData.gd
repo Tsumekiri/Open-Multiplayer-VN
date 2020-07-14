@@ -24,7 +24,8 @@ var data: Dictionary = {
 	"sfx_set": "",
 	"sfx": "",
 	"position": "Center",
-	"conversation": ""
+	"conversation": "",
+	"flip": "false"
 }
 
 func _init(player_id: int):
@@ -63,7 +64,8 @@ func get_character() -> Dictionary:
 	return {
 		"name": data.character,
 		"expression": data.expression,
-		"position": data.position
+		"position": data.position,
+		"flip": data.flip
 	}
 
 # Returns all background data necessary to send a message

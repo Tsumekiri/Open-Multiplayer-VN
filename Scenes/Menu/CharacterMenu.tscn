@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scripts/Scenes/Menu/CharacterMenu.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Menu/Generic/IngameMenu.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Scenes/Menu/Dropdown/ExpressionDropdown.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Resources/Theme/MainTheme.tres" type="Theme" id=5]
 [ext_resource path="res://Scripts/Scenes/Menu/Generic/AliasButton.gd" type="Script" id=6]
+[ext_resource path="res://Scripts/Scenes/Menu/Generic/FlipButton.gd" type="Script" id=7]
 
 [node name="CharacterMenu" type="Control"]
 margin_right = 420.0
@@ -137,6 +138,7 @@ __meta__ = {
 margin_left = 48.0
 margin_right = 72.0
 margin_bottom = 26.0
+script = ExtResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
