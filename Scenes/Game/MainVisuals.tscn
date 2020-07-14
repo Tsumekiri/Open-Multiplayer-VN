@@ -34,7 +34,6 @@ __meta__ = {
 
 [node name="Background" parent="CenterContainer" instance=ExtResource( 1 )]
 centered = true
-sprite_position = null
 
 [node name="Sprites" type="Container" parent="."]
 margin_right = 1024.0

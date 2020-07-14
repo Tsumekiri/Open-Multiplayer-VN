@@ -41,7 +41,8 @@ func receive_message(data) -> void:
 		else:
 			if not self.playing:
 				play(data.background.background)
-			show()
+			if not is_no_background(data.background):
+				show()
 
 # Checks if background should be removed
 func is_no_background(data_background: Dictionary):
