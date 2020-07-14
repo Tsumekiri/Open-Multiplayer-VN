@@ -53,6 +53,7 @@ func client_connected() -> void:
 
 func client_connection_failed() -> void:
 	NetworkManager.set_communication_resource(null)
+	# TODO : Show error if can't login
 
 func load_resources():
 	switch_scene("res://Scenes/Util/Loading.tscn")

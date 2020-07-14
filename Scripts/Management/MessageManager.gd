@@ -2,6 +2,8 @@ extends Node
 
 const MAX_MESSAGE_STORAGE : int = 80
 
+var message_count = 0
+
 var current_message : int = -1
 var message_list : Array = []
 var read_messages : Array = []
@@ -61,8 +63,8 @@ puppet func receive_message(key: String, data: Dictionary):
 	if not NetworkManager.validate_key(id, key):
 		return
 	
-	print(data)
 	store_message(data)
+	print(data)
 	emit_signal("unread_messages")
 	# This is what shows a message. Will later be used with _input(event)
 	#emit_signal("message_received", data)
@@ -70,41 +72,48 @@ puppet func receive_message(key: String, data: Dictionary):
 # Stores a message as it's received. If storage is maxed, shows first message and
 # deletes it, before storing new one
 func store_message(data: Dictionary) -> void:
-	if message_list.size() < MAX_MESSAGE_STORAGE:
-		message_list.append(data)
-	else:
-		var first_message = message_list.pop_front()
-		message_list.append(data)
-		if current_message == 0:
-			emit_signal("message_received", first_message)
-		else:
-			current_message -= 1
-	
-	Logger.log_message(data)
+	data["message_id"] = message_count
+	message_count += 1
 
-# Stores a message that's been read. Used so that players can read messages
-# they have already been through.
-func store_read_message(data: Dictionary) -> void:
-	if read_messages.size() < MAX_MESSAGE_STORAGE:
-		read_messages.append(data)
-	else:
-		read_messages.pop_front()
-		message_list.append(data)
+	if message_list.size() == MAX_MESSAGE_STORAGE:
+		message_list.pop_front()
+	
+	message_list.append(data)
+	Logger.log_message(data)
 
 # Checks whether current_message is the first message on list
 func is_on_first_message() -> bool:
-	return current_message == 0 or current_message == -1
+	if message_list.empty():
+		return true
+	else:
+		var first_message = message_list.front()
+		return first_message["message_id"] == current_message
 
 # Checks whether current_message is the last received message
 func is_on_last_message() -> bool:
-	return current_message == (message_list.size() - 1)
+	if message_list.empty():
+		return true
+	else:
+		var last_message = message_list.back()
+		return last_message["message_id"] == current_message
+
+# Returns the current message based on a binary search
+func get_current_message():
+	for message in message_list:
+		if message["message_id"] == current_message:
+			return message
+	return null
 
 # Shows next message and increments current_message
 func show_next_message():
 	if not is_on_last_message():
 		current_message += 1
-		emit_signal("message_received", message_list[current_message])
-		store_read_message(message_list[current_message])
+		var target_message = get_current_message()
+		if not target_message and not message_list.empty():
+			target_message = message_list.front()
+			current_message = target_message["message_id"]
+		
+		emit_signal("message_received", target_message)
 		if not is_on_last_message():
 			emit_signal("unread_messages")
 
@@ -112,5 +121,11 @@ func show_next_message():
 func show_previous_message():
 	if not is_on_first_message():
 		current_message -= 1
-		emit_signal("message_received", message_list[current_message])
-		emit_signal("unread_messages")
+		var target_message = get_current_message()
+		if not target_message and not message_list.empty():
+			target_message = message_list.back()
+			current_message = target_message["message_id"]
+
+		emit_signal("message_received", target_message)
+		if not is_on_last_message():
+			emit_signal("unread_messages")

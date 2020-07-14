@@ -42,11 +42,10 @@ func receive_message(data) -> void:
 			if not self.playing:
 				play(data.background.background)
 			show()
-		
 
 # Checks if background should be removed
 func is_no_background(data_background: Dictionary):
-	return data_background.background or data_background.background == "None" or not data_background.background_set or data_background.background_set == "None"
+	return not data_background.background or data_background.background == "None" or not data_background.background_set or data_background.background_set == "None"
 
 # Checks whether background exists and sets it up
 func check_background(data: Dictionary) -> bool:

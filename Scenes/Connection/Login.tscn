@@ -16,6 +16,9 @@ margin_right = 191.0
 margin_bottom = 139.0
 theme = ExtResource( 4 )
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Login" type="Button" parent="."]
 margin_left = 239.0

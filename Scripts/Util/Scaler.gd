@@ -69,9 +69,6 @@ func center_sprite_height(sprite: AnimatedSprite, position: String):
 	sprite.position.x = target_pos_x + (HORIZONTAL_MARGIN / 2.0)
 	sprite.position.y = target_pos_y
 
-	print("X: ", target_pos_x + (HORIZONTAL_MARGIN / 2.0))
-	print("Y: ", target_pos_y)
-
 # Fits the sprite to the screen's height, resizes up if the sprite is too small, and
 # resizes down if the sprite is too tall
 func fit_sprite_height(sprite: AnimatedSprite, target_animation: String, position: String) -> void:
