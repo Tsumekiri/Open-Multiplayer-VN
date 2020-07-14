@@ -20,35 +20,63 @@ __meta__ = {
 selector = "BGM"
 
 [node name="IngameMenu" parent="." instance=ExtResource( 1 )]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 0.0
+margin_bottom = 0.0
 mouse_filter = 1
 title = "BGM Menu"
 
-[node name="BGMSetDropdown" parent="." instance=ExtResource( 3 )]
-margin_left = 135.0
-margin_top = 114.0
-margin_right = 360.0
-margin_bottom = 134.0
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Label" type="Label" parent="BGMSetDropdown"]
-margin_left = -74.7369
-margin_right = -15.7369
-margin_bottom = 20.0
+[node name="GridContainer" type="GridContainer" parent="CenterContainer"]
+margin_left = 55.0
+margin_top = 181.0
+margin_right = 365.0
+margin_bottom = 249.0
+custom_constants/vseparation = 20
+custom_constants/hseparation = 28
+columns = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BGMSetLabel" type="Label" parent="CenterContainer/GridContainer"]
+margin_top = 3.0
+margin_right = 62.0
+margin_bottom = 21.0
 text = "BGM Set:"
 valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="BGMDropdown" parent="." instance=ExtResource( 4 )]
-margin_left = 135.0
-margin_top = 172.947
-margin_right = 360.0
-margin_bottom = 192.947
+[node name="BGMSetDropdown" parent="CenterContainer/GridContainer" instance=ExtResource( 3 )]
+margin_left = 90.0
+margin_right = 310.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 220, 0 )
 
-[node name="Label" type="Label" parent="BGMDropdown"]
-margin_left = -74.7369
-margin_right = -15.7369
-margin_bottom = 20.0
+[node name="BGMLabel" type="Label" parent="CenterContainer/GridContainer"]
+margin_top = 47.0
+margin_right = 62.0
+margin_bottom = 65.0
 text = "BGM:"
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="BGMDropdown" parent="CenterContainer/GridContainer" instance=ExtResource( 4 )]
+margin_left = 90.0
+margin_top = 44.0
+margin_right = 310.0
+margin_bottom = 68.0
+rect_min_size = Vector2( 220, 0 )
 [connection signal="gui_input" from="." to="." method="_on_IngameMenu_gui_input"]

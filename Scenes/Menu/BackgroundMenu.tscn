@@ -19,38 +19,62 @@ __meta__ = {
 }
 
 [node name="IngameMenu" parent="." instance=ExtResource( 2 )]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 0.0
+margin_bottom = 0.0
 mouse_filter = 1
 title = "Background Menu"
 
-[node name="BackgroundSetDropdown" parent="." instance=ExtResource( 4 )]
-margin_left = 140.0
-margin_top = 111.355
-margin_right = 380.0
-margin_bottom = 131.355
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Label" type="Label" parent="BackgroundSetDropdown"]
-margin_left = -110.0
-margin_right = -8.0
-margin_bottom = 20.0
+[node name="GridContainer" type="GridContainer" parent="CenterContainer"]
+margin_left = 28.0
+margin_top = 181.0
+margin_right = 392.0
+margin_bottom = 249.0
+custom_constants/vseparation = 20
+custom_constants/hseparation = 34
+columns = 2
+
+[node name="BGSetLabel" type="Label" parent="CenterContainer/GridContainer"]
+margin_top = 3.0
+margin_right = 110.0
+margin_bottom = 21.0
+rect_min_size = Vector2( 110, 0 )
 text = "Background Set:"
 __meta__ = {
 "_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
-[node name="BackgroundDropdown" parent="." instance=ExtResource( 3 )]
-margin_left = 140.0
-margin_top = 170.0
-margin_right = 380.0
-margin_bottom = 190.0
+[node name="BackgroundSetDropdown" parent="CenterContainer/GridContainer" instance=ExtResource( 4 )]
+margin_left = 144.0
+margin_right = 364.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 220, 0 )
 
-[node name="Label" type="Label" parent="BackgroundDropdown"]
-margin_left = -110.0
-margin_right = -8.0
-margin_bottom = 20.0
+[node name="BGLabel" type="Label" parent="CenterContainer/GridContainer"]
+margin_top = 47.0
+margin_right = 110.0
+margin_bottom = 65.0
+rect_min_size = Vector2( 110, 0 )
 text = "Background:"
 __meta__ = {
 "_edit_lock_": true,
 "_edit_use_anchors_": false
 }
+
+[node name="BackgroundDropdown" parent="CenterContainer/GridContainer" instance=ExtResource( 3 )]
+margin_left = 144.0
+margin_top = 44.0
+margin_right = 364.0
+margin_bottom = 68.0
+rect_min_size = Vector2( 220, 0 )
 [connection signal="gui_input" from="." to="." method="_on_IngameMenu_gui_input"]

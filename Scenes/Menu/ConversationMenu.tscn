@@ -26,142 +26,236 @@ __meta__ = {
 selector = "Conversation"
 
 [node name="IngameMenu" parent="." instance=ExtResource( 2 )]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 0.0
+margin_bottom = 0.0
 mouse_filter = 1
 title = "Conversation Menu"
 
-[node name="NewConversation" type="LineEdit" parent="."]
-margin_left = 20.0
-margin_top = 80.0
-margin_right = 250.0
-margin_bottom = 104.0
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Create" type="Button" parent="NewConversation"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+margin_left = 15.0
+margin_top = 59.0
+margin_right = 404.0
+margin_bottom = 371.0
+custom_constants/separation = 30
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ConversationGrid" type="GridContainer" parent="CenterContainer/VBoxContainer"]
+margin_right = 389.0
+margin_bottom = 72.0
+custom_constants/vseparation = 20
+custom_constants/hseparation = 20
+columns = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NewConversation" type="LineEdit" parent="CenterContainer/VBoxContainer/ConversationGrid"]
+margin_right = 220.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 220, 0 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Create" type="Button" parent="CenterContainer/VBoxContainer/ConversationGrid"]
 margin_left = 240.0
-margin_right = 380.0
-margin_bottom = 24.0
+margin_right = 389.0
+margin_bottom = 28.0
 text = "Create Conversation"
 script = ExtResource( 4 )
-conversation_selection = NodePath("..")
+__meta__ = {
+"_edit_use_anchors_": false
+}
+conversation_selection = NodePath("../NewConversation")
 
-[node name="CurrentConversation" type="OptionButton" parent="."]
-margin_left = 20.0
-margin_top = 140.0
-margin_right = 250.0
-margin_bottom = 164.0
+[node name="CurrentConversation" type="OptionButton" parent="CenterContainer/VBoxContainer/ConversationGrid"]
+margin_top = 48.0
+margin_right = 220.0
+margin_bottom = 72.0
+rect_min_size = Vector2( 220, 0 )
 script = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Delete" type="Button" parent="CurrentConversation"]
+[node name="Delete" type="Button" parent="CenterContainer/VBoxContainer/ConversationGrid"]
 margin_left = 240.0
-margin_right = 382.0
-margin_bottom = 24.0
+margin_top = 48.0
+margin_right = 389.0
+margin_bottom = 72.0
 text = "Delete Conversation"
 script = ExtResource( 3 )
-conversation_selection = NodePath("..")
-
-[node name="Positions" type="Control" parent="."]
-margin_top = 365.881
-margin_right = 40.0
-margin_bottom = 405.881
 __meta__ = {
-"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+conversation_selection = NodePath("../CurrentConversation")
+
+[node name="DropDownGrid" type="GridContainer" parent="CenterContainer/VBoxContainer"]
+margin_top = 102.0
+margin_right = 389.0
+margin_bottom = 258.0
+custom_constants/vseparation = 20
+custom_constants/hseparation = 20
+columns = 2
+__meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="FarLeft" type="Button" parent="Positions"]
-margin_left = 30.0
-margin_right = 90.0
-margin_bottom = 20.0
-text = "Far Left"
-script = ExtResource( 6 )
-conversation_selection = NodePath("../../CurrentConversation")
-player_position = "Far Left"
+[node name="BGSetLabel" type="Label" parent="CenterContainer/VBoxContainer/DropDownGrid"]
+margin_top = 3.0
+margin_right = 110.0
+margin_bottom = 21.0
+text = "Background Set:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Left" type="Button" parent="Positions"]
-margin_left = 100.0
-margin_right = 160.0
-margin_bottom = 20.0
-text = "Left"
-script = ExtResource( 6 )
-conversation_selection = NodePath("../../CurrentConversation")
-player_position = "Left"
-
-[node name="Center" type="Button" parent="Positions"]
-margin_left = 170.0
-margin_right = 230.0
-margin_bottom = 20.0
-text = "Center"
-script = ExtResource( 6 )
-conversation_selection = NodePath("../../CurrentConversation")
-player_position = "Center"
-
-[node name="Right" type="Button" parent="Positions"]
-margin_left = 240.0
-margin_right = 300.0
-margin_bottom = 20.0
-text = "Right"
-script = ExtResource( 6 )
-conversation_selection = NodePath("../../CurrentConversation")
-player_position = "Right"
-
-[node name="FarRight" type="Button" parent="Positions"]
-margin_left = 310.0
-margin_right = 377.0
-margin_bottom = 20.0
-text = "Far Right"
-script = ExtResource( 6 )
-conversation_selection = NodePath("../../CurrentConversation")
-player_position = "Far Right"
-
-[node name="BackgroundSet" type="OptionButton" parent="."]
-margin_left = 100.0
-margin_top = 190.565
-margin_right = 400.0
-margin_bottom = 210.565
+[node name="BackgroundSet" type="OptionButton" parent="CenterContainer/VBoxContainer/DropDownGrid"]
+margin_left = 130.0
+margin_right = 380.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 250, 0 )
 script = ExtResource( 8 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 data_key = "background_set"
-conversation_name_path = NodePath("../CurrentConversation")
+conversation_name_path = NodePath("../../ConversationGrid/CurrentConversation")
 
-[node name="Background" type="OptionButton" parent="."]
-margin_left = 100.0
-margin_top = 223.791
-margin_right = 400.0
-margin_bottom = 243.791
+[node name="BGLabel" type="Label" parent="CenterContainer/VBoxContainer/DropDownGrid"]
+margin_top = 47.0
+margin_right = 110.0
+margin_bottom = 65.0
+text = "Background:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="OptionButton" parent="CenterContainer/VBoxContainer/DropDownGrid"]
+margin_left = 130.0
+margin_top = 44.0
+margin_right = 380.0
+margin_bottom = 68.0
+rect_min_size = Vector2( 250, 0 )
 script = ExtResource( 7 )
 data_key = "background"
-conversation_name_path = NodePath("../CurrentConversation")
+conversation_name_path = NodePath("../../ConversationGrid/CurrentConversation")
 parent_node_path = NodePath("../BackgroundSet")
 
-[node name="BgmSet" type="OptionButton" parent="."]
-margin_left = 100.0
-margin_top = 258.791
-margin_right = 400.0
-margin_bottom = 278.791
+[node name="BGMSetLabel" type="Label" parent="CenterContainer/VBoxContainer/DropDownGrid"]
+margin_top = 91.0
+margin_right = 110.0
+margin_bottom = 109.0
+text = "BGM Set:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BgmSet" type="OptionButton" parent="CenterContainer/VBoxContainer/DropDownGrid"]
+margin_left = 130.0
+margin_top = 88.0
+margin_right = 380.0
+margin_bottom = 112.0
+rect_min_size = Vector2( 250, 0 )
 script = ExtResource( 9 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 data_key = "bgm_set"
-conversation_name_path = NodePath("../CurrentConversation")
+conversation_name_path = NodePath("../../ConversationGrid/CurrentConversation")
 
-[node name="Bgm" type="OptionButton" parent="."]
-margin_left = 100.0
-margin_top = 293.0
-margin_right = 400.0
-margin_bottom = 313.0
+[node name="BGMLabel" type="Label" parent="CenterContainer/VBoxContainer/DropDownGrid"]
+margin_top = 135.0
+margin_right = 110.0
+margin_bottom = 153.0
+text = "BGM:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Bgm" type="OptionButton" parent="CenterContainer/VBoxContainer/DropDownGrid"]
+margin_left = 130.0
+margin_top = 132.0
+margin_right = 380.0
+margin_bottom = 156.0
+rect_min_size = Vector2( 250, 0 )
 script = ExtResource( 10 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 data_key = "bgm"
-conversation_name_path = NodePath("../CurrentConversation")
+conversation_name_path = NodePath("../../ConversationGrid/CurrentConversation")
 parent_node_path = NodePath("../BgmSet")
+
+[node name="Positions" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+margin_top = 288.0
+margin_right = 389.0
+margin_bottom = 312.0
+custom_constants/separation = 6
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FarLeft" type="Button" parent="CenterContainer/VBoxContainer/Positions"]
+margin_left = 2.0
+margin_right = 74.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 72, 0 )
+text = "Far Left"
+script = ExtResource( 6 )
+conversation_selection = NodePath("../../ConversationGrid/CurrentConversation")
+player_position = "Far Left"
+
+[node name="Left" type="Button" parent="CenterContainer/VBoxContainer/Positions"]
+margin_left = 80.0
+margin_right = 152.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 72, 0 )
+text = "Left"
+script = ExtResource( 6 )
+conversation_selection = NodePath("../../ConversationGrid/CurrentConversation")
+player_position = "Left"
+
+[node name="Center" type="Button" parent="CenterContainer/VBoxContainer/Positions"]
+margin_left = 158.0
+margin_right = 230.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 72, 0 )
+text = "Center"
+script = ExtResource( 6 )
+conversation_selection = NodePath("../../ConversationGrid/CurrentConversation")
+player_position = "Center"
+
+[node name="Right" type="Button" parent="CenterContainer/VBoxContainer/Positions"]
+margin_left = 236.0
+margin_right = 308.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 72, 0 )
+text = "Right"
+script = ExtResource( 6 )
+conversation_selection = NodePath("../../ConversationGrid/CurrentConversation")
+player_position = "Right"
+
+[node name="FarRight" type="Button" parent="CenterContainer/VBoxContainer/Positions"]
+margin_left = 314.0
+margin_right = 386.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 72, 0 )
+text = "Far Right"
+script = ExtResource( 6 )
+conversation_selection = NodePath("../../ConversationGrid/CurrentConversation")
+player_position = "Far Right"
 [connection signal="gui_input" from="." to="." method="_on_IngameMenu_gui_input"]

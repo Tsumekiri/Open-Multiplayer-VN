@@ -20,33 +20,58 @@ __meta__ = {
 selector = "SFX"
 
 [node name="IngameMenu" parent="." instance=ExtResource( 1 )]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 0.0
+margin_bottom = 0.0
 mouse_filter = 1
 title = "SFX Menu"
 
-[node name="SFXSetDropdown" parent="." instance=ExtResource( 3 )]
-margin_left = 130.194
-margin_top = 119.0
-margin_right = 359.194
-margin_bottom = 139.0
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Label" type="Label" parent="SFXSetDropdown"]
-margin_left = -69.8061
-margin_right = -19.8061
-margin_bottom = 20.0
+[node name="GridContainer" type="GridContainer" parent="CenterContainer"]
+margin_left = 51.0
+margin_top = 181.0
+margin_right = 369.0
+margin_bottom = 249.0
+custom_constants/vseparation = 20
+custom_constants/hseparation = 41
+columns = 2
+
+[node name="SFXSetLabel" type="Label" parent="CenterContainer/GridContainer"]
+margin_top = 3.0
+margin_right = 57.0
+margin_bottom = 21.0
 text = "SFX Set:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="SFXDropdown" parent="." instance=ExtResource( 2 )]
-margin_left = 130.194
-margin_top = 188.685
-margin_right = 359.194
-margin_bottom = 208.685
+[node name="SFXSetDropdown" parent="CenterContainer/GridContainer" instance=ExtResource( 3 )]
+margin_left = 98.0
+margin_right = 318.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 220, 0 )
 
-[node name="Label" type="Label" parent="SFXDropdown"]
-margin_left = -69.8061
-margin_right = -19.8061
-margin_bottom = 20.0
+[node name="SFXLabel" type="Label" parent="CenterContainer/GridContainer"]
+margin_top = 47.0
+margin_right = 57.0
+margin_bottom = 65.0
 text = "SFX:"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="SFXDropdown" parent="CenterContainer/GridContainer" instance=ExtResource( 2 )]
+margin_left = 98.0
+margin_top = 44.0
+margin_right = 318.0
+margin_bottom = 68.0
+rect_min_size = Vector2( 220, 0 )
 [connection signal="gui_input" from="." to="." method="_on_IngameMenu_gui_input"]

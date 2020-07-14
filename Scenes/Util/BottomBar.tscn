@@ -16,11 +16,16 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="AliasBox" type="RichTextLabel" parent="."]
-margin_left = 18.0
-margin_top = 379.0
-margin_right = 314.0
-margin_bottom = 419.0
+[node name="MessageBoxes" type="Control" parent="."]
+anchor_top = 0.65
+anchor_right = 1.0
+anchor_bottom = 0.95
+mouse_filter = 2
+
+[node name="AliasBox" type="RichTextLabel" parent="MessageBoxes"]
+anchor_right = 0.3
+anchor_bottom = 0.15
+margin_left = 30.0
 rect_clip_content = false
 mouse_filter = 2
 custom_fonts/normal_font = ExtResource( 6 )
@@ -29,11 +34,12 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MessageBox" type="RichTextLabel" parent="."]
-margin_left = 18.0
-margin_top = 420.0
-margin_right = 1002.0
-margin_bottom = 567.0
+[node name="MessageBox" type="RichTextLabel" parent="MessageBoxes"]
+anchor_top = 0.15
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 30.0
+margin_right = -30.0
 rect_clip_content = false
 mouse_filter = 2
 custom_fonts/normal_font = ExtResource( 6 )
@@ -43,19 +49,28 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MessageLine" type="LineEdit" parent="."]
-margin_top = 570.0
-margin_right = 860.0
-margin_bottom = 600.0
+[node name="MessageInputs" type="Control" parent="."]
+anchor_top = 0.95
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MessageLine" type="LineEdit" parent="MessageInputs"]
+anchor_right = 0.85
+anchor_bottom = 1.0
 script = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 send_button_path = NodePath("../Send")
 
-[node name="Send" parent="." instance=ExtResource( 1 )]
-margin_left = 860.0
-margin_top = 570.0
-margin_right = 1024.0
-margin_bottom = 600.0
+[node name="Send" parent="MessageInputs" instance=ExtResource( 1 )]
+anchor_left = 0.85
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 0.0
+margin_bottom = 0.0
 text_node_path = NodePath("../MessageLine")
