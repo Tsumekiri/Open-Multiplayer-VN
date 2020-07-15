@@ -1,61 +1,80 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scripts/Scenes/Connection/Login/Login.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Util/SceneSwitch.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scripts/Scenes/Connection/CreateServer/AssetPath.gd" type="Script" id=3]
 [ext_resource path="res://Resources/Theme/MainTheme.tres" type="Theme" id=4]
+[ext_resource path="res://Scripts/Scenes/Connection/Login/LoginFailDialog.gd" type="Script" id=5]
 
-[node name="Login" type="Panel"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -191.0
-margin_top = -114.0
-margin_right = 191.0
-margin_bottom = 139.0
+[node name="Login" type="CenterContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
 theme = ExtResource( 4 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+asset_path_node = NodePath("CenterContainer/VBoxContainer/InputContainer/AssetPath")
+address_node = NodePath("CenterContainer/VBoxContainer/InputContainer/Address")
+port_node = NodePath("CenterContainer/VBoxContainer/InputContainer/Port")
+server_password_node = NodePath("CenterContainer/VBoxContainer/InputContainer/ServerPass")
+username_node = NodePath("CenterContainer/VBoxContainer/InputContainer/Username")
+login_button_node = NodePath("CenterContainer/VBoxContainer/ButtonContainer/Login")
+cancel_button_node = NodePath("CenterContainer/VBoxContainer/ButtonContainer/Cancel")
 
-[node name="Login" type="Button" parent="."]
-margin_left = 239.0
-margin_top = 211.0
-margin_right = 360.0
-margin_bottom = 231.0
-focus_next = NodePath("../AssetPath")
-focus_previous = NodePath("../Cancel")
-text = "Login"
+[node name="Panel" type="Panel" parent="."]
+margin_left = 312.0
+margin_top = 150.0
+margin_right = 712.0
+margin_bottom = 450.0
+rect_min_size = Vector2( 400, 300 )
 
-[node name="Cancel" parent="." instance=ExtResource( 2 )]
-margin_left = 19.0
-margin_top = 211.0
-margin_right = 137.0
-margin_bottom = 231.0
-focus_next = NodePath("../Login")
-focus_previous = NodePath("../Password")
-text = "Cancel"
-target = "res://Scenes/Connection/MainMenu.tscn"
+[node name="CenterContainer" type="CenterContainer" parent="."]
+margin_left = 355.0
+margin_top = 190.0
+margin_right = 669.0
+margin_bottom = 410.0
+mouse_filter = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="AssetPath" type="Button" parent="."]
-margin_left = 109.0
-margin_top = 13.0
-margin_right = 369.0
-margin_bottom = 33.0
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+margin_right = 314.0
+margin_bottom = 220.0
+custom_constants/separation = 20
+
+[node name="InputContainer" type="GridContainer" parent="CenterContainer/VBoxContainer"]
+margin_right = 314.0
+margin_bottom = 176.0
+custom_constants/vseparation = 10
+custom_constants/hseparation = 20
+columns = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AssetLabel" type="Label" parent="CenterContainer/VBoxContainer/InputContainer"]
+margin_top = 3.0
+margin_right = 94.0
+margin_bottom = 21.0
+text = "Assets folder:"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AssetPath" type="Button" parent="CenterContainer/VBoxContainer/InputContainer"]
+margin_left = 114.0
+margin_right = 314.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 200, 0 )
 focus_next = NodePath("../Address")
 focus_previous = NodePath("../Login")
 script = ExtResource( 3 )
 
-[node name="Label" type="Label" parent="AssetPath"]
-margin_left = -100.0
-margin_right = -12.0
-margin_bottom = 20.0
-text = "Assets folder:"
-valign = 1
-
-[node name="dialog" type="FileDialog" parent="AssetPath"]
+[node name="dialog" type="FileDialog" parent="CenterContainer/VBoxContainer/InputContainer/AssetPath"]
 margin_left = -190.0
 margin_top = -160.0
 margin_right = 360.0
@@ -66,82 +85,116 @@ access = 2
 current_dir = "D:/MultiVN/Open Multiplayer VN"
 current_path = "D:/MultiVN/Open Multiplayer VN/"
 
-[node name="Address" type="LineEdit" parent="."]
-margin_left = 109.0
-margin_top = 44.0
-margin_right = 369.0
-margin_bottom = 68.0
-focus_next = NodePath("../Port")
-focus_previous = NodePath("../AssetPath")
-
-[node name="Label" type="Label" parent="Address"]
-margin_left = -100.0
-margin_right = -12.0
-margin_bottom = 24.0
+[node name="AddressLabel" type="Label" parent="CenterContainer/VBoxContainer/InputContainer"]
+margin_top = 39.0
+margin_right = 94.0
+margin_bottom = 57.0
 text = "Address:"
 valign = 1
 
-[node name="Port" type="LineEdit" parent="."]
-margin_left = 109.0
-margin_top = 74.0
-margin_right = 369.0
-margin_bottom = 98.0
-focus_next = NodePath("../ServerPass")
-focus_previous = NodePath("../Address")
+[node name="Address" type="LineEdit" parent="CenterContainer/VBoxContainer/InputContainer"]
+margin_left = 114.0
+margin_top = 34.0
+margin_right = 314.0
+margin_bottom = 62.0
+rect_min_size = Vector2( 200, 0 )
+focus_next = NodePath("../Port")
+focus_previous = NodePath("../AssetPath")
+caret_blink = true
+caret_blink_speed = 0.5
 
-[node name="Label" type="Label" parent="Port"]
-margin_left = -100.0
-margin_right = -12.0
-margin_bottom = 24.0
+[node name="PortLabel" type="Label" parent="CenterContainer/VBoxContainer/InputContainer"]
+margin_top = 77.0
+margin_right = 94.0
+margin_bottom = 95.0
 text = "Port:"
 valign = 1
 
-[node name="ServerPass" type="LineEdit" parent="."]
-margin_left = 109.0
-margin_top = 104.0
-margin_right = 369.0
-margin_bottom = 128.0
+[node name="Port" type="LineEdit" parent="CenterContainer/VBoxContainer/InputContainer"]
+margin_left = 114.0
+margin_top = 72.0
+margin_right = 314.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 200, 0 )
+focus_next = NodePath("../ServerPass")
+focus_previous = NodePath("../Address")
+caret_blink = true
+caret_blink_speed = 0.5
+
+[node name="PassLabel" type="Label" parent="CenterContainer/VBoxContainer/InputContainer"]
+margin_top = 115.0
+margin_right = 94.0
+margin_bottom = 133.0
+text = "Server Pswd:"
+valign = 1
+
+[node name="ServerPass" type="LineEdit" parent="CenterContainer/VBoxContainer/InputContainer"]
+margin_left = 114.0
+margin_top = 110.0
+margin_right = 314.0
+margin_bottom = 138.0
+rect_min_size = Vector2( 200, 0 )
 focus_next = NodePath("../Username")
 focus_previous = NodePath("../Port")
 secret = true
+caret_blink = true
+caret_blink_speed = 0.5
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="ServerPass"]
-margin_left = -100.0
-margin_right = -12.0
-margin_bottom = 24.0
-text = "Server Pswd:"
-valign = 1
-
-[node name="Username" type="LineEdit" parent="."]
-margin_left = 109.0
-margin_top = 134.0
-margin_right = 369.0
-margin_bottom = 158.0
-focus_next = NodePath("../Password")
-focus_previous = NodePath("../ServerPass")
-
-[node name="Label" type="Label" parent="Username"]
-margin_left = -100.0
-margin_right = -62.0
-margin_bottom = 24.0
+[node name="UserLabel" type="Label" parent="CenterContainer/VBoxContainer/InputContainer"]
+margin_top = 153.0
+margin_right = 94.0
+margin_bottom = 171.0
 text = "Username:"
 valign = 1
 
-[node name="Password" type="LineEdit" parent="."]
-margin_left = 109.0
-margin_top = 164.0
-margin_right = 369.0
-margin_bottom = 188.0
-focus_next = NodePath("../Cancel")
-focus_previous = NodePath("../Username")
-secret = true
+[node name="Username" type="LineEdit" parent="CenterContainer/VBoxContainer/InputContainer"]
+margin_left = 114.0
+margin_top = 148.0
+margin_right = 314.0
+margin_bottom = 176.0
+rect_min_size = Vector2( 200, 0 )
+focus_next = NodePath("../Password")
+focus_previous = NodePath("../ServerPass")
+caret_blink = true
+caret_blink_speed = 0.5
 
-[node name="Label" type="Label" parent="Password"]
-margin_left = -100.0
-margin_right = -63.0
+[node name="ButtonContainer" type="GridContainer" parent="CenterContainer/VBoxContainer"]
+margin_top = 196.0
+margin_right = 314.0
+margin_bottom = 220.0
+custom_constants/hseparation = 113
+columns = 2
+
+[node name="Cancel" parent="CenterContainer/VBoxContainer/ButtonContainer" instance=ExtResource( 2 )]
+margin_right = 100.0
 margin_bottom = 24.0
-text = "Password:"
-valign = 1
+rect_min_size = Vector2( 100, 0 )
+focus_next = NodePath("../Login")
+focus_previous = NodePath("../Password")
+text = "Cancel"
+target = "res://Scenes/Connection/MainMenu.tscn"
+
+[node name="Login" type="Button" parent="CenterContainer/VBoxContainer/ButtonContainer"]
+margin_left = 213.0
+margin_right = 313.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 100, 0 )
+focus_next = NodePath("../AssetPath")
+focus_previous = NodePath("../Cancel")
+text = "Login"
+
+[node name="AcceptDialog" type="AcceptDialog" parent="."]
+margin_left = 362.0
+margin_top = 235.0
+margin_right = 662.0
+margin_bottom = 364.0
+rect_min_size = Vector2( 300, 100 )
+dialog_text = "Connection  failed, please check your input, internet connection and try again. If the problem persists, contact the server owner."
+dialog_autowrap = true
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

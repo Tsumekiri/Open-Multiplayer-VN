@@ -1,23 +1,33 @@
-extends Panel
+extends CenterContainer
 
-const fields = [
-	"AssetPath",
-	"Address",
-	"Port",
-	"Username",
-	"Password"
-]
+var fields
+
+export(NodePath) var asset_path_node
+export(NodePath) var address_node
+export(NodePath) var port_node
+export(NodePath) var server_password_node
+export(NodePath) var username_node
+export(NodePath) var login_button_node
+export(NodePath) var cancel_button_node
 
 var asset_path: String
 var address: String
 var port: int
 var server_password: int
 var username: String
-var password: int
 
 func _ready():
-	$Login.connect("button_up", self, "login")
-	$Cancel.connect("switch_scene", self, "switch_scene")
+
+	fields = [
+		asset_path_node,
+		address_node,
+		port_node,
+		server_password_node,
+		username_node
+	]
+
+	get_node(login_button_node).connect("button_up", self, "login")
+	get_node(cancel_button_node).connect("switch_scene", self, "switch_scene")
 	NetworkManager.connect("login_s", self, "load_resources")
 
 func switch_scene(scene) -> void:
@@ -34,12 +44,11 @@ func login() -> void:
 	if (not mandatory_fields_filled()):
 		return
 	
-	asset_path = $AssetPath.get_text().strip_edges()
-	address = $Address.get_text().strip_edges()
-	port = int($Port.get_text().strip_edges())
-	server_password = $ServerPass.get_text().strip_edges().hash()
-	username = $Username.get_text().strip_edges()
-	password = $Password.get_text().strip_edges().hash()
+	asset_path = get_node(asset_path_node).get_text().strip_edges()
+	address = get_node(address_node).get_text().strip_edges()
+	port = int(get_node(port_node).get_text().strip_edges())
+	server_password = get_node(server_password_node).get_text().strip_edges().hash()
+	username = get_node(username_node).get_text().strip_edges()
 	
 	var client = MultiVN.Client.new(get_tree())
 	client.connect("connection_succeeded", self, "client_connected")
@@ -47,13 +56,16 @@ func login() -> void:
 	
 	if client.connect_network(asset_path, address, port):
 		NetworkManager.set_communication_resource(client)
+	else:
+		client_connection_failed()
 
 func client_connected() -> void:
-	NetworkManager.attempt_login(username, password, server_password)
+	NetworkManager.attempt_login(username, server_password)
 
 func client_connection_failed() -> void:
+	print("Failed to connect client")
 	NetworkManager.set_communication_resource(null)
-	# TODO : Show error if can't login
+	NetworkManager.login_failed()
 
 func load_resources():
 	switch_scene("res://Scenes/Util/Loading.tscn")

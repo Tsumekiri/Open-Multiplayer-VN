@@ -10,15 +10,15 @@ func _init(pTree: SceneTree):
 	self.tree = pTree
 
 func connect_network(assets_folder: String, address: String, port: int):
-	if (not FileManager.create_directories(assets_folder)):
-		return false
-	
 	var peer = NetworkedMultiplayerENet.new()
 	_connect_peer_signals(peer)
 	
 	if (peer.create_client(address, port) != OK):
 		return false
 	
+	if (not FileManager.create_directories(assets_folder)):
+		return false
+
 	tree.set_network_peer(peer)
 	NetworkManager.set_id(tree.get_network_unique_id())
 	return true

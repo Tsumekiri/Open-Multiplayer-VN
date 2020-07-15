@@ -7,6 +7,7 @@ var player_id
 var players: Dictionary = {}
 
 signal login_s
+signal login_failed_s
 
 # Called by the server to assign a key to the player, both on itself
 # and in the specific player's client, as well as initialize it into
@@ -15,6 +16,13 @@ func send_player_init(id: int, username: String):
 	var communication_key: String = CommunicationKey.create_unique_key()
 	init_logged_player(id, communication_key, username)
 	rpc_id(id, "init_logged_player", id, communication_key, username)
+
+# Called by the server to send a connection failure to the player.
+func send_connection_failed(id: int):
+	rpc_id(id, "login_failed")
+
+puppet func login_failed():
+	emit_signal("login_failed_s")
 
 # Setter for the player's communication key, in serverData dictionary,
 # as well as initializes player data
@@ -39,9 +47,9 @@ func get_communication_resource():
 	return communication_resource
 
 # Called on the client to try and log into the server its peer is connected to
-func attempt_login(username: String, password: int, server_password: int):
+func attempt_login(username: String, server_password: int):
 	var id: int = get_tree().get_network_unique_id()
-	rpc("start_player_connection", id, username, password, server_password)
+	rpc("start_player_connection", id, username, server_password)
 
 # When the server recognizes the client's login, it calls this function on the client,
 # which then emits a signal so that it knows it was logged in
@@ -49,38 +57,26 @@ func receive_login():
 	emit_signal("login_s")
 
 # Starts player connection to server. Called by client
-master func start_player_connection(id: int, username: String, password: int, server_password: int) -> void:
-	if (login_player(username, password, server_password)):
+master func start_player_connection(id: int, username: String, server_password: int) -> void:
+	if (login_player(username, server_password)):
 		send_player_init(id, username)
 
 # Attempts to log player in. Registers player if it wasn't registered.
-func login_player(username: String, password: int, server_password: int) -> bool:
-	if (register_player(username, password, server_password)):
-		var path: String = FileManager.get_config_path(FileManager.PLAYER_LIST)
-		var config: ConfigFile = ConfigFile.new()
-		if (config.load(path) != OK):
-			return false
-		
-		if (config.get_value(username, CONFIG_PASSWORD_KEY) == password):
-			return true
+func login_player(username: String, server_password: int) -> bool:
+	if (register_player(username, server_password)):
+		return true
 	return false
 
 # Attempts to register new player. Returns true if player was registered successfuly
 # or was already registered.
-func register_player(username: String, password: int, server_password: int) -> bool:
+func register_player(username: String, server_password: int) -> bool:
 	if (not get_communication_resource().check_server_password(server_password)):
 		return false
 	
-	var path: String = FileManager.get_config_path(FileManager.PLAYER_LIST)
-	var config: ConfigFile = ConfigFile.new()
-	if (config.load(path) == OK):
-		if config.has_section(username):
-			return true
+	for player in players.values():
+		if player.get_data("user") == username:
+			return false
 	
-	config.set_value(username, CONFIG_PASSWORD_KEY, password)
-	
-	if (config.save(path) != OK):
-		return false
 	return true
 
 # Simple getter for players
