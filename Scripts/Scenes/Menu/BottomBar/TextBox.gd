@@ -15,6 +15,7 @@ func _ready():
 	add_child(text_timer)
 	
 	MessageManager.connect("message_received", self, "display_message")
+	MessageManager.connect("finish_current_message", self, "show_all")
 	text_timer.connect("timeout", self, "next_visible_character")
 
 # Used to check whether all characters in message are currently shown
@@ -43,6 +44,8 @@ func next_visible_character() -> void:
 	
 	if not all_visible:
 		start_character_timer(is_current_character_slow())
+	else:
+		MessageManager.finished_current_message()
 
 # Displays a message as received
 func display_message(data: Dictionary) -> void:
@@ -53,9 +56,12 @@ func display_message(data: Dictionary) -> void:
 		yield(check_all_characters_shown(), "completed") # Workaround get_total_character_count bug
 		if not all_visible:
 			start_character_timer(is_current_character_slow())
+	else:
+		MessageManager.finished_current_message()
 
 # Shows all characters in message, bypassing timer
 func show_all() -> void:
+	yield(get_tree(), "idle_frame") # Waits to make sure the check for timer "is stopped" works
 	if not text_timer.is_stopped():
 		text_timer.stop()
 	

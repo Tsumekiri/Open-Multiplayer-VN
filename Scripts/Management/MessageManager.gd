@@ -8,8 +8,11 @@ var current_message : int = -1
 var message_list : Array = []
 var read_messages : Array = []
 
+var current_message_shown : bool = true
+
 signal message_received(data)
 signal unread_messages()
+signal finish_current_message()
 
 # Gets data and propagates message
 master func send_message(id: int, key: String, message: String):
@@ -104,18 +107,25 @@ func get_current_message():
 			return message
 	return null
 
+func send_finish_current_message():
+	emit_signal("finish_current_message")
+	finished_current_message()
+
+func finished_current_message():
+	current_message_shown = true
+
 # Shows next message and increments current_message
 func show_next_message():
-	if not is_on_last_message():
+	if not current_message_shown:
+		send_finish_current_message()
+	elif not is_on_last_message():
 		current_message += 1
 		var target_message = get_current_message()
 		if not target_message and not message_list.empty():
 			target_message = message_list.front()
 			current_message = target_message["message_id"]
 		
-		emit_signal("message_received", target_message)
-		if not is_on_last_message():
-			emit_signal("unread_messages")
+		show_message(target_message)
 
 # Shows previous message and decrements current_message
 func show_previous_message():
@@ -126,6 +136,11 @@ func show_previous_message():
 			target_message = message_list.back()
 			current_message = target_message["message_id"]
 
-		emit_signal("message_received", target_message)
-		if not is_on_last_message():
-			emit_signal("unread_messages")
+		show_message(target_message)
+
+# Function that properly emits the signal that displays a message
+func show_message(target_message: Dictionary):
+	current_message_shown = false
+	emit_signal("message_received", target_message)
+	if not is_on_last_message():
+		emit_signal("unread_messages")
