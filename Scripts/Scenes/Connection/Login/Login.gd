@@ -22,7 +22,6 @@ func _ready():
 		asset_path_node,
 		address_node,
 		port_node,
-		server_password_node,
 		username_node
 	]
 
