@@ -26,10 +26,11 @@ func create_server() -> void:
 	
 	var assetPath = $AssetPath.get_text().strip_edges()
 	var password = $ServerPass.get_text().strip_edges()
-	var maxPlayers = int($MaxPlayers.get_text().strip_edges())
 	var port = int($Port.get_text().strip_edges())
 	
-	var server = MultiVN.Server.new(get_tree(), password)
-	if server.connect_network(assetPath, port, maxPlayers):
+	var server = MultiVN.WebsocketServer.new(get_tree(), password)
+	if server.socket_connect(assetPath, port) == OK:
 		NetworkManager.set_communication_resource(server)
 		switch_scene("res://Scenes/Util/Loading.tscn")
+	else:
+		print("Failed to start server")

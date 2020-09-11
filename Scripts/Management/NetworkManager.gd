@@ -5,9 +5,18 @@ var communication_resource # Either a Client or a Server
 
 var player_id
 var players: Dictionary = {}
+var _should_poll: bool = false
 
 signal login_s
 signal login_failed_s
+
+func _process(_delta):
+	if _should_poll:
+		get_tree().get_network_peer().poll()
+
+# If set to true, network peer will start polling
+func set_should_poll(should_poll: bool) -> void:
+	_should_poll = should_poll
 
 # Called by the server to assign a key to the player, both on itself
 # and in the specific player's client, as well as initialize it into

@@ -4,7 +4,6 @@ var fields
 
 export(NodePath) var asset_path_node
 export(NodePath) var address_node
-export(NodePath) var port_node
 export(NodePath) var server_password_node
 export(NodePath) var username_node
 export(NodePath) var login_button_node
@@ -12,7 +11,6 @@ export(NodePath) var cancel_button_node
 
 var asset_path: String
 var address: String
-var port: int
 var server_password: int
 var username: String
 
@@ -21,7 +19,6 @@ func _ready():
 	fields = [
 		asset_path_node,
 		address_node,
-		port_node,
 		username_node
 	]
 
@@ -45,15 +42,14 @@ func login() -> void:
 	
 	asset_path = get_node(asset_path_node).get_text().strip_edges()
 	address = get_node(address_node).get_text().strip_edges()
-	port = int(get_node(port_node).get_text().strip_edges())
 	server_password = get_node(server_password_node).get_text().strip_edges().hash()
 	username = get_node(username_node).get_text().strip_edges()
 	
-	var client = MultiVN.Client.new(get_tree())
+	var client = MultiVN.WebsocketClient.new(get_tree())
 	client.connect("connection_succeeded", self, "client_connected")
 	client.connect("connection_failed", self, "client_connection_failed")
 	
-	if client.connect_network(asset_path, address, port):
+	if client.socket_connect(address, asset_path) == OK:
 		NetworkManager.set_communication_resource(client)
 	else:
 		client_connection_failed()

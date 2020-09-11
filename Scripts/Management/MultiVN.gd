@@ -4,3 +4,6 @@ extends Node
 
 var Server = load("res://Scripts/Network/Server.gd")
 var Client = load("res://Scripts/Network/Client.gd")
+
+var WebsocketServer = load("res://scripts/Network/WebsocketServer.gd")
+var WebsocketClient = load("res://scripts/Network/WebsocketClient.gd")
