@@ -10,14 +10,14 @@ func _init(tree: SceneTree, password: String = ""):
 	connect_signals()
 
 func connect_signals():
-	_server.connect("client_connected", self, "_client_connected")
-	_server.connect("client_disconnected", self, "_client_disconnected")
+	_server.connect("peer_connected", self, "_client_connected")
+	_server.connect("peer_disconnected", self, "_client_disconnected")
 
-func _client_connected(id: int, _protocol: String):
-	print("Client connected!")
+func _client_connected(id: int):
+	print("Client connected, id: ", id)
 
-func _client_disconnected(id: int, _was_clean_close: bool):
-	print("Client disconnected!")
+func _client_disconnected(id: int):
+	NetworkManager.erase_player(id)
 
 # Checks the server password against argument. Returns true
 # if there is no password as well

@@ -19,10 +19,10 @@ func _load_resources(_args) -> void:
 	
 	# Add code to run after loading all characters
 	
-	print("========== CHARACTERS ==========")
-	print(character_list)
-	for character in character_list.values():
-		print(character.get_vn_images())
+	#print("========== CHARACTERS ==========")
+	#print(character_list)
+	#for character in character_list.values():
+	#	print(character.get_vn_images())
 	
 	_finish_loading()
 

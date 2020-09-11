@@ -19,10 +19,10 @@ func _load_resources(_args) -> void:
 	
 	# Add code to run after loading all sound effects
 	
-	print("========== SFX ==========")
-	print(sfx_list)
-	for sfx in sfx_list.values():
-		print(sfx.get_vn_audios())
+	#print("========== SFX ==========")
+	#print(sfx_list)
+	#for sfx in sfx_list.values():
+	#	print(sfx.get_vn_audios())
 	
 	_finish_loading()
 

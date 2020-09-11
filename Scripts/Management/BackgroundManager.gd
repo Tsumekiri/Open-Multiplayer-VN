@@ -19,10 +19,10 @@ func _load_resources(_args) -> void:
 	
 	# Add code to run after loading every background
 	
-	print("========== BACKGROUNDS ==========")
-	print(background_list)
-	for background in background_list.values():
-		print(background.get_vn_images())
+	#print("========== BACKGROUNDS ==========")
+	#print(background_list)
+	#for background in background_list.values():
+	#	print(background.get_vn_images())
 	
 	_finish_loading()
 

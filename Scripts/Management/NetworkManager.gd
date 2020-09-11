@@ -14,6 +14,26 @@ func _process(_delta):
 	if _should_poll:
 		get_tree().get_network_peer().poll()
 
+func _exit_tree():
+	var peer = get_tree().get_network_peer()
+	if peer is WebSocketClient:
+		disconnect_client(peer)
+	elif peer is WebSocketServer:
+		disconnect_server(peer)
+
+# Used to disconnect client before closing the game window
+func disconnect_client(peer: WebSocketClient):
+	peer.disconnect_from_host()
+
+# Used to stop server before closing the game window
+func disconnect_server(peer: WebSocketServer):
+	peer.stop()
+
+# Used to erase a player from the list
+func erase_player(id: int):
+	ConversationManager.leave_conversation(players[id], null, null)
+	players.erase(id)
+
 # If set to true, network peer will start polling
 func set_should_poll(should_poll: bool) -> void:
 	_should_poll = should_poll
